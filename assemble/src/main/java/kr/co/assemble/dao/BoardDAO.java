@@ -14,5 +14,8 @@ public interface BoardDAO {
 	//그룹별 글 전체 조회(타임라인)
 	public List<BoardDTO> boardlist(int groupno);
 	
+	//selectOne
+	public List<BoardDTO> selectOne(int bno);
+	
 	
 }

@@ -26,13 +26,17 @@
     <link href="/resources/assets/css/style-responsive.css" rel="stylesheet">
 
     <script src="/resources/assets/js/chart-master/Chart.js"></script>
-    
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#category").click(function(){
+		location.href="/makeCategory";
+	});
+});
+</script>
   </head>
+
 
   <body>
 
@@ -235,7 +239,7 @@
 		              	  <input type="button" value="멤버" class="b4"/>	
 		              	  <input type="button" value="참여가능한 그룹" class="b4"/>
         	  	
-	              	  	  <input type="button" value="+ 카테고리 추가하기" class="b6"/>
+	              	  	  <input type="button" value="+ 카테고리 추가하기" class="b6" id="category"/>
 	              	  	  
 	              	  	  <input type="button" value="+ 새로운 그룹 만들기" class="b6"/>
 
@@ -258,12 +262,22 @@
                           <i class="fa fa-cogs"></i>
                           <span>${g.categoryno }</span>
                       </a>
-         
+         		
                       <ul class="sub">
-                          <li><a href="/assemble.io/avengers/g/${g.groupname }/wall">${g.groupname }</a></li>
+                          <li><a href="/assemble.io/avengers/g/${g.groupno }/wall">${g.groupname }</a></li>
                       </ul>
                   </li>
 			</c:forEach>
+				      <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-cogs"></i>
+                          <span>cateogry1</span>
+                      </a>
+         
+                      <ul class="sub">
+                          <li><a href="#">group1</a></li>
+                      </ul>
+                  </li>
 
 		
               </ul>
@@ -290,7 +304,7 @@
 
 <!--     common script for all pages -->
     <script src="/resources/assets/js/common-scripts.js"></script>
-    
-          
+       
 </body>
+
 </html>

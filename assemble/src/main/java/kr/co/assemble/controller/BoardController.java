@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.assemble.dao.BoardDAO;
 import kr.co.assemble.dto.BoardDTO;
+import kr.co.assemble.dto.GroupDTO;
 
 @Controller
 public class BoardController {
@@ -53,6 +55,7 @@ public class BoardController {
 	
 	
 	//그룹별 게시글 조회
+	/*
 	@RequestMapping(value = "/wall")
 	public String boardlist(
 			@RequestParam(value = "groupno") int groupno, Model model){
@@ -62,8 +65,31 @@ public class BoardController {
 		
 		return "board/wall";
 	}
+	*/
+	@RequestMapping("/assemble.io/avengers/g/{groupno}/wall")
+	public String groupBoard(@PathVariable("groupno")int groupno, Model model){
+		
+			List<BoardDTO> list = dao.boardlist(groupno);
+			model.addAttribute("list", list);
+			
+		//System.out.println(groupno);
+			
+			return "board/wall";
+	}
 	
 	
+	
+	//bno로 게시글 전체 조회
+	   @RequestMapping(value = "/selectBoard")
+	   public String selectbno(
+	         @RequestParam(value = "bno")int bno, Model model) {
+	      System.out.println(bno);
+	      
+	      List<BoardDTO> list = dao.selectOne(bno);
+	      model.addAttribute("list", list);
+	      
+	      return "board/modify";
+	   }
 	
 	
 	

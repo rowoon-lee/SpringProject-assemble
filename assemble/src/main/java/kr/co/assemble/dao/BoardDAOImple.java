@@ -39,5 +39,15 @@ public class BoardDAOImple implements BoardDAO{
 	public void updateBoard(BoardDTO dto) {
 		ss.update("updateBoard", dto);
 	}
+
+
+	@Override
+	public List<BoardDTO> selectOne(int bno) {
+		// TODO Auto-generated method stub
+		
+		return ss.selectList("selectOneBno", bno);
+	}
+
+
 	
 }

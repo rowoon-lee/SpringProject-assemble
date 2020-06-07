@@ -39,6 +39,7 @@ public class GroupDAOImple implements GroupDAO{
 		return ss.selectList("selectAllGroup");
 	}
 	
+	//카테고리 & 그룹 조인(navbar 출력)
 	
 	
 	

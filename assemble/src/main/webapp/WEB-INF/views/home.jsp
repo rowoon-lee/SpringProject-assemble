@@ -25,7 +25,7 @@
 /* #F2F2F2; */
 }
 
-#a, #b, #c, #d{
+#a, #d{
 border : 1px solid #F2F2F2;
 }
 
@@ -37,12 +37,12 @@ border : 1px solid #F2F2F2;
       	<h3>나의 소식 피드</h3>
 
 		 <div id="board">
-			<div id="a"><h4>카테고리명</h4></div>
+			<div id="a"><h4>그룹명</h4></div>
 						 	
-		 	<div id="b"><h3>프사/아이디(이름)/날짜</h3></div>
+		 	<div id="b"><h4>프사/아이디(이름)/날짜</h4></div>
 		 	
 		 	<div id="c">
-		 		<textarea name="contents" id="contents" cols="30" rows="10"></textarea>
+		 		<h4>내용</h4>
 		 	</div>
 		 	
 		 	<div id="d"><h4>댓글</h4></div>

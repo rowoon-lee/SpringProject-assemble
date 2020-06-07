@@ -33,23 +33,24 @@ border : 1px solid #F2F2F2;
 	<div id="main">
  	<br />
       	<h3>그룹별조회</h3>
- 	<c:forEach var="g" items="${selectGroupBoard}">
 
 		 <div id="board">
-			<div id="a"><h4>${g.categoryno  }</h4></div>
+			<div id="a"><h4>카테고리명</h4></div>
 						 	
-		 	<div id="b"><h3>${g.memberno }</h3></div>
+		 	<div id="b">
+		 		<h3>프사/아이디/이름</h3>
+		 		<h3>게시일</h3>
+		 	</div>
 		 	
 		 	<div id="c">
 		 		<textarea name="contents" id="contents" cols="30" rows="10">
-		 			${g.boardcontents }
+		 			내용
 		 		</textarea>
 		 	</div>
 		 	
 		 	<div id="d"><h4>댓글보기</h4></div>
 		</div>
-		
-		</c:forEach>
+
 	</div>
 
 </body>
