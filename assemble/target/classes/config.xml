@@ -6,8 +6,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="kr.co.assemble.dto.CategoryDTO" alias="CategoryDto"/>
-		<!-- <package name="kr.co.assemble.dto"/> -->
 		<typeAlias type="kr.co.assemble.dto.GroupDTO" alias="GroupDto"/>
 		<typeAlias type="kr.co.assemble.dto.BoardDTO" alias="BoardDto"/>
+		<typeAlias type="kr.co.assemble.dto.ComposedDTO" alias="ComposedDto"/>
+		
+	
 	</typeAliases>
 </configuration>

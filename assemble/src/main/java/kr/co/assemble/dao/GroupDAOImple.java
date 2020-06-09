@@ -39,17 +39,20 @@ public class GroupDAOImple implements GroupDAO{
 		return ss.selectList("selectAllGroup");
 	}
 	
-	//카테고리별 그룹조회
+	//카테고리별 그룹조회(x)
 	@Override
 	public List<GroupDTO> grouplist(int categoryno) {
 		return ss.selectList("selectCategoryGroup", categoryno);
 	}
 
+	//이걸로 카테고리 list 뽑음
 	@Override
 	public List<GroupDTO> grouplist() {
 		// TODO Auto-generated method stub
 		return ss.selectList("selectCategoryGroup1");
 	}
+	
+	
 	
 	
 	

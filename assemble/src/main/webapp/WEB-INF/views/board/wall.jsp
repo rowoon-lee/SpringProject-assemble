@@ -9,14 +9,16 @@
 <title>wall.jsp</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-     function bookMark(){
-    	 var bm = document.getElementById('bk');
-    	 if(bm.src.match("before")){
-    		 bm.src = "/resources/assets/img/bookmark_after.png";
-    	 }else{
-    		 bm.src = "/resources/assets/img/bookmark_before.png";
+     //bookmark click 시 변경
+     function imgchange(){
+    	 var img = document.getElementById('bk');
+    	 if(img.src.match("before")){
+    		 img.src = "/resources/assets/img/bookmark_after.png";
+    		 
+    		 /* location.href="/addBookmark"; */
     	 }
-     }
+    	 
+     }     
      
      $(function(){        
       $(".btn").click(function(){
@@ -30,6 +32,10 @@
           document.frm.action = "selectBoard";
          document.frm.submit();
       });
+      
+/*       $("#bookbt").click(function(){
+    	 console.log("true"); 
+      }); */
       
       
       //좋아요
@@ -55,7 +61,8 @@
 #info{
 	border: 2px solid #F2F2F2; 
 	background-color: pink;
-	margin-bottom : 15px;
+	margin-bottom : 15px;	
+	padding-bottom : 0px;
 }
 #select{
 	background-color: white;
@@ -82,44 +89,44 @@
 margin-top : 10px;
 }
 
-#re{
-	background-color: white;
-	border: none;
-	border: 1px solid #CCCCCC;
-}
-.lh{
-	width: 20px;
-	background: none;
-}
-#bookmark{
-	margin-left: 74%;	
-}
 
 #retext{
 	width: 100%;
 	border : 1px solid #CCCCCC;
 }
-
-
-.bt{
+#re{
 	background-color: white;
 	border: none;
+	border: 1px solid #CCCCCC;
+	margin-right: 1%;
 }
+
+.lh{
+	width: 22px;
+}
+#hate{
+	margin-left: 1.5%;
+}
+ #bk{
+	margin-left: 77%;	
+}
+#more{
+	margin-left: 1.5%;
+}
+
 </style>
 </head>
 <body>
 	<form name="frm" method="get">
 		<div id="main">
-
-			<div id="info">
+			<div id="info">		
 				<h2>그룹명</h2>
 				<h5>아이디(이름) 외 몇명</h5>
-
-				<div id="select">
-					<h3>전체 멤버 사진 파일 일정 노트 요청</h3>
-					<h5>애는 각각 누르면 div id=section에 가져오기!</h5>
-				</div>
+			<div id="select">
+				<h3>전체 멤버 사진 파일 일정 노트 요청</h3>
+				<h5>애는 각각 누르면 div id=section에 가져오기!</h5>
 			</div>
+		</div>
 
 
 			<div id="section">	
@@ -152,28 +159,18 @@ margin-top : 10px;
 						</div>	
 						<div id="c">
 							<input type="button" value="댓글" id="re" />
-							<button class="bt">
-								<img src="/resources/assets/img/like.png" id="like" class="lh">
-								<h5 id="count"></h5>
-							</button>
-							<button class="bt">
-								<img src="/resources/assets/img/hate.png" id="hate" class="lh">
-							</button>
+						
+							<img src="/resources/assets/img/like.png" id="like" class="lh">
+							<!-- <h5 id="count"></h5> -->
 							
+							<img src="/resources/assets/img/hate.png" id="hate" class="lh">
 							
-							<button id="bookmark" class="bt" id="likeb">
-								<img src="/resources/assets/img/bookmark_before.png" alt="bookmark" id="bk" class="lh"/>
-							</button>
+				
+							<img src="/resources/assets/img/bookmark_before.png" id="bk" class="lh" onclick="imgchange()"/>
+																													
 							
-							<button class="bt" id="hateb">
-								<img src="/resources/assets/img/more.png" alt="more" class="lh"/>
-							</button>
-							
-							<!-- <button>
-							<img src="/resources/assets/img/bookmark_after.png" alt="" />
-							</button> -->
-														
-							
+							<img src="/resources/assets/img/more.png" id="more" class="lh" />
+				
 						</div>
 
 						<div id="d">
@@ -184,16 +181,14 @@ margin-top : 10px;
 			</div> <!-- section end -->
 		</div>
 	</form>
-
-    <script src="/resources/assets/js/jquery.js"></script> 
-    <script src="/resources/assets/js/jquery-1.8.3.min.js"></script> 
-    <script src="/resources/assets/js/bootstrap.min.js"></script> 
-      <script class="include" type="text/javascript" src="/resources/assets/js/jquery.dcjqaccordion.2.7.js"></script> 
-     <script src="/resources/assets/js/jquery.scrollTo.min.js"></script> 
+<script src="/resources/assets/js/jquery.js"></script>
+<script src="/resources/assets/js/jquery-1.8.3.min.js"></script>
+<script src="/resources/assets/js/bootstrap.min.js"></script>
+<script class="include" type="text/javascript"
+	src="/resources/assets/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="/resources/assets/js/jquery.scrollTo.min.js"></script>
 
 <!--     common script for all pages -->
-    <script src="/resources/assets/js/common-scripts.js"></script>
-
-
+<script src="/resources/assets/js/common-scripts.js"></script>
 </body>
 </html>

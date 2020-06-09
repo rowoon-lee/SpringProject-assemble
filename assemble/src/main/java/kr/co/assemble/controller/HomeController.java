@@ -38,6 +38,7 @@ public class HomeController {
 		
 		return "home";
 	}
+	
 
 	/*
 	 * @RequestMapping(value = "/assemble.io/avengers/home") public String

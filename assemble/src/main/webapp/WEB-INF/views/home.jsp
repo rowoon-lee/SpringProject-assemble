@@ -35,30 +35,43 @@ border-bottom : 1px solid #CCCCCC;
 margin-top : 10px;
 }
 
-#re{
-	background-color: white;
-	border: none;
-	border: 1px solid #CCCCCC;
-}
-.lh{
-	width: 20px;
-	background: none;
-}
-#bookmark{
-	margin-left: 74%;	
-}
-
 #retext{
 	width: 100%;
 	border : 1px solid #CCCCCC;
 }
-
-.bt{
+#re{
 	background-color: white;
 	border: none;
+	border: 1px solid #CCCCCC;
+	margin-right: 1%;
+}
+
+.lh{
+	width: 22px;
+}
+#hate{
+	margin-left: 1.5%;
+}
+ #bk{
+	margin-left: 77%;	
+}
+#more{
+	margin-left: 1.5%;
 }
 
 </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+//bookmark click 시 변경
+function imgchange(){
+	 var img = document.getElementById('bk');
+	 if(img.src.match("before")){
+		 img.src = "/resources/assets/img/bookmark_after.png";
+	 }
+	 
+}
+</script>
 </head>
 <body>
  	<div id="main">
@@ -83,32 +96,31 @@ margin-top : 10px;
 				
 			<div id="d">
 				<input type="button" value="댓글" id="re" />
-				<button class="bt">
-					<img src="/resources/assets/img/like.png" id="like" class="lh">
-					<h5 id="count"></h5>
-				</button>
-				<button class="bt">
-					<img src="/resources/assets/img/hate.png" id="hate" class="lh">
-				</button>
+				
+				<img src="/resources/assets/img/like.png" id="like" class="lh">
+							<!-- <h5 id="count"></h5> -->							
+				<img src="/resources/assets/img/hate.png" id="hate" class="lh">
+				
+				<img src="/resources/assets/img/bookmark_before.png" id="bk" class="lh" onclick="imgchange()"/>
 
-				<button id="bookmark" class="bt" id="likeb">
-					<img src="/resources/assets/img/bookmark_before.png"
-						alt="bookmark" id="bk" class="lh" />
-				</button>
-
-				<button class="bt" id="hateb">
-					<img src="/resources/assets/img/more.png" alt="more" class="lh" />
-				</button>
-
-					<!-- <button>
-							<img src="/resources/assets/img/bookmark_after.png" alt="" />
-							</button> -->
-				</div>
-				<div id="e">
-					<input type="text" name="" id="retext" placeholder=" 댓글을 입력하세요" />
-				</div>
+				<img src="/resources/assets/img/more.png" id="more" class="lh" />
+			</div>
+				
+			<div id="e">
+				<input type="text" name="" id="retext" placeholder=" 댓글을 입력하세요" />
+			</div>
 		</div>
 		</c:forEach>
 	</div>
+<script src="/resources/assets/js/jquery.js"></script>
+<script src="/resources/assets/js/jquery-1.8.3.min.js"></script>
+<script src="/resources/assets/js/bootstrap.min.js"></script>
+<script class="include" type="text/javascript"
+	src="/resources/assets/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="/resources/assets/js/jquery.scrollTo.min.js"></script>
+
+<!--     common script for all pages -->
+<script src="/resources/assets/js/common-scripts.js"></script>	
+	 	
 </body>
 </html>

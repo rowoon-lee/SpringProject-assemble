@@ -81,7 +81,8 @@ public class BoardController {
 	   }
 	   
 	   
-
+	   //북마크 UPDATE
+	   
 	   
 	
 	
