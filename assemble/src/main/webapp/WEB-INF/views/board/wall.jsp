@@ -91,7 +91,7 @@ margin-top : 10px;
 
 
 #retext{
-	width: 100%;
+	width: 91%;
 	border : 1px solid #CCCCCC;
 }
 #re{
@@ -114,14 +114,18 @@ margin-top : 10px;
 	margin-left: 1.5%;
 }
 
+#submit{
+	margin-left: 2%;
+}
+
 </style>
 </head>
 <body>
 	<form name="frm" method="get">
 		<div id="main">
-			<div id="info">		
-				<h2>그룹명</h2>
-				<h5>아이디(이름) 외 몇명</h5>
+			<div id="info">	
+					<h2>${groupname }</h2>
+					<h5>${mastername }( ${masterid} ) 외 몇명</h5> 
 			<div id="select">
 				<h3>전체 멤버 사진 파일 일정 노트 요청</h3>
 				<h5>애는 각각 누르면 div id=section에 가져오기!</h5>
@@ -136,17 +140,17 @@ margin-top : 10px;
 					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat est quia molestiae ullam quibusdam omnis quasi harum beatae voluptas magnam sed eligendi rerum error asperiores tenetur ab officiis exercitationem aliquam.</h3>
 				</div>
 
-				<c:forEach var="b" items="${list }">
+				<c:forEach var="b" items="${thirdlist }">
 					<div id="board">
 						<div id="z">
 							<c:if test="${b.boardnotice == 1}">
 								<img src="/resources/assets/img/star.png" alt="공지글"  class="lh"/>
 								 <b> 공지글</b>
 							</c:if>
-							
 						</div>
 						<div id="a">
-							<h4>${b.memberno }(멤버아이디, 멤버이름)</h4>
+							<!-- 프사 추가 하려면 Groupboard_MemberinfoDTO에 프사 추가, MAPPER에 추가하기 -->
+							<h4>${b.mi_memname } ( ${b.mi_memid } )</h4>
 							<h5>${b.boarddate }</h5>
 						</div>
 
@@ -174,7 +178,10 @@ margin-top : 10px;
 						</div>
 
 						<div id="d">
-							<input type="text" name="" id="retext" placeholder=" 댓글을 입력하세요" />
+							<form action="/retextOk" name="retextfrm" method="post">
+								<input type="text" name="" id="retext" placeholder=" 댓글을 입력하세요" />
+								<input type="submit" value="등록" id="submit"/>
+							</form>
 						</div>
 					</div>
 				</c:forEach>

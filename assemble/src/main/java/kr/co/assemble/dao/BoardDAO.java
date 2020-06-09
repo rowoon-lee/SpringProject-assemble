@@ -3,6 +3,7 @@ package kr.co.assemble.dao;
 import java.util.List;
 
 import kr.co.assemble.dto.BoardDTO;
+import kr.co.assemble.dto.Groupboard_MemberinfoDTO;
 
 public interface BoardDAO {
 	//글쓰기 - 일반
@@ -12,7 +13,7 @@ public interface BoardDAO {
 	public void updateBoard(BoardDTO dto);
 	
 	//그룹별 글 전체 조회(타임라인)
-	public List<BoardDTO> boardlist(int groupno);
+	public List<Groupboard_MemberinfoDTO> boardlist(int groupno);
 	
 	//selectOne
 	public List<BoardDTO> selectOne(int bno);

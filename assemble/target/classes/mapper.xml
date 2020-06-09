@@ -73,21 +73,45 @@
 	<select id="composedList" resultType="ComposedDto">
 		select * from composed
 	</select>
-
-	<!-- **********************Board(게시판)******************** -->
-	<!-- 맨위에 그룹정보 -->
-	<select id="">
-	select g.groupname, i.mi_memname, i.mi_memid
-	from groups as g join memberinfo as i join composed as c
-	on g.groupno = c.groupno and c.memberno = i.mi_memberno
-	where g.groupno = #{groupno}
+	
+	<!-- 그룹별 정보, 구성원 정보(Groups_Memberinfo_Composed_DTO) -->
+	<!--그룹장이름 -->
+	<select id="selectGroupMasterName" resultType="string">
+		select i.mi_memname
+		from groups as g join memberinfo as i join composed as c
+		on g.groupno = c.groupno and c.memberno = i.mi_memberno and g.memberno = c.memberno
+		where g.groupno = #{groupno}
 	</select>
 	
+	<!-- 그룹장아이디 -->
+	<select id="selectGroupMasterId" resultType="string">
+		select i.mi_memid
+		from groups as g join memberinfo as i join composed as c
+		on g.groupno = c.groupno and c.memberno = i.mi_memberno and g.memberno = c.memberno
+		where g.groupno = #{groupno}
+	</select>
 	
+	<!-- 그룹명 -->
+	<select id="selectGroupName" resultType="string">
+		select groupname from groups
+		where groupno = #{groupno}
+	</select>
 	
+	<!--그룹원 모두  -->
+	<select id="selectGroupMemberName" resultType="G_Mi_C_Dto">
+		select g.groupname, i.mi_memname, i.mi_memid
+		from groups as g join memberinfo as i join composed as c
+		on g.groupno = c.groupno and c.memberno = i.mi_memberno
+		where g.groupno = #{groupno}
+	</select>
+	
+
+	<!-- **********************Board(게시판)******************** -->
+
 	<!-- 그룹별로 게시글 조회 공지글일 경우(1) 제일 위로, 최신글이 제일 위에 올라오도록 정렬 -->
-	<select id="selectGroupBoard" resultType="BoardDto">
-		select * from memberinfo as m
+	<select id="selectGroupBoard" resultType="G_MDto">
+		select b.memberno, m.mi_memname, m.mi_memid, b.boardnotice, b.boarddate, b.boardcontents, b.boardlike, b.boardhate, b.requestboolean 
+		from memberinfo as m
 		join groupboard as b
 		on m.mi_memberno = b.memberno
 		where b.groupno = #{groupno}

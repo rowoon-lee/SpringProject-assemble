@@ -10,6 +10,9 @@
 		<typeAlias type="kr.co.assemble.dto.BoardDTO" alias="BoardDto"/>
 		<typeAlias type="kr.co.assemble.dto.ComposedDTO" alias="ComposedDto"/>
 		
+		<typeAlias type="kr.co.assemble.dto.Groupboard_MemberinfoDTO" alias="G_MDto"/>
+		<typeAlias type="kr.co.assemble.dto.Groups_Memberinfo_Composed_DTO" alias="G_Mi_C_Dto"/>
+		
 	
 	</typeAliases>
 </configuration>
