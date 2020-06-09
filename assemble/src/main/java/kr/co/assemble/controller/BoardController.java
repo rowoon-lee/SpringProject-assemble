@@ -55,29 +55,18 @@ public class BoardController {
 	
 	
 	//그룹별 게시글 조회
-	/*
-	@RequestMapping(value = "/wall")
-	public String boardlist(
-			@RequestParam(value = "groupno") int groupno, Model model){
-		
-		List<BoardDTO> list = dao.boardlist(groupno);
-		model.addAttribute("list", list);
-		
-		return "board/wall";
-	}
-	*/
 	@RequestMapping("/assemble.io/avengers/g/{groupno}/wall")
 	public String groupBoard(@PathVariable("groupno")int groupno, Model model){
 		
 			List<BoardDTO> list = dao.boardlist(groupno);
 			model.addAttribute("list", list);
-			
-		//System.out.println(groupno);
+		
+		System.out.println(groupno);
 			
 			return "board/wall";
 	}
 	
-	
+		
 	
 	//bno로 게시글 전체 조회
 	   @RequestMapping(value = "/selectBoard")
@@ -90,7 +79,32 @@ public class BoardController {
 	      
 	      return "board/modify";
 	   }
+	   
+	   
+
+	   
 	
+	
+	   //좋아요 update
+	/*
+	 * @RequestMapping("/like.do") public String Like(
+	 * 
+	 * @RequestParam int num1, Model model) throws Exception{
+	 * 
+	 * BoardDTO dto = new BoardDTO();
+	 * 
+	 * dto.setBoardlike(num1);
+	 * 
+	 * dao.updateLike(dto); model.addAttribute("dto", dto);
+	 * 
+	 * return "board/wall";
+	 * 
+	 * }
+	 */
+	   
+	   
+	   //좋아요 count
+	   
 	
 	
 	

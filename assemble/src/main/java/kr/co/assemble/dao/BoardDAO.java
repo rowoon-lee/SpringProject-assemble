@@ -17,5 +17,13 @@ public interface BoardDAO {
 	//selectOne
 	public List<BoardDTO> selectOne(int bno);
 	
+	//좋아요 update
+	public void updateLike(BoardDTO dto);
+	
+	//싫어요 update
+	public void updateHate(BoardDTO dto);
+	
+	//myfeed 조회 (내가 속한 모든 그룹의 글 가져오기)
+	public List<BoardDTO> selectMyFeed(int memberno);
 	
 }

@@ -26,6 +26,8 @@ public class BoardDAOImple implements BoardDAO{
 		ss.insert("writeBoard", dto);
 	}
 
+	
+	//그룹별 글 출력
 	@Override
 	public List<BoardDTO> boardlist(int groupno) {
 		
@@ -46,6 +48,31 @@ public class BoardDAOImple implements BoardDAO{
 		// TODO Auto-generated method stub
 		
 		return ss.selectList("selectOneBno", bno);
+	}
+
+	//좋아요 update
+	@Override
+	public void updateLike(BoardDTO dto) {
+		// TODO Auto-generated method stub
+		ss.update("updateLike", dto);
+		
+	}
+
+	//싫어요 update
+	@Override
+	public void updateHate(BoardDTO dto) {
+		// TODO Auto-generated method stub
+		ss.update("updateHate", dto);
+		
+	}
+
+	//myfeed 조회 (내가 속한 모든 그룹의 글 가져오기)
+	@Override
+	public List<BoardDTO> selectMyFeed(int memberno) {
+		
+		List<BoardDTO> list = ss.selectList("myGroupBoard", memberno);
+		
+		return list;
 	}
 
 

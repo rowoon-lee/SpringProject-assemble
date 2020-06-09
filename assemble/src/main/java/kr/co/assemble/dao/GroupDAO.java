@@ -17,6 +17,9 @@ public interface GroupDAO {
 	//그룹 전체 조회
 	public List<GroupDTO> selectGroup();
 	
-	//카테고리 & 그룹 조인(navbar 출력)
+	//카테고리별 그룹조회
+	public List<GroupDTO> grouplist(int categoryno);
+	
+	public List<GroupDTO> grouplist();
 	
 }

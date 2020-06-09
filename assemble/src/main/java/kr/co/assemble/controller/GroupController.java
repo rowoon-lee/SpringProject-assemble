@@ -21,6 +21,19 @@ public class GroupController {
 		return dao;
 	}
 	
+	/*
+	//header 네비바 조회
+	@RequestMapping(value = "/assemble.io/avengers/header")
+	public String home(Model model) {
+
+		List<GroupDTO> groupList = dao.selectGroup();
+		model.addAttribute("groupList", groupList);	
+		
+		return "include/header";	
+			
+	}
+	*/
+	
 	//그룹 전체 조회
 	@RequestMapping(value = "/groups")
 	public String groups(Model model) {
@@ -113,6 +126,7 @@ public class GroupController {
 	}
 	
 	
+
 	
 	
 	

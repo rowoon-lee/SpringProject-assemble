@@ -1,5 +1,7 @@
 package kr.co.assemble.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +21,7 @@ public class CategoryController {
 		this.cdao = cdao;
 	}
 
-
+	//카테고리 생성폼으로
 	@RequestMapping(value = "/makeCategory")
 	public String makeCategory() {		
 		
@@ -27,6 +29,7 @@ public class CategoryController {
 	}
 	
 	
+	//카테고리 생성 OK
 	@RequestMapping(value = "/makeCategoryOk")
 	public String makecategoryOk(
 			@RequestParam(value = "cgName")String name, Model model) {
@@ -42,6 +45,12 @@ public class CategoryController {
 		model.addAttribute("dto", dto);
 		
 		return "category/inputCategoryOk";
+		
 	}
+	
+
+
+	
+	
 	
 }

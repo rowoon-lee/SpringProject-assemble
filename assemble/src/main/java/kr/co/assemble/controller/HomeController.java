@@ -25,17 +25,28 @@ import kr.co.assemble.dto.GroupDTO;
 public class HomeController {
 
 	@Autowired
-	GroupDAO dao2;
+	BoardDAO dao;
 
+	//내가 속한 그룹의 전체 게시글 출력
 	@RequestMapping(value = "/assemble.io/avengers/home")
-	public String home(Model model) {
+	public String selectMyGroup(
+			@RequestParam(value = "memberno") int memberno, Model model) {
 		
-		List<GroupDTO> groupList = dao2.selectGroup();
-		model.addAttribute("groupList", groupList);
-
-		return "home";	
-			
+		//멤버 넘버 세션에서 받아오기.
+		List<BoardDTO> list = dao.selectMyFeed(memberno);
+		model.addAttribute("mainlist", list);
+		
+		return "home";
 	}
+
+	/*
+	 * @RequestMapping(value = "/assemble.io/avengers/home") public String
+	 * home1(Model model) {
+	 * 
+	 * return "home";
+	 * 
+	 * }
+	 */
 
 	
 }

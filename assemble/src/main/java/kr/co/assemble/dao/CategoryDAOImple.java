@@ -24,16 +24,19 @@ public class CategoryDAOImple implements CategoryDAO {
 		ss.insert("insertCategory", dto);
 	}
 
-	//
+	//update
 	@Override
 	public void updateOne(CategoryDTO dto) {
 		
 	}
 
+	//전체 카테고리 조회
 	@Override
 	public List<CategoryDTO> selectCategory() {
-		// TODO Auto-generated method stub
-		return ss.selectList("selectCategory");
+		
+		List<CategoryDTO> list = ss.selectList("categoryGroup");
+		
+		return list;
 	}
 	
 

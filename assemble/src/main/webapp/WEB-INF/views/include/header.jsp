@@ -33,6 +33,12 @@ $(document).ready(function() {
 	$("#category").click(function(){
 		location.href="/makeCategory";
 	});
+	
+/* 	 $(".category").click(function(){
+		var categoryno = this.parentNode.childNodes[5].value; 
+		console.log(this.parentNode.childNodes[5].value);
+		document.location.href = "categoryGroupList?categoryno="+categoryno;
+	});  */
 });
 </script>
   </head>
@@ -48,7 +54,7 @@ $(document).ready(function() {
       <header class="header black-bg">
 		<!--logo start-->
             <a href="/assemble.io/avengers/home" class="logo">
-            	 <img src="/resources/assets/img/assemble1.png" id="logo">  
+            	 <img src="/resources/assets/img/assemble2.png" id="logo">  
             	 <b class="teamname"> : </b>
             	 <b class="teamname"> AVENGERS </b>      	 
            	</a>
@@ -86,45 +92,6 @@ $(document).ready(function() {
                                     </div>
                                 </a>
                             </li>
-                            <li>
-                                <a href="index.html#">
-                                    <div class="task-info">
-                                        <div class="desc">Database Update</div>
-                                        <div class="percent">60%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                            <span class="sr-only">60% Complete (warning)</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <div class="task-info">
-                                        <div class="desc">Product Development</div>
-                                        <div class="percent">80%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                            <span class="sr-only">80% Complete</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <div class="task-info">
-                                        <div class="desc">Payments Sent</div>
-                                        <div class="percent">70%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
-                                            <span class="sr-only">70% Complete (Important)</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
                             <li class="external">
                                 <a href="#">See All Tasks</a>
                             </li>
@@ -151,42 +118,6 @@ $(document).ready(function() {
                                     </span>
                                     <span class="message">
                                         Hi mate, how is everything?
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-divya.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Divya Manian</span>
-                                    <span class="time">40 mins.</span>
-                                    </span>
-                                    <span class="message">
-                                     Hi, I need your help with this.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-danro.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Dan Rogers</span>
-                                    <span class="time">2 hrs.</span>
-                                    </span>
-                                    <span class="message">
-                                        Love your new Dashboard.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-sherman.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Dj Sherman</span>
-                                    <span class="time">4 hrs.</span>
-                                    </span>
-                                    <span class="message">
-                                        Please, answer asap.
                                     </span>
                                 </a>
                             </li>
@@ -255,31 +186,26 @@ $(document).ready(function() {
                   <li class="sub-menu">
          				<input type="button" value="" id="side"/>
                   </li>
-         
-          	<c:forEach var="g" items="${groupList}">
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-cogs"></i>
-                          <span>${g.categoryno }</span>
-                      </a>
-         		
-                      <ul class="sub">
-                          <li><a href="/assemble.io/avengers/g/${g.groupno }/wall">${g.groupname }</a></li>
-                      </ul>
-                  </li>
-			</c:forEach>
-				      <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-cogs"></i>
-                          <span>cateogry1</span>
-                      </a>
-         
-                      <ul class="sub">
-                          <li><a href="#">group1</a></li>
-                      </ul>
-                  </li>
+					
+					
+					<c:forEach var="c" items="${categoryList}">
+						<li class="sub-menu">
+						<a href="javascript:;"> 
+							<i class="fa fa-cogs"></i> 
+							<span class="category">${c.categoryname }</span> 
+						
+						</a>
 
-		
+							<ul class="sub">
+							
+								<c:forEach var="g" items="${groupList }">
+									<c:if test="${g.categoryno == c.categoryno }">
+										<li><a href="/assemble.io/avengers/g/${g.groupno }/wall">${g.groupname }</a></li>
+									</c:if>
+								</c:forEach>
+							</ul>
+						</li>
+					</c:forEach>	
               </ul>
               <!-- sidebar menu end-->
           </div>

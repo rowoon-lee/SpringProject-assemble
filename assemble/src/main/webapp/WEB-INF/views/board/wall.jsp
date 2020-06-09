@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="../include/header.jsp" %>
+<c:import url="/assemble.io/avengers/header"></c:import>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +9,15 @@
 <title>wall.jsp</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
+     function bookMark(){
+    	 var bm = document.getElementById('bk');
+    	 if(bm.src.match("before")){
+    		 bm.src = "/resources/assets/img/bookmark_after.png";
+    	 }else{
+    		 bm.src = "/resources/assets/img/bookmark_before.png";
+    	 }
+     }
+     
      $(function(){        
       $(".btn").click(function(){
          
@@ -21,8 +30,16 @@
           document.frm.action = "selectBoard";
          document.frm.submit();
       });
+      
+      
+      //좋아요
+/*       $("#likeb").click(function(){
+    	  document.frm.action = "/like.do";
+    	  document.frm.submit();
+      }); */
+      
+     
    }); 
-    
 </script>
 <style type="text/css">
 #main{
@@ -46,34 +63,48 @@
 
 #insert{
 	height: 100%;
-	border: 2px solid black; 
+	border: 1px solid #CCCCCC;
 	margin-bottom: 30px;
 }
 
 #board{
+	padding: 20px;
 	border: 2px solid #F2F2F2; 
 	background-color: white;
 	margin-bottom : 30px;
+	border: 1px solid #CCCCCC;
 /* #F2F2F2; */
 }
-
- #d{
-border-top : 2px solid #F2F2F2;
-border-bottom : 2px solid #F2F2F2;
+#a{
+	border-bottom : 1px solid #CCCCCC;
+}
+#d{
+margin-top : 10px;
 }
 
+#re{
+	background-color: white;
+	border: none;
+	border: 1px solid #CCCCCC;
+}
 .lh{
 	width: 20px;
 	background: none;
 }
 #bookmark{
-	margin-left: 77%;	
+	margin-left: 74%;	
 }
 
 #retext{
-	width: 50%;
+	width: 100%;
+	border : 1px solid #CCCCCC;
 }
 
+
+.bt{
+	background-color: white;
+	border: none;
+}
 </style>
 </head>
 <body>
@@ -83,11 +114,7 @@ border-bottom : 2px solid #F2F2F2;
 			<div id="info">
 				<h2>그룹명</h2>
 				<h5>아이디(이름) 외 몇명</h5>
-				<%--  	   	 <c:forEach var="i" items="${list }">
-		      <h2>${i.grouopno } (그룹이름)</h2>
-		      <h5>${i.memberno } (외 몇명)</h5>
-	      
-	      </c:forEach>  --%>
+
 				<div id="select">
 					<h3>전체 멤버 사진 파일 일정 노트 요청</h3>
 					<h5>애는 각각 누르면 div id=section에 가져오기!</h5>
@@ -95,7 +122,7 @@ border-bottom : 2px solid #F2F2F2;
 			</div>
 
 
-			<div id="section">
+			<div id="section">	
 
 				<div id="insert">
 					<h3>글쓰기 일정 요청 투표</h3>
@@ -103,11 +130,13 @@ border-bottom : 2px solid #F2F2F2;
 				</div>
 
 				<c:forEach var="b" items="${list }">
-					<%-- <h3>${i.groupno } (그룹이름)</h3> --%>
-
 					<div id="board">
 						<div id="z">
-							<input type="hidden" name="notice" />
+							<c:if test="${b.boardnotice == 1}">
+								<img src="/resources/assets/img/star.png" alt="공지글"  class="lh"/>
+								 <b> 공지글</b>
+							</c:if>
+							
 						</div>
 						<div id="a">
 							<h4>${b.memberno }(멤버아이디, 멤버이름)</h4>
@@ -116,24 +145,28 @@ border-bottom : 2px solid #F2F2F2;
 
 						<div id="b">
 							<h4>${b.boardcontents }</h4>
-						</div>
-
+							
+							<h5>좋아요 : ${b.boardlike }</h5>
+							<h5>싫어요 : ${b.boardhate }</h5>
+							<h5>요청인지 : ${b.requestboolean }</h5>
+						</div>	
 						<div id="c">
 							<input type="button" value="댓글" id="re" />
-							<button>
+							<button class="bt">
 								<img src="/resources/assets/img/like.png" id="like" class="lh">
+								<h5 id="count"></h5>
 							</button>
-							<button>
+							<button class="bt">
 								<img src="/resources/assets/img/hate.png" id="hate" class="lh">
 							</button>
 							
 							
-							<button id="bookmark">
-								<img src="/resources/assets/img/bookmark_before.png" alt="bookmark" class="lh"/>
+							<button id="bookmark" class="bt" id="likeb">
+								<img src="/resources/assets/img/bookmark_before.png" alt="bookmark" id="bk" class="lh"/>
 							</button>
 							
-							<button id="more">
-								<img src="/resources/assets/img/more.png" alt="bookmark" class="lh"/>
+							<button class="bt" id="hateb">
+								<img src="/resources/assets/img/more.png" alt="more" class="lh"/>
 							</button>
 							
 							<!-- <button>
@@ -144,13 +177,23 @@ border-bottom : 2px solid #F2F2F2;
 						</div>
 
 						<div id="d">
-							<input type="text" name="" id="retext" placeholder="댓글을 입력하세요" />
+							<input type="text" name="" id="retext" placeholder=" 댓글을 입력하세요" />
 						</div>
 					</div>
 				</c:forEach>
 			</div> <!-- section end -->
 		</div>
 	</form>
+
+    <script src="/resources/assets/js/jquery.js"></script> 
+    <script src="/resources/assets/js/jquery-1.8.3.min.js"></script> 
+    <script src="/resources/assets/js/bootstrap.min.js"></script> 
+      <script class="include" type="text/javascript" src="/resources/assets/js/jquery.dcjqaccordion.2.7.js"></script> 
+     <script src="/resources/assets/js/jquery.scrollTo.min.js"></script> 
+
+<!--     common script for all pages -->
+    <script src="/resources/assets/js/common-scripts.js"></script>
+
 
 </body>
 </html>

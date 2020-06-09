@@ -253,7 +253,7 @@ hr {
     height: 100%;
     position: fixed;
     background: #F2F2F2;
-    margin-top: 90px;
+    margin-top: 50px;
     margin-left: 40px;
 }
 
@@ -479,12 +479,13 @@ a.logo {
 }
 
 #logo{
-	width: 110px;
+	width: 150px;
 	margin-left: 20px;
 }
 
 .teamname{
 	margin-left: 20px;
+	margin-top : 0.2%;
 }
 
 a.logo b {
@@ -2327,9 +2328,9 @@ label {
 }
 
 .b4{
-	display:block;
-	float:left;	
-	padding: 5px 52px 5px 52px;
+	display: block;
+	float: left;	
+	padding: 5px 43px 5px 43px;
 	font-size : 20px;
 	font: #aeb2b7; 
 	border : none;
@@ -2368,7 +2369,7 @@ label {
     height: 100%;
     position: fixed;
     background: yellow;
-    margin-top: 90px;
+    margin-top: 3%;
     margin-left: 80%;
 }
 
@@ -2378,7 +2379,7 @@ label {
 	height: 50px;
 	border-radius: 10px;
 	border : 1px solid #D5D5D5;
-	margin-top: 1%;
-	margin-left: 20%;
+	margin-top: 0.5%;
+	margin-left: 14%;
 }
 
