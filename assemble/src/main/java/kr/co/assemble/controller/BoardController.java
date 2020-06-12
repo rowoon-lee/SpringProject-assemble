@@ -2,6 +2,8 @@ package kr.co.assemble.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.co.assemble.dao.BoardDAO;
 import kr.co.assemble.dao.ComposedDAO;
 import kr.co.assemble.dto.BoardDTO;
-import kr.co.assemble.dto.ComposedDTO;
-import kr.co.assemble.dto.GroupDTO;
-import kr.co.assemble.dto.Groupboard_MemberinfoDTO;
-import kr.co.assemble.dto.Groups_Memberinfo_Composed_DTO;
+import kr.co.assemble.dto.Groupboard_Memberinfo_FileDTO;
 
 @Controller
 public class BoardController {
@@ -61,9 +60,14 @@ public class BoardController {
 	ComposedDAO cdao;
 	//그룹별 게시글 조회 
 	//그룹별 정보, 구성원 정보(Groups_Memberinfo_Composed_DTO)
-	@RequestMapping("/assemble.io/avengers/g/{groupno}/wall")
-	public String groupBoard(@PathVariable("groupno")int groupno, Model model){
-			
+	@RequestMapping("/assemble.io/{mi_assembleName}/g/{groupno}/wall")
+	public String groupBoard(@PathVariable("groupno")int groupno, 
+							@PathVariable("mi_assembleName") String assemblename, Model model){
+		
+		//세션정보 받아서  주소에 assemble이름 넣기
+//		assemblename = (String)session.getAttribute("mi_assembleName");
+		
+		
 		//그룹장 이름 출력
 		String list = cdao.selectGroupMastername(groupno);
 		model.addAttribute("mastername", list);
@@ -82,7 +86,7 @@ public class BoardController {
 //		model.addAttribute("secondlist", list2);
 
 		//그룹별 게시글 출력
-		List<Groupboard_MemberinfoDTO> list3 = dao.boardlist(groupno);
+		List<Groupboard_Memberinfo_FileDTO> list3 = dao.boardlist(groupno);
 		model.addAttribute("thirdlist", list3);
 		
 		//System.out.println(groupno);-+

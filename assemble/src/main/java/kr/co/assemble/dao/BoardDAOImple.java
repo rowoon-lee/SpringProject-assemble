@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.assemble.dto.BoardDTO;
-import kr.co.assemble.dto.Groupboard_MemberinfoDTO;
+import kr.co.assemble.dto.Groupboard_Memberinfo_FileDTO;
 
 @Repository
 public class BoardDAOImple implements BoardDAO{
@@ -30,9 +30,9 @@ public class BoardDAOImple implements BoardDAO{
 	
 	//그룹별 글 출력
 	@Override
-	public List<Groupboard_MemberinfoDTO> boardlist(int groupno) {
+	public List<Groupboard_Memberinfo_FileDTO> boardlist(int groupno) {
 		
-		List<Groupboard_MemberinfoDTO> list = ss.selectList("selectGroupBoard", groupno);
+		List<Groupboard_Memberinfo_FileDTO> list = ss.selectList("selectGroupBoard", groupno);
 		
 		return list;
 	}
@@ -69,9 +69,9 @@ public class BoardDAOImple implements BoardDAO{
 
 	//myfeed 조회 (내가 속한 모든 그룹의 글 가져오기)
 	@Override
-	public List<BoardDTO> selectMyFeed(int memberno) {
+	public List<Groupboard_Memberinfo_FileDTO> selectMyFeed(int memberno) {
 		
-		List<BoardDTO> list = ss.selectList("myGroupBoard", memberno);
+		List<Groupboard_Memberinfo_FileDTO> list = ss.selectList("myGroupBoard", memberno);
 		
 		return list;
 	}

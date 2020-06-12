@@ -50,10 +50,10 @@ $(document).ready(function() {
       <!--header <start--></start-->
       <header class="header black-bg">
 		<!--logo start-->
-            <a href="/assemble.io/avengers/home" class="logo">
+            <a href="/assemble.io/${mi_assembleName}/home?memberno=${memberno}" class="logo">
             	 <img src="/resources/assets/img/assemble2.png" id="logo">  
             	 <b class="teamname"> : </b>
-            	 <b class="teamname"> AVENGERS </b>      	 
+            	 <b class="teamname"> ${mi_assembleName } </b>      	 
            	</a>
             <!--logo end-->
             
@@ -153,8 +153,8 @@ $(document).ready(function() {
               	  </div>
 	
               	  <div id="div2">
-	              	  <h4 id="id1"> rw0684</h5>
-	              	  <h4 id="name1"> 이로운</h5>
+	              	  <h4 id="id1"> <c:out value="${mi_memID }" /></h5>
+	              	  <h4 id="name1">이름</h5>
               	  </div>
     
 		              	  <input type="button" value="내글" class="b1"/>
@@ -197,7 +197,7 @@ $(document).ready(function() {
 							
 								<c:forEach var="g" items="${groupList }">
 									<c:if test="${g.categoryno == c.categoryno }">
-										<li><a href="/assemble.io/avengers/g/${g.groupno }/wall">${g.groupname }</a></li>
+										<li><a href="/assemble.io/${c.assemblename }/g/${g.groupno }/wall">${g.groupname }</a></li>
 									</c:if>
 								</c:forEach>
 							</ul>
