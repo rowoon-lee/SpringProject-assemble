@@ -17,7 +17,6 @@
     		 
     		 /* location.href="/addBookmark"; */
     	 }
-    	 
      }    
      
      //댓글달기
@@ -34,23 +33,25 @@
 	        document.location.href = "insertComment?bno="+bno+"&groupno="+groupno+"&categoryno="+categoryno+"&contents="+recontents;
 	     });
 
-		//option 펼치기
-		//option 클래스 밑 a태그 클릭시
-/* 		$(".option>a").click(function() {
-			console.log(this.parentNode.childNodes);
-
-			$(this).next("ul").toggleClass("hide");
-
-		}); */
+		//게시글 option메뉴
 		$('.option .sub').hide(); //처음에는 안보이게
 		$('.option').click(function(){
 			$('.option .sub').toggle();
 		});
-		
-		
 
+		//댓글 숨기기
+     	$(".e").hide();
 	});
-
+     
+		//댓글 보이기
+		$(function(){
+			$(".re").click(function(){
+				$(".e").show();
+				/* $(".re") */
+				
+			});	
+		});
+		
 	/* $(function(){        
 	  $(".btn").click(function(){
 	     
@@ -121,7 +122,7 @@ margin-top : 10px;
 	width: 91%;
 	border : 1px solid #CCCCCC;
 }
-#re{
+.re{
 	background-color: white;
 	border: none;
 	border: 1px solid #CCCCCC;
@@ -136,7 +137,7 @@ margin-top : 10px;
 	margin-left: 1.5%;
 }
 
-#more{
+.more{
 	width: 22px;
 }
 
@@ -228,7 +229,7 @@ margin-top : 10px;
 						</div>	
 						<div id="c">
 							<div id="c1">
-								<input type="button" value="댓글" id="re" />
+								<input type="button" value="댓글" class="re" />
 							
 								<img src="/resources/assets/img/like.png" class="lh">
 								
@@ -238,7 +239,7 @@ margin-top : 10px;
 							</div>
 							<div id="c2">
 								<ul class="option">
-									<li><img src="/resources/assets/img/more.png" id="more" />
+									<li><img src="/resources/assets/img/more.png" class="more" />
 										<ul class="sub">
 											<!-- 공지글 일시는 공지취소 -->
 											<button class="menubtn"><li>공지등록</li></button>
@@ -250,6 +251,10 @@ margin-top : 10px;
 								</ul>
 							</div>
 						</div>
+						
+						<div class="e">
+							<h4>hidden</h4>
+						</div>
 
 						<div id="d">
 							<input type="hidden" name="bno" value="${b.bno }"/>
@@ -258,6 +263,7 @@ margin-top : 10px;
 							<input type="text" name="" id="retext" placeholder=" 댓글을 입력하세요" />
 							<input type="button" value="등록" class="submit"/>
 						</div>
+						
 					</div>
 				</c:forEach>
 			</div> <!-- section end -->

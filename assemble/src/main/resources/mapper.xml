@@ -73,10 +73,11 @@
 	
 	
 	<!-- 카테고리조회(네비바) -->
-	<select id="categoryGroup" resultType="CategoryDto" >
-		select * from category 
-		where assemblename = #{assemblename} 
-		
+	<select id="categoryGroup" resultType="NavbarDto" >
+		select distinct ca.categoryno, ca.categoryname, ca.assemblename
+		from category ca inner join composed co
+		on co.memberno = ca.memberno
+		where co.memberno = #{memberno};
 	</select>
 	
 		
@@ -183,6 +184,7 @@
 		b.categoryno = c.categoryno and
 		m.mi_memberno = b.memberno and
 		b.groupno = #{groupno}
+		order by b.boardnotice desc, b.boarddate desc;
 	</select>
 	
 	<!-- bno로 전체 조회 -->

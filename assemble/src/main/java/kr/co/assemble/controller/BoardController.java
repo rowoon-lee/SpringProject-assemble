@@ -1,9 +1,6 @@
 package kr.co.assemble.controller;
 
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -79,11 +76,7 @@ public class BoardController {
 		//그룹명 출력
 		String groupname = cdao.selectGroupName(groupno);
 		model.addAttribute("groupname", groupname);
-			
-				
-//		//그룹원 출력
-//		List<Groups_Memberinfo_Composed_DTO> list2 = cdao.selectGroupMemberName(groupno);
-//		model.addAttribute("secondlist", list2);
+
 
 		//그룹별 게시글 출력
 		List<Groupboard_Memberinfo_FileDTO> list3 = dao.boardlist(groupno);
@@ -95,17 +88,51 @@ public class BoardController {
 	
 		
 	
-	//bno로 게시글 전체 조회
-	   @RequestMapping(value = "/selectBoard")
-	   public String selectbno(
-	         @RequestParam(value = "bno")int bno, Model model) {
-	      System.out.println(bno);
-	      
-	      List<BoardDTO> list = dao.selectOne(bno);
-	      model.addAttribute("list", list);
-	      
-	      return "board/modify";
-	   }
+	//게시글 수정을 위한 bno로 해당 게시글 정보 조회
+		@RequestMapping(value = "/selectBoard")
+		public String selectbno(
+				@RequestParam(value = "bno") int bno, Model model) {
+			System.out.println(bno);
+			
+			List<BoardDTO> list = dao.selectOne(bno);
+			model.addAttribute("list", list);
+			
+			return "board/modify";
+		}
+		
+		
+		//게시글 수정
+		@RequestMapping(value = "/modify")
+		public String modifyBoard(
+				@RequestParam(value = "bno") int bno,
+				@RequestParam(value = "contents") String contents,
+				@RequestParam(value = "groupno") int groupno, Model model) {
+			
+			BoardDTO dto = new BoardDTO();
+			dto.setBno(bno);
+			dto.setBoardcontents(contents);
+			
+			dao.updateBoard(dto);
+
+					
+			model.addAttribute("dto", dto);
+			model.addAttribute("groupno", groupno);
+			
+			return "redirect:/wall";
+		}
+		
+		
+		//게시글 삭제 - 파일이랑 연결되있으면 파일에도 bno넘겨서 삭제(트리거 걸어놓음)
+		@RequestMapping(value = "/deleteBoard")
+		public String deleteBoard(
+				@RequestParam(value = "bno") int bno,
+				@RequestParam(value = "groupno") int groupno, Model model) {
+			
+			dao.deleteBoard(bno);
+			model.addAttribute("groupno", groupno);
+			
+			return "redirect:/wall";
+		}
 	   
 	   
 	   //북마크 UPDATE

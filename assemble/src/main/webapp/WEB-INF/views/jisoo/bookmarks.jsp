@@ -25,7 +25,7 @@
 	<section class="bookmarks-page">
 		<header class="page-header bookmarks-page__header">
 		
-			<h2 class="page-header__title">
+			<h2 class="page-header__title" id="peace">
 				<span>북마크</span>											<!-- div 제목  -->
 				<span class="page-header__total-count"></span>				<!-- 게시물보이는 갯수 -->
 			</h2>
@@ -65,7 +65,7 @@
 		</header>
 		
 		
-		<div class="scroll-container scroll-container--window undefined" tabindex="-1" id="div1">
+		<div class="scroll-container scroll-container--window undefined" tabindex="-1" id="diva">
 			<div class="bookmarks-page__list-wrap">
 				
 				<div class="sdf active">
@@ -115,7 +115,7 @@
   	
     $('.option-button2').click(function(){
 /*         console.log(this.value); */
-    	$('#div1').load('/bookmark/sort1?sort=');
+    	$('#diva').load('/bookmark/sort1?sort=');
     });
 	
 
@@ -139,7 +139,15 @@
 	});
 	
 </script> 
+<script src="/resources/assets/js/jquery.js"></script>
+<script src="/resources/assets/js/jquery-1.8.3.min.js"></script>
+<script src="/resources/assets/js/bootstrap.min.js"></script>
+<script class="include" type="text/javascript"
+	src="/resources/assets/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="/resources/assets/js/jquery.scrollTo.min.js"></script>
 
+<!--     common script for all pages -->
+<script src="/resources/assets/js/common-scripts.js"></script>
 	
 	
 </body>

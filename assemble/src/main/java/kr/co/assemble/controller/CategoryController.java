@@ -26,6 +26,7 @@ public class CategoryController {
 	public String makeCategory() {		
 		
 		return "category/inputCategory";
+		//return "category/setCategories";
 	}
 	
 	

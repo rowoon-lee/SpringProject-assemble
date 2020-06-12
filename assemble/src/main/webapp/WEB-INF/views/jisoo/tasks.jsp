@@ -66,7 +66,7 @@
 			</header>
 			
 			
-			<div class="scroll-container scroll-container--window undefined" tabindex="-1" id="div1">
+			<div class="scroll-container scroll-container--window undefined" tabindex="-1" id="diva">
 				<div class="bookmarks-page__list-wrap">
 					<div class="sdf active">
 						<h2>모든 상태 게시물~</h2>								
@@ -118,18 +118,18 @@
   	
     $('.option-button2').click(function(){
 
-    	$('#div1').load('request/status0?status=');
+    	$('#diva').load('request/status0?status=');
     });
 	
     $('.option-button3').click(function(){
 
-        $('#div1').load('request/status1?status=');
+        $('#diva').load('request/status1?status=');
    });
     
     
  	$('.option-button4').click(function(){
 
-        $('#div1').load('request/status2?status=');
+        $('#diva').load('request/status2?status=');
    });
 
 </script>
@@ -153,7 +153,15 @@ $(document).ready(function () {
 });
 
 </script>
-	
+<script src="/resources/assets/js/jquery.js"></script>
+<script src="/resources/assets/js/jquery-1.8.3.min.js"></script>
+<script src="/resources/assets/js/bootstrap.min.js"></script>
+<script class="include" type="text/javascript"
+	src="/resources/assets/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="/resources/assets/js/jquery.scrollTo.min.js"></script>
+
+<!--     common script for all pages -->
+<script src="/resources/assets/js/common-scripts.js"></script>	
 	
 </body>
 </html>

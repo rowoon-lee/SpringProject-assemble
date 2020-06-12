@@ -18,6 +18,7 @@
 		<typeAlias type="kr.co.assemble.dto.Groupboard_Memberinfo_FileDTO" alias="G_M_F_Dto"/>
 		<typeAlias type="kr.co.assemble.dto.Groups_Memberinfo_Composed_DTO" alias="G_Mi_C_Dto"/>
 		<typeAlias type="kr.co.assemble.dto.RecommentDTO" alias="RecommentDto"/>
+		<typeAlias type="kr.co.assemble.dto.NavbarDTO" alias="NavbarDto"/>
 	</typeAliases>
 	
 	
