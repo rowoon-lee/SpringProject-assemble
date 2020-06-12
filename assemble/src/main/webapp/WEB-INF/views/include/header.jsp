@@ -159,13 +159,13 @@ $(document).ready(function() {
     
 		              	  <input type="button" value="내글" class="b1"/>
 		              	  <input type="button" value="맨션" class="b1"/>
-		              	  <input type="button" value="요청" class="b1"/>
-		              	  <input type="button" value="북마크" class="b2"/>
+		              	  <a href="/tasks"><input type="button" value="요청" class="b1"/></a>
+		              	  <a href="/bookmarks"><input type="button" value="북마크" class="b2"/></a>
   
 		              	  <input type="button" value="아지트 멤버 초대하기" id="b3"/>
 		              	  
-		              	  <input type="button" value="멤버" class="b4"/>	
-		              	  <input type="button" value="참여가능한 그룹" class="b4"/>
+		              	  <a href="/members"><input type="button" value="멤버" class="b4"/></a>	
+		              	  <a href="/attendgroups"><input type="button" value="참여가능한 그룹" class="b4"/></a>
         	  	
 	              	  	  <input type="button" value="+ 카테고리 추가하기" class="b6" id="category"/>
 	              	  	  
