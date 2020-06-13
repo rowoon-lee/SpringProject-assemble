@@ -41,23 +41,10 @@
 
 			});
 		});
-    	 
-    	 
-/* 	 	$(document).ready(function(){
-	 		$(".re").each(function(){
-	 			$(this).off("click").on("click",function(){
-	 				if($(this).has)
-	 				
-	 			});
-	 		});
-	 	});
-		  */
-     
-    	 
-    	 
-    	 
+   	 
 		//댓글 보이기	
-		$(document).ready(function(){	
+		/* $(document).ready(function(){ */
+		$(function(){
 			$(".re").click(function(){
 				
 				
@@ -91,14 +78,10 @@
 											
 								    	$(retext).appendTo("#"+bno);					    	
 								    }
-	
-					    		
 					    		 }else{
 					    			
 					    		 $("#" +bno).empty();		
-					    		} 
-					    		
-					    		
+					    		} 	
 					    	},		
 					    	error : function(recomment){
 					    		console.log("error view");
@@ -109,12 +92,72 @@
 		}); 
 		  
 		  
-		  
-			  
-		  
+		//요청 상태 변화
+   		$(function(){
+			var r1 = $('#button3');
+			var r2 = $('#button2c');
+			var r3 = $('#button2e');
 			
+			var i1 = $('#button2a');
+			var i2 = $('#button4');
+			var i3 = $('#button2f');
+			
+			var e1 = $('#button2b');
+			var e2 = $('#button2d');
+			var e3 = $('#button5');
+			
+			 //if(document.getElementById(bno).childE){ 
+			$(".req").click(function(){
+			var bno = this.parentNode.childNodes[1].value + "b";
+				//console.log(bno);
+				if(document.getElementById = bno){
+				
+				$(".req").click(function(){
+					r1.css('background-color','red');	
+					r2.css('background-color','red');	
+					r3.css('background-color','red');	
+					
+					i1.css('background-color','#EAEAEA');	
+					i2.css('background-color','#EAEAEA');		
+					i3.css('background-color','#EAEAEA');	
+					
+					e1.css('background-color','#EAEAEA');	
+					e2.css('background-color','#EAEAEA');	
+					e3.css('background-color','#EAEAEA');		
+				});
+			
+				$(".ing").click(function(){
+					r1.css('background-color', '#EAEAEA');
+					r2.css('background-color', '#EAEAEA');
+					r3.css('background-color', '#EAEAEA');
 
-	
+					i1.css('background-color', 'green');
+					i2.css('background-color', 'green');
+					i3.css('background-color', 'green');
+
+					e1.css('background-color', '#EAEAEA');
+					e2.css('background-color', '#EAEAEA');
+					e3.css('background-color', '#EAEAEA');
+
+				});
+
+				$(".end").click(function() {
+					r1.css('background-color', '#EAEAEA');
+					r2.css('background-color', '#EAEAEA');
+					r3.css('background-color', '#EAEAEA');
+
+					i1.css('background-color', '#EAEAEA');
+					i2.css('background-color', '#EAEAEA');
+					i3.css('background-color', '#EAEAEA');
+
+					e1.css('background-color', 'gray');
+					e2.css('background-color', 'gray');
+					e3.css('background-color', 'gray');
+
+				});
+			}//if end
+		});
+	});
 </script>
 <style type="text/css">
 #main {
@@ -235,7 +278,7 @@
 }
 
 .btn-group {margin: 0;}
-.btn-group .button2 {
+#button2a, #button2b, #button2c, #button2d, #button2e, #button2f {
   background-color: #EAEAEA; /* Green */
   border: none;
   color: white;
@@ -248,7 +291,7 @@
   height: 25px;
   float: left;
 }
-.btn-group .button3 {
+ #button3 {
   background-color: #FF0000; 
   border: none;
   color: white;
@@ -262,7 +305,7 @@
   float: left;
 }
 
-.button4 {
+#button4 {
   background-color: green; 
   border: none;
   color: white;
@@ -276,7 +319,7 @@
   float: left;
 }
 
-.button5 {
+#button5 {
   background-color: gray; 
   border: none;
   color: white;
@@ -333,33 +376,31 @@
 							<h5 id="boarddate">${b.boarddate }</h5>
 						</div>
 
-						<div id="b">
+						<div id="${b.bno }b">
 							<h4>${b.boardcontents }</h4>
 							
-							<c:if test="${b.filename != null }">
-								<h5>파일명 : ${b.filename }</h5>
-							</c:if>
-
 							<c:if test="${b.requestboolean == 1 }">
 								<c:if test="${b.reqstatus == 0}">
 								 	<div class="btn-group" style="float: right;">
-										<button class="button3" >요청</button>
-										<button class="button2" >진행</button>
-										<button class="button2" >종료</button>
+								 		<%-- <input type="hidden" name="req_bno" value="${b.bno}"/> --%>
+										<input type="button" value="요청" id="button3" class="req"/>
+										<input type="button" value="진행" id="button2a" class="ing"/>
+										<input type="button" value="종료" id="button2b" class="end"/>
 									</div>
 								</c:if>
 								<c:if test="${b.reqstatus ==1 }">
 									<div class="btn-group" style="float: right;">
-										<button class="button2" >요청</button>
-										<button class="button4" >진행</button>
-										<button class="button2" >종료</button>
+										<input type="button" value="요청" id="button2c" class="req"/>
+										<input type="button" value="진행" id="button4" class="ing"/>
+										<input type="button" value="종료" id="button2d" class="end"/>
+										
 									</div>
 								</c:if>
 								<c:if test="${b.reqstatus ==2 }">
 									<div class="btn-group" style="float: right;">
-										<button class="button2" >요청</button>
-										<button class="button2" >진행</button>
-										<button class="button5" >종료</button>
+										<input type="button" value="요청" id="button2e" class="req"/>
+										<input type="button" value="진행" id="button2f" class="ing"/>
+										<input type="button" value="종료" id="button5" class="end"/>
 									</div>
 								</c:if>
 								<%-- <h5>요청진행상태 : ${b.reqstatus }</h5> --%>	
@@ -367,6 +408,9 @@
 							
 							<h5>좋아요 : ${b.boardlike }</h5>
 							<h5>싫어요 : ${b.boardhate }</h5>
+							<c:if test="${b.filename != null }">
+								<h5>파일명 : ${b.filename }</h5>
+							</c:if>
 							
 						</div>	
 						<div id="c">

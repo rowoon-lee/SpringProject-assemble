@@ -19,6 +19,9 @@
 		<typeAlias type="kr.co.assemble.dto.Groups_Memberinfo_Composed_DTO" alias="G_Mi_C_Dto"/>
 		<typeAlias type="kr.co.assemble.dto.RecommentDTO" alias="RecommentDto"/>
 		<typeAlias type="kr.co.assemble.dto.NavbarDTO" alias="NavbarDto"/>
+		
+		<typeAlias type="kr.co.assemble.dto.RequestDTO" alias="ReqDto"/>
+		<typeAlias type="kr.co.assemble.dto.MemReqGroupDTO" alias="MRG_Dto"/>
 	</typeAliases>
 	
 	
