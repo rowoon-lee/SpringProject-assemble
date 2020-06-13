@@ -462,11 +462,12 @@ $(function() {
 				<div class="writediv" id="writediv3" >
 				
 					<form name="frm3" enctype="multipart/form-data">
+						<%-- <input type="text" name="categoryno" value="${categoryno }"/> --%>
 		                            	<div style="padding:10px 20px 0 20px; height: 25px">
 			                                
 			                                <div><input type="text" name="response" id="" style="width: 59%; float: left;" placeholder="담당자를 입력하세요"/></div>
 			                                
-			                                <div class="btn-group" style="float: right;">
+			                                <div class="btn-group" style="float: right;">	
 											  <button class="button3"  disabled="disabled">요청</button>
 											  <button class="button2"  disabled="disabled">진행</button>
 											  <button class="button2"  disabled="disabled">종료</button>

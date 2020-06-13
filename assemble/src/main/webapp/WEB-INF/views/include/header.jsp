@@ -39,7 +39,25 @@ $(document).ready(function() {
 		console.log(this.parentNode.childNodes[5].value);
 		document.location.href = "categoryGroupList?categoryno="+categoryno;
 	});  */
+
+
+	$(".groupWall").click(function(){
+		console.log("click");
+		var categoryno = this.parentNode.childNodes[1].value;
+ 		var mi_assembleName = this.parentNode.childNodes[3].value;
+		var groupno = this.parentNode.childNodes[5].value;
+		
+		console.log(categoryno);
+		console.log(groupno);
+		
+		document.location.href = "/assemble.io/"+mi_assembleName+"/g/"+groupno+"/wall"+"?categoryno="+categoryno; 
+
+	});
+
 });
+
+
+
 
  </script>
 
@@ -205,7 +223,12 @@ $(document).ready(function() {
 							
 								<c:forEach var="g" items="${groupList }">
 									<c:if test="${g.categoryno == c.categoryno }">
-										<li><a href="/assemble.io/${c.assemblename }/g/${g.groupno }/wall">${g.groupname }</a></li>
+											<li><%-- <a href="/assemble.io/${c.assemblename }/g/${g.groupno }/wall"> </a>--%>
+											<input type="hidden" class="categoryno" value="${c.categoryno }" />
+											<input type="hidden" class="assemblename" value="${c.assemblename }" />
+											<input type="hidden" class="groupno" value="${g.groupno }" />
+											<input type="button" value="${g.groupname }" class="groupWall"/>
+											</li>
 									</c:if>
 								</c:forEach>
 							</ul>

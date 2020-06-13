@@ -47,9 +47,12 @@ public class BoardController {
 		dto.setMemberno(memNum);
 		dto.setBoardcontents(contents);
 		dao.write(dto);
-		model.addAttribute("contents", contents);
 		
-		return "board/wall";
+		model.addAttribute("contents", contents);
+		model.addAttribute("groupno", grNum);
+		
+		
+		return "redirect:/wall";
 	}
 	
 	
@@ -59,7 +62,8 @@ public class BoardController {
 	//그룹별 정보, 구성원 정보(Groups_Memberinfo_Composed_DTO)
 	@RequestMapping("/assemble.io/{mi_assembleName}/g/{groupno}/wall")
 	public String groupBoard(@PathVariable("groupno")int groupno, 
-							@PathVariable("mi_assembleName") String assemblename, Model model){
+							@PathVariable("mi_assembleName") String assemblename, 
+							@RequestParam("categoryno")int categoryno, Model model){
 		
 		//세션정보 받아서  주소에 assemble이름 넣기
 //		assemblename = (String)session.getAttribute("mi_assembleName");
@@ -77,7 +81,11 @@ public class BoardController {
 		String groupname = cdao.selectGroupName(groupno);
 		model.addAttribute("groupname", groupname);
 
-
+		//insert할 때 필요한 categoryno
+		model.addAttribute("categoryno", categoryno);
+		
+		System.out.println(categoryno);
+		
 		//그룹별 게시글 출력
 		List<Groupboard_Memberinfo_FileDTO> list3 = dao.boardlist(groupno);
 		model.addAttribute("thirdlist", list3);

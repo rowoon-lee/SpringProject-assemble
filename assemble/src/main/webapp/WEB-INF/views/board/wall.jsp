@@ -234,6 +234,65 @@
 	padding: 1%;
 }
 
+.btn-group {margin: 0;}
+.btn-group .button2 {
+  background-color: #EAEAEA; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+  width: 70px;
+  height: 25px;
+  float: left;
+}
+.btn-group .button3 {
+  background-color: #FF0000; 
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+  width: 70px;
+  height: 25px;
+  float: left;
+}
+
+.button4 {
+  background-color: green; 
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+  width: 70px;
+  height: 25px;
+  float: left;
+}
+
+.button5 {
+  background-color: gray; 
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+  width: 70px;
+  height: 25px;
+  float: left;
+}
+
+
+
+
 
 /* .option a{cusor:pointer;}
 .option .hide{display:none;} */
@@ -280,16 +339,28 @@
 							<c:if test="${b.filename != null }">
 								<h5>파일명 : ${b.filename }</h5>
 							</c:if>
-							
+
 							<c:if test="${b.requestboolean == 1 }">
 								<c:if test="${b.reqstatus == 0}">
-								 	<h5>요청</h5>
+								 	<div class="btn-group" style="float: right;">
+										<button class="button3" >요청</button>
+										<button class="button2" >진행</button>
+										<button class="button2" >종료</button>
+									</div>
 								</c:if>
 								<c:if test="${b.reqstatus ==1 }">
-									<h5>진행</h5>
+									<div class="btn-group" style="float: right;">
+										<button class="button2" >요청</button>
+										<button class="button4" >진행</button>
+										<button class="button2" >종료</button>
+									</div>
 								</c:if>
 								<c:if test="${b.reqstatus ==2 }">
-									<h5>완료</h5>
+									<div class="btn-group" style="float: right;">
+										<button class="button2" >요청</button>
+										<button class="button2" >진행</button>
+										<button class="button5" >종료</button>
+									</div>
 								</c:if>
 								<%-- <h5>요청진행상태 : ${b.reqstatus }</h5> --%>	
 							</c:if>
