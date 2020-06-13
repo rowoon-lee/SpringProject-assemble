@@ -25,7 +25,7 @@ public class CategoryController {
 	@RequestMapping(value = "/makeCategory")
 	public String makeCategory() {		
 		
-		return "category/inputCategory";
+		return "category/setCategories";
 		//return "category/setCategories";
 	}
 	

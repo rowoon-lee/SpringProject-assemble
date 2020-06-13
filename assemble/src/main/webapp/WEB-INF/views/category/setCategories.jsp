@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url="/assemble.io/${mi_assembleName}/header"></c:import>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,14 +13,14 @@
    width: 50%;
    height: 100%;
    position: absolute;
-   margin-top: 5%;
+   margin-top: 7%;
     margin-bottom: 5%;	
     margin-left: 25%;   
 }
 .contents{
    background-color: white;
    /* border: 1px solid #CCCCCC; */
-   margin: 0;
+    margin: 0; 
    padding: 0;
 }
 table{
@@ -54,6 +56,11 @@ td:hover, td:active{
 
 <div class="main">
    <div class="contents">
+      	<form action="makeCategoryOk" name="frm" method="post">
+      	
+			<input type="text" name="cgName" id="cgName" />
+			<input type="submit" value="추가하기" />
+		</form>
       
          <table>
             <thead>
@@ -61,7 +68,7 @@ td:hover, td:active{
                   <th><b>나의 카테고리</b> 
                   <span><i class="fa fa-book" aria-hidden="true"></i></span>
                   </th>
-                  <th>카테고리 이름</th>
+                  <th>카테고리 이름</th>	
                </tr>               
                
             </thead>
@@ -81,7 +88,15 @@ td:hover, td:active{
       </div>
       
 </div>
+<script src="/resources/assets/js/jquery.js"></script>
+<script src="/resources/assets/js/jquery-1.8.3.min.js"></script>
+<script src="/resources/assets/js/bootstrap.min.js"></script>
+<script class="include" type="text/javascript"
+	src="/resources/assets/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="/resources/assets/js/jquery.scrollTo.min.js"></script>
 
+<!--     common script for all pages -->
+<script src="/resources/assets/js/common-scripts.js"></script>
 
 </body>
 </html>

@@ -242,5 +242,9 @@
       values (#{bno}, #{groupno}, #{categoryno}, now(), #{reid}, #{recontents})
    </insert>
 	
+	<select id="selectRecommentList" resultType="RecommentDto">
+	select * from recomment where bno = #{bno}
+	</select>
+	
 	
 </mapper>

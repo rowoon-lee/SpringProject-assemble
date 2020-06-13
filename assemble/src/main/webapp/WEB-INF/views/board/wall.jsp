@@ -19,154 +19,224 @@
     	 }
      }    
      
-     //댓글달기
-     $(function(){
-	     $(".submit").click(function(){
-	        
-	       // console.log(this.parentNode.childNodes);
-	        
-	        var bno = this.parentNode.childNodes[1].value;
-	        var groupno = this.parentNode.childNodes[3].value;
-	        var categoryno = this.parentNode.childNodes[5].value;
-	        var recontents = this.parentNode.childNodes[7].value;
+    	 //댓글달기
+	     $(function(){
+		     $(".submit").click(function(){
+		        
+		       // console.log(this.parentNode.childNodes);
+		        
+		        var bno = this.parentNode.childNodes[1].value;
+		        var groupno = this.parentNode.childNodes[3].value;
+		        var categoryno = this.parentNode.childNodes[5].value;
+		        var recontents = this.parentNode.childNodes[7].value;
+	
+		        document.location.href = "insertComment?bno="+bno+"&groupno="+groupno+"&categoryno="+categoryno+"&contents="+recontents;
+		     });
+	
+			//게시글 option메뉴
+			$('.option .sub').hide(); //처음에는 안보이게
+				$('.option').click(function(){
+	 				console.log(this.parentNode.childNodes);
+					$('.option .sub').toggle();
 
-	        document.location.href = "insertComment?bno="+bno+"&groupno="+groupno+"&categoryno="+categoryno+"&contents="+recontents;
-	     });
-
-		//게시글 option메뉴
-		$('.option .sub').hide(); //처음에는 안보이게
-		$('.option').click(function(){
-			$('.option .sub').toggle();
+			});
 		});
-
-		//댓글 숨기기
-     	$(".e").hide();
-	});
+    	 
+    	 
+/* 	 	$(document).ready(function(){
+	 		$(".re").each(function(){
+	 			$(this).off("click").on("click",function(){
+	 				if($(this).has)
+	 				
+	 			});
+	 		});
+	 	});
+		  */
      
-		//댓글 보이기
-		$(function(){
+    	 
+    	 
+    	 
+		//댓글 보이기	
+		$(document).ready(function(){	
 			$(".re").click(function(){
-				$(".e").show();
-				/* $(".re") */
 				
-			});	
-		});
-		
-	/* $(function(){        
-	  $(".btn").click(function(){
-	     
-	     
-	      $(".bno").each(function(index){         
-	        var bno = $(this).val();
-	        console.log(bno);         
-	     });
-	     
-	      document.frm.action = "selectBoard";
-	     document.frm.submit();
-	  }); 
-	   
+				
+				var bno = this.parentNode.childNodes[1].value;
+			    var groupno = this.parentNode.childNodes[3].value;
+	    
+			    $.ajax({
+					    	url: "/assemble.io/{mi_assembleName}/g/{groupno}/selectRecomment",
+					    	type: 'POST',
+					    	data: {"bno": bno, "groupno" : groupno},
+					    	dataType: "json",
+					    	success: function(recomment){
+					    		console.log("success view");
+					    		console.log(recomment);
+					    			//document.getElementById("#"+bno).childNodes.length;
+					    			
+					    		 if(document.getElementById(bno).childElementCount==0){ 
+						    		for(var i=0; i<recomment.length; i++){
+										var retext = 
+											'<div id="s0">'
+												+'<div id="s1">'
+													+'<div id="s1a">'+recomment[i].reid+"님이 쓴 댓글"+'</div>'
+													+'<div id="s1b">'+recomment[i].redate+'</div>'+
+												'</div>' //s1 end
+												+'<div id="s2">'+recomment[i].recontents+'</div>'+ //s2 end
+											'<div>';
+										/* '<h5>'+recomment[i].reid+'</h5>'
+										+'<h5>'+recomment[i].redate+'</h5>'
+										+'<h5>'+recomment[i].recontents+'</h5>'
+										+'</div>'; */
+											
+								    	$(retext).appendTo("#"+bno);					    	
+								    }
+	
+					    		
+					    		 }else{
+					    			
+					    		 $("#" +bno).empty();		
+					    		} 
+					    		
+					    		
+					    	},		
+					    	error : function(recomment){
+					    		console.log("error view");
+					    		console.log(recomment);
+					    	}
+					  }); 
+ 			});  	
+		}); 
+		  
+		  
+		  
+			  
+		  
+			
 
-	  
-	  
-	  //좋아요
-	/*       $("#likeb").click(function(){
-		  document.frm.action = "/like.do";
-		  document.frm.submit();
-	  }); */
+	
 </script>
 <style type="text/css">
-#main{
+#main {
 	width: 50%;
-    height: 100%;
-    position: absolute;
-/*     background: white; */
-    margin-top: 7%;
-    margin-bottom: 5%;
-    margin-left: 25%;
-    marg
-	}
-	
-#info{
-	border: 2px solid #F2F2F2; 
-	background-color: pink;
-	margin-bottom : 15px;	
-	padding-bottom : 0px;
+	height: 100%;
+	position: absolute;
+	/*     background: white; */
+	margin-top: 7%;
+	margin-bottom: 5%;
+	margin-left: 25%;
+	marg
 }
-#select{
+
+#info {
+	border: 2px solid #F2F2F2;
+	background-color: pink;
+	margin-bottom: 15px;
+	padding-bottom: 0px;
+}
+
+#select {
 	background-color: white;
 }
 
-#insert{
+#insert {
 	height: 100%;
 	border: 1px solid #CCCCCC;
 	margin-bottom: 30px;
 }
 
-#board{
+#board {
 	padding: 20px;
-	border: 2px solid #F2F2F2; 
+	border: 2px solid #F2F2F2;
 	background-color: white;
-	margin-bottom : 30px;
+	margin-bottom: 30px;
 	border: 1px solid #CCCCCC;
-/* #F2F2F2; */
-}
-#a{
-	border-bottom : 1px solid #CCCCCC;
-}
-#d{
-margin-top : 10px;
+	/* #F2F2F2; */
 }
 
+#a {
+	border-bottom: 1px solid #CCCCCC;
+}
 
-#retext{
+#d {
+	margin-top: 10px;
+}
+
+#retext {
 	width: 91%;
-	border : 1px solid #CCCCCC;
+	border: 1px solid #CCCCCC;
 }
-.re{
+
+.re {
 	background-color: white;
 	border: none;
 	border: 1px solid #CCCCCC;
 	margin-right: 1%;
 }
-#notice{
+
+#notice {
 	width: 22px;
 }
 
-.lh{
+.lh {
 	width: 22px;
 	margin-left: 1.5%;
 }
 
-.more{
+.more {
 	width: 22px;
 }
 
-.submit{
+.submit {
 	margin-left: 2%;
 }
 
-#boarddate{
+#boarddate {
 	margin-left: 80%;
 }
-#c1{
+
+#c1 {
 	width: 70%;
 	display: inline;
-	float: left; 
+	float: left;
 }
-#c2{
+
+#c2 {
 	margin-left: 82%;
 }
 
-.menubtn{
+.menubtn {
 	border: none;
 	background-color: white;
 	border: 1px solid #CCCCCC;
 }
 
+/* 댓글 */
+#s0{
+	border: 1px solid #CCCCCC;
+	font-size: 14px;
+}
+
+#s1 {
+	border-bottom: 1px solid #CCCCCC;
+	background-color: #F2F2F2;
+	padding: 0.6%;
+
+}
+
+#s1a {
+	display: inline;
+	float: left;
+	margin-right: 70%;
+
+}
+#s2{
+	padding: 1%;
+}
+
 
 /* .option a{cusor:pointer;}
 .option .hide{display:none;} */
-
 </style>
 </head>
 <body>
@@ -185,8 +255,9 @@ margin-top : 10px;
 			<div id="section">	
 
 				<div id="insert">
-					<h3>글쓰기 일정 요청 투표</h3>
-					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat est quia molestiae ullam quibusdam omnis quasi harum beatae voluptas magnam sed eligendi rerum error asperiores tenetur ab officiis exercitationem aliquam.</h3>
+					<jsp:include page="../jinwoo/board.jsp"></jsp:include>
+					<!-- <h3>글쓰기 일정 요청 투표</h3>
+					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat est quia molestiae ullam quibusdam omnis quasi harum beatae voluptas magnam sed eligendi rerum error asperiores tenetur ab officiis exercitationem aliquam.</h3> -->
 				</div>
 
 				<c:forEach var="b" items="${thirdlist }">
@@ -229,6 +300,8 @@ margin-top : 10px;
 						</div>	
 						<div id="c">
 							<div id="c1">
+								<input type="hidden" name="bno" value="${b.bno}"/>
+								<input type="hidden" name="groupno" value="${b.groupno}"/>
 								<input type="button" value="댓글" class="re" />
 							
 								<img src="/resources/assets/img/like.png" class="lh">
@@ -238,7 +311,7 @@ margin-top : 10px;
 								<img src="/resources/assets/img/bookmark_before.png" id="bk" class="lh" onclick="imgchange()"/>																			
 							</div>
 							<div id="c2">
-								<ul class="option">
+								<ul class="option" >
 									<li><img src="/resources/assets/img/more.png" class="more" />
 										<ul class="sub">
 											<!-- 공지글 일시는 공지취소 -->
@@ -252,8 +325,8 @@ margin-top : 10px;
 							</div>
 						</div>
 						
-						<div class="e">
-							<h4>hidden</h4>
+						<div class="e" id="${b.bno }">
+							<!-- 댓글 div -->
 						</div>
 
 						<div id="d">
