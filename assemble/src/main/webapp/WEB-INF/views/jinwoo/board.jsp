@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript">
@@ -92,12 +94,15 @@ $(document).ready(function() {
 		}); */
 		
 		$("#btn1").click(function(){
-	 		var data = $("#fileInput1").val(); 		
+	 		var data = $("#fileInput1").val(); 
+	 		console.log(data);
 	 		
-	 		if(data==""){
-	 			console.log("not file");	 	
+	 		if(data==""){	 	
+	 			
+	 			console.log(document.frm);
+
 	 			document.frm1.action = "/writeOk";
-	 			document.frm1.submit();
+	 			document.frm1.submit(); 
 	 		}else{
 	 			console.log("file in");
 	 			document.frm1.action = "/upload";
@@ -230,7 +235,7 @@ $(function() {
 
 <style type="text/css">
 	.writebtn {
-		width: 33%;
+		width: 32.9%;
 		height: 50px;
 		border : none;
 	}
@@ -247,6 +252,9 @@ $(function() {
 	#writebtn3 {
 		background-color: #D5D5D5;
 	}
+	
+	
+	
 	
 	
 	.writediv {
@@ -367,8 +375,9 @@ $(function() {
 	
 	<div style="width: 100%; height: 90%;">
 		<div class="writediv" id="writediv1" >
+		
 			<form name="frm1" enctype="multipart/form-data">
-		                     
+		              
                <div style="padding: 20px 20px 0 20px;"><textarea style="resize: vertical; width: 100%;" rows="8" name="contents" placeholder="그룹 멤버들과 공유할 내용을 적어주세요."></textarea></div>
 
                       
@@ -389,13 +398,23 @@ $(function() {
 						<div class="input-file1" style="padding: 0 20px 0 20px;">
 						 <!--  <input type="text" readonly="readonly" class="file-name1" />
 						  <label style="margin-top: 3px;" for="fileInput1" class="file-label1"></label> -->
+ 						  <input type="hidden" id="filestatus" name="filestatus" value="0" />
 						  <input type="file" name="uploadFile" id="fileInput1" class="file-upload" />
 						</div>
+						
+						<input type="hidden" name="groupno" id="groupno" value="<c:out value='${groupno }'/>" />
+						<input type="hidden" name="memberno" id="memberno" value="<c:out value='${memberno }'/>" />
+						
+						<%-- <div>
+							<c:out value='${groupno }'/> , <c:out value='${categoryno }' />, <c:out value='${memberno }'/>
+						</div> --%>
+							
                           <div style="padding-right: 20px;">
                             <div style="float: right;"><input class="buttonbo" id="btn1" type="button" value="등록" /></div>
                             <div style="float: right;"><input class="buttonbo" type="reset" value="취소" /></div>
                           </div>
                </form>
+               
 		</div>
 		
 		<div class="writediv" id="writediv2" >
@@ -406,7 +425,7 @@ $(function() {
                           </div> 
                           <div style="float: left; margin-left: 10px; ">
                           <select style="font-size: 16px;"> 
-                          <option selected>시간 설정</option> 
+                          <option selected>시간 설정</option> 	
                           
                           <option>12:00 AM</option>
                           <option>1:00 AM</option>
@@ -447,6 +466,7 @@ $(function() {
 								<!--   <input type="text" readonly="readonly" class="file-name2" />
 								  <label style="margin-top: 3px;" for="fileInput1" class="file-label2">파일첨부</label> -->
 								  <input type="file" name="uploadFile" id="fileInput2" class="file-upload" />
+								  <input type="hidden" id="fileStatus" name="fileStatus" value="0" />
 								</div>
                           	          	
                       		<div style="padding-right: 20px;">
@@ -459,12 +479,11 @@ $(function() {
 				<div class="writediv" id="writediv3" >
 				
 					<form name="frm3" enctype="multipart/form-data">
-						<%-- <input type="text" name="categoryno" value="${categoryno }"/> --%>
 		                            	<div style="padding:10px 20px 0 20px; height: 25px">
 			                                
 			                                <div><input type="text" name="response" id="" style="width: 59%; float: left;" placeholder="담당자를 입력하세요"/></div>
 			                                
-			                                <div class="btn-group" style="float: right;">	
+			                                <div class="btn-group" style="float: right;">
 											  <button class="button3"  disabled="disabled">요청</button>
 											  <button class="button2"  disabled="disabled">진행</button>
 											  <button class="button2"  disabled="disabled">종료</button>
@@ -478,8 +497,17 @@ $(function() {
 											  <!-- <input type="text" readonly="readonly" class="file-name3" />
 											  <label style="margin-top: 3px;" for="fileInput1" class="file-label3">파일첨부</label> -->
 											  <input type="file" name="uploadFile" id="fileInput3" class="file-upload" />
+											  <input type="hidden" id="fileStatus" name="fileStatus" value="0" />
 											</div>
-		                             		
+											
+											
+											<input type="hidden" name="groupno" id="groupno" value="<c:out value='${groupno }'></c:out>" />
+											<input type="hidden" name="memberno" id="memberno" value="<c:out value='${memberno }'></c:out>" />
+											
+											
+											
+											
+											
 										<div style="padding-right: 20px;">
 	                                   <div style="float: right;"><input class="buttonbo" id="btn3" type="button" value="등록" /></div>
 	                                   <div style="float: right;"><input class="buttonbo" type="reset" value="취소" /></div>

@@ -101,6 +101,27 @@ public class RecommentController {
      
      return recomment;     
   }
+  
+//홈에서 bno별 댓글 조회  
+ // @RequestMapping(value= "/assemble.io/{mi_assembleName}/g/{groupno}/selectRecomment")
+  @RequestMapping(value= "/assemble.io/{mi_assembleName}/selectRecomment1", method = RequestMethod.POST)
+  @ResponseBody 
+  public List<RecommentDTO> SelectRecomment1(
+        @PathVariable("mi_assembleName")String assemblename,
+         @RequestParam(value = "bno") int bno,
+         @RequestParam(value = "groupno") int groupno, Model model) {
+     
+     //System.out.println(bno);
+	  //System.out.println(groupno);
+     
+     List<RecommentDTO> recomment1 = dao.recommentlist(bno);  
+     
+     model.addAttribute("recommentlist1", recomment1);
+     
+     //System.out.println(recomment.get(0).getRecontents());
+     
+     return recomment1;     
+  }
    
    
 }

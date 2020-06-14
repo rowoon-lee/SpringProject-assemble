@@ -56,6 +56,7 @@
 					    	type: 'POST',
 					    	data: {"bno": bno, "groupno" : groupno},
 					    	dataType: "json",
+					    	
 					    	success: function(recomment){
 					    		console.log("success view");
 					    		console.log(recomment);
@@ -71,17 +72,26 @@
 												'</div>' //s1 end
 												+'<div id="s2">'+recomment[i].recontents+'</div>'+ //s2 end
 											'<div>';									
-								    	$(retext).appendTo("#"+bno);					    	
-								    }
+								    	$(retext).appendTo("#"+bno);			
+								    		
+						    		}//for end
+								    		 //댓글0개일때
+									    	if(recomment.length==0){
+									    		var retext = 
+													'<div id="s0">'
+														+'<div id="s1">' + "현재 댓글이 없습니다." +'</div>' //s1 end
+													'<div>';
+								    				 $(retext).appendTo("#"+bno);		
+									    	}//if end 
 					    		 }else{
 					    		 $("#" +bno).empty();
 					    		
 					    		} 	
 					    	},		
-					    	error : function(recomment){
+					 /*    	error : function(recomment){
 					    		console.log("error view");
 					    		console.log(recomment);
-					    		if(document.getElementById(bno).childElementCount==0){ 
+					    		 if(document.getElementById(bno).childElementCount==0){ 
 					    		 var retext = 
 										'<div id="s0">'
 											+'<div id="s1">' + "현재 댓글이 없습니다." +'</div>' //s1 end
@@ -90,7 +100,7 @@
 					    		}else{
 					    		$("#" +bno).empty();
 					    		}
-					    	}
+					    	}  */
 					    	
 				 }); 
  			});  	
@@ -98,69 +108,69 @@
 		  
 		  
 
-	//요청 상태 변화
+	 //요청 상태 변화
 	$(function() {
-		var r1 = $('#btnra');
-		var r2 = $('#btnrb');
-		var r3 = $('.btnrc');
+		var r1 = $('.req');
+		var r2 = $('.ing');
+		var r3 = $('.end');
 
-		var i1 = $('#btnia');
-		var i2 = $('#btnib');
-		var i3 = $('#btnic');
-
-		var e1 = $('#btnea');
-		var e2 = $('#btneb');
-		var e3 = $('#btnec');
-
-		//if(document.getElementById(bno).childE){
-		//////////////////////초기상태 요청일 때 ///////////////////////////////////////
 		//요청버튼
-		$(".reqa").click(function() {
+		$(".req").click(function() {
 			var bnoa = this.parentNode.childNodes[1].value + "a";
 			var bno = this.parentNode.childNodes[1].value;
 			var groupno = this.parentNode.childNodes[3].value;
 			var status = this.parentNode.childNodes[5].value;
 			console.log("요청");
 			console.log(bnoa);
+			
+			console.log(this.parentNode.childNodes);
+			
+			
+			this.parentNode.childNodes[3].style.backgroundColor = "red";
+			this.parentNode.childNodes[5].style.backgroundColor = "#EAEAEA";
+			this.parentNode.childNodes[7].style.backgroundColor = "#EAEAEA";
+			
+		
 
-			if (document.getElementById = bnoa) {
-				r1.css('background-color', 'red');
-				i1.css('background-color', '#EAEAEA');
-				e1.css('background-color', '#EAEAEA');
-			}
+		
 		});//.req click end	
 		//진행버튼
-		$(".inga").click(function() {
+		$(".ing").click(function() {
 			var bnoa = this.parentNode.childNodes[1].value + "a";
 			var bno = this.parentNode.childNodes[1].value;
 			var groupno = this.parentNode.childNodes[3].value;
 			var status = this.parentNode.childNodes[5].value;
 			console.log("진행");
 			console.log(bnoa);
+	
+			this.parentNode.childNodes[3].style.backgroundColor = "#EAEAEA";
+			this.parentNode.childNodes[5].style.backgroundColor = "green";
+			this.parentNode.childNodes[7].style.backgroundColor = "#EAEAEA";
+			
+			
 
-			if (document.getElementById = bnoa) {
-				r1.css('background-color', '#EAEAEA');
-				i1.css('background-color', 'green');
-				e1.css('background-color', '#EAEAEA');
-			}
 		});//.ing click end	
 		//종료 버튼
-		$(".enda").click(function() {
+		$(".end").click(function() {
 			var bnoa = this.parentNode.childNodes[1].value + "a";
 			var bno = this.parentNode.childNodes[1].value;
 			var groupno = this.parentNode.childNodes[3].value;
 			var status = this.parentNode.childNodes[5].value;
 			console.log("종료");
 			console.log(bnoa);
+			
+			
+			this.parentNode.childNodes[3].style.backgroundColor = "#EAEAEA";
+			this.parentNode.childNodes[5].style.backgroundColor = "#EAEAEA";
+			this.parentNode.childNodes[7].style.backgroundColor = "gray";
+			
+			
+			
 
-			if (document.getElementById = bnoa) {
-				r1.css('background-color', '#EAEAEA');
-				i1.css('background-color', '#EAEAEA');
-				e1.css('background-color', 'gray');
-			}
+		
 		});//.end click end
 		
-		//////////////////////초기상태 진행일 때 ///////////////////////////////////////
+/* 		//////////////////////초기상태 진행일 때 ///////////////////////////////////////
 		//요청버튼
 		$(".reqb").click(function() {
 			var bnob = this.parentNode.childNodes[1].value + "b";
@@ -252,10 +262,10 @@
 				i3.css('background-color', '#EAEAEA');
 				e3.css('background-color', 'gray');
 			}
-		});//.end click end
+		});//.end click end */
 
 		
-	});//function end
+	});//function end 
 </script>
 <style type="text/css">
 #main {
@@ -446,7 +456,6 @@
 </style>
 </head>
 <body>
-	<form name="frm" method="get">
 		<div id="main">
 			<div id="info">	
 					<h2>${groupname }</h2>
@@ -462,8 +471,6 @@
 
 				<div id="insert">
 					<jsp:include page="../jinwoo/board.jsp"></jsp:include>
-					<!-- <h3>글쓰기 일정 요청 투표</h3>
-					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat est quia molestiae ullam quibusdam omnis quasi harum beatae voluptas magnam sed eligendi rerum error asperiores tenetur ab officiis exercitationem aliquam.</h3> -->
 				</div>
 
 				<c:forEach var="b" items="${thirdlist }">
@@ -488,32 +495,29 @@
 								<c:if test="${b.reqstatus == 0}">
 								 	<div class="btn-group" style="float: right;" id="${b.bno }a">
 								 		<input type="hidden" name="req_bno" value="${b.bno}"/> 
-								 		<input type="hidden" name="req_groupno" value="${b.groupno}"/> 
-								 		<input type="hidden" name="req_status" value="${b.reqstatus}"/> 
-										<input type="button" value="요청" id="btnra" class="reqa"/>
-										<input type="button" value="진행" id="btnia" class="inga"/>
-										<input type="button" value="종료" id="btneb" class="enda"/>
-									</div>
+								
+										<input type="button" value="요청" id="btnra" class="req"/>
+										<input type="button" value="진행" id="btnia" class="ing"/>
+										<input type="button" value="종료" id="btnea" class="end"/>
+									</div> 
 								</c:if>
 								<c:if test="${b.reqstatus ==1 }">
-									<div class="btn-group" style="float: right;" id="${b.bno }b">
-										<input type="hidden" name="req_bno" value="${b.bno}"/> 
-										<input type="hidden" name="req_groupno" value="${b.groupno}"/> 
-								 		<input type="hidden" name="req_status" value="${b.reqstatus}"/> 
-										<input type="button" value="요청" id="btnrb" class="reqb"/>
-										<input type="button" value="진행" id="btnib" class="ingb"/>
-										<input type="button" value="종료" id="btneb" class="endb"/>
+									<div class="btn-group" style="float: right;" id="${b.bno }a">
+						 				<input type="hidden" name="req_bno" value="${b.bno}"/> 
+					
+										<input type="button" value="요청" id="btnrb" class="req"/>
+										<input type="button" value="진행" id="btnib" class="ing"/>
+										<input type="button" value="종료" id="btneb" class="end"/>
 										
 									</div>
 								</c:if>
 								<c:if test="${b.reqstatus ==2 }">
-									<div class="btn-group" style="float: right;" id="${b.bno }c">
+									<div class="btn-group" style="float: right;" id="${b.bno }a">
 										<input type="hidden" name="req_bno" value="${b.bno}"/>
-										<input type="hidden" name="req_groupno" value="${b.groupno}"/> 
-								 		<input type="hidden" name="req_status" value="${b.reqstatus}"/>  
-										<input type="button" value="요청" id="btnrc" class="reqc"/>
-										<input type="button" value="진행" id="btnic" class="ingc"/>
-										<input type="button" value="종료" id="btnec" class="endc"/>
+					
+										<input type="button" value="요청" id="btnrc" class="req"/>
+										<input type="button" value="진행" id="btnic" class="ing"/>
+										<input type="button" value="종료" id="btnec" class="end"/>
 									</div>
 								</c:if>
 								<%-- <h5>요청진행상태 : ${b.reqstatus }</h5> --%>	
@@ -522,7 +526,7 @@
 							<h5>좋아요 : ${b.boardlike }</h5>
 							<h5>싫어요 : ${b.boardhate }</h5>
 							<c:if test="${b.filename != null }">
-								<h5>파일명 : ${b.filename }</h5>
+								<h4>파일명 : ${b.filename }</h4>
 							</c:if>
 							
 						</div>	
@@ -532,10 +536,8 @@
 								<input type="hidden" name="groupno" value="${b.groupno}"/>
 								<input type="button" value="댓글" class="re" />
 							
-								<img src="/resources/assets/img/like.png" class="lh">
-								
+								<img src="/resources/assets/img/like.png" class="lh">								
 								<img src="/resources/assets/img/hate.png" class="lh">
-					
 								<img src="/resources/assets/img/bookmark_before.png" id="bk" class="lh" onclick="imgchange()"/>																			
 							</div>
 							<div id="c2">
@@ -569,7 +571,6 @@
 				</c:forEach>
 			</div> <!-- section end -->
 		</div>
-	</form>
 <script src="/resources/assets/js/jquery.js"></script>
 <script src="/resources/assets/js/jquery-1.8.3.min.js"></script>
 <script src="/resources/assets/js/bootstrap.min.js"></script>

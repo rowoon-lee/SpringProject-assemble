@@ -2,6 +2,8 @@ package kr.co.assemble.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -44,16 +46,16 @@ public class RequestController {
    // 그룹보드에 요청 글쓰기와 동시에 요청테이블 업데이트
    @PostMapping(value = "/requestOk")
    public String request(
-         @RequestParam(value = "grNum") int grNum, @RequestParam(value = "cgNum") int cgNum,
-         @RequestParam(value = "memNum") int memNum, @RequestParam(value = "response") String response,
-         @RequestParam(value = "contents") String contents, Model model) {
+         @RequestParam(value = "groupno") int groupno,
+         @RequestParam(value = "memberno") int memberno, 
+         @RequestParam(value = "response") String response,
+         @RequestParam(value = "contents") String contents, Model model, HttpSession session) {
       
       TransactionStatus status = this.transactionManager.getTransaction(new DefaultTransactionDefinition());
       
       BoardDTO dto = new BoardDTO();
-      dto.setGroupno(grNum);
-      dto.setCategoryno(cgNum);
-      dto.setMemberno(memNum);
+      dto.setGroupno(groupno);
+      dto.setMemberno(memberno);
       dto.setBoardcontents(contents);
       dto.setRequestboolean(1);
 
@@ -70,9 +72,11 @@ public class RequestController {
       reqdto.setResponseid(response);
       rdao.updateReq(reqdto);
       
-      model.addAttribute("groupno", grNum);
+      String mi_assembleName = (String)session.getAttribute("mi_assembleName");
+      model.addAttribute("mi_assembleName", mi_assembleName);
+      model.addAttribute("groupno", groupno);
 
-      return "redirect:/wall";
+      return "redirect:/assemble.io/{mi_assembleName}/g/{groupno}/wall";
    }
    
    

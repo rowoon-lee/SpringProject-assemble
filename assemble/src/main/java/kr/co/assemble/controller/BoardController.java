@@ -1,6 +1,10 @@
 package kr.co.assemble.controller;
 
 import java.util.List;
+
+import javax.mail.Session;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,22 +39,24 @@ public class BoardController {
 	//글쓰기 완료 페이지
 	@RequestMapping(value = "/writeOk")
 	public String writeOk(
-			@RequestParam(value = "grNum") int grNum,
-			@RequestParam(value = "memNum") int memNum,
-			@RequestParam(value = "contents") String contents, Model model) {
+			@RequestParam(value = "groupno") int groupno,
+			@RequestParam(value = "memberno") int memberno, HttpSession session,
+			@RequestParam(value = "contents") String contents, 
+			@RequestParam(value = "filestatus") int filestatus, Model model) {
 		
 		BoardDTO dto = new BoardDTO();
 		
-		dto.setGroupno(grNum);
-		dto.setMemberno(memNum);
+		dto.setGroupno(groupno);
+		dto.setMemberno(memberno);
 		dto.setBoardcontents(contents);
 		dao.write(dto);
 		
+		String mi_assembleName = (String)session.getAttribute("mi_assembleName");
+		model.addAttribute("mi_assembleName", mi_assembleName);
 		model.addAttribute("contents", contents);
-		model.addAttribute("groupno", grNum);
+		model.addAttribute("groupno", groupno);
 		
-		
-		return "redirect:/wall";
+		return "redirect:/assemble.io/{mi_assembleName}/g/{groupno}/wall";
 	}
 	
 	
@@ -82,6 +88,8 @@ public class BoardController {
 		//그룹별 게시글 출력
 		List<Groupboard_Memberinfo_FileDTO> list3 = dao.boardlist(groupno);
 		model.addAttribute("thirdlist", list3);
+		
+		model.addAttribute("groupno", groupno);
 		
 		//System.out.println(groupno);-+
 		return "board/wall";

@@ -80,8 +80,7 @@
 		where co.memberno = #{memberno};
 	</select>
 	
-		
-	
+
 	
 	<!-- **********************그룹******************** -->
 	<!-- 그룹 전체 조회 -->
@@ -168,6 +167,8 @@
 	</select>
 	
 	<!-- **********************Board(게시판)******************** -->
+	<!-- 전체검색(이름, 아이디, 내용) 별 -->
+
 	<!-- 그룹별로 게시글 조회 공지글일 경우(1) 제일 위로, 최신글이 제일 위에 올라오도록 정렬 -->
 	<select id="selectGroupBoard" resultType="G_M_F_Dto">
 	    select
@@ -194,8 +195,8 @@
 	
 	<!-- 글쓰기 : 맨처음 글을 쓰게되면 공지사항여부X=0, 좋아요싫어요 0고정, 요청이 아닌경우0 -->
 	<insert id="writeBoard" parameterType="BoardDto">
-		insert into groupboard (groupno, memberno, boarddate, boardcontents, boardnotice, boardlike, boardhate, requestboolean)
-		values (#{groupno}, #{memberno}, now(), #{boardcontents}, 0, 0, 0, 0)
+		insert into groupboard (groupno, memberno, boarddate, boardcontents, boardnotice, boardlike, boardhate, requestboolean, filestatus)
+    	values (#{groupno}, #{memberno}, now(), #{boardcontents}, 0, 0, 0, 0, #{filestatus})
 	</insert>
 	
 	<!-- 글 수정 -->
@@ -229,6 +230,25 @@
 		where gb.groupno in (select groupno from composed where memberno = #{memberno}) 
 		order by boarddate desc;
 		</select>
+	
+	
+	<!-- 내가 쓴 글만 조회 -->
+   <select id="myWrite" parameterType="MyWriteDto" resultType="MyWriteDto">
+      select
+      m.mi_memname, m.mi_memid, b.memberno,
+      b.bno, b.groupno, g.groupname, b.boardnotice,
+      b.boarddate, b.boardcontents, b.boardlike, b.boardhate,
+      b.requestboolean, f.filename, r.reqstatus
+      from memberinfo as m, groups g, groupboard as b
+      left outer join file f
+      on f.bno = b.bno
+      left outer join requestboard r
+      on r.bno = b.bno
+      where
+      g.groupno= b.groupno and
+      m.mi_memberno = b.memberno and
+      b.memberno = #{memberno};
+   </select>
 	
 
 <!-- ************************************************************* -->
@@ -281,6 +301,47 @@
       and (m.mi_memname = r.responseid or m.mi_memid = r.responseid)
       and m.mi_memberno = #{memberno}
    </select>
+
+
+<!-- **********************파일******************** -->
+   
+   <!-- 파일 트리거로 들어온것중 제일 앞번호 -->
+   <select id="filenoNewly" resultType="int">
+      select bno from file order by filedate desc limit 1
+   </select>
+   
+   <!-- 파일 업데이트 -->
+   <update id="updateFile" parameterType="FileDto">
+      update file
+      set filename = #{filename}, filepath = #{filepath}, filedate = now()
+      where bno = #{bno}
+   </update>
+   
+   <!-- 파일 이름 출력(게시판에보이게) -->
+   <select id="selectfileOne" parameterType="int" resultType="String">
+      select filename from file
+      where bno = #{bno}
+   </select>
+   
+   <!-- 파일 이름 출력을 위한 전체 리스트 뽑기 -->
+   <select id="selectFileList" parameterType="FileDto">
+      select * from file
+      where bno = #{bno}
+   </select>
+   
+   <!-- 파일 수정 -->
+   <update id="changeFile" parameterType="FileDto">
+      update file
+      set filename = #{filename}, filedate = now()
+      where bno = #{bno}
+   </update>
+
+
+
+
+
+
+
 
 
 

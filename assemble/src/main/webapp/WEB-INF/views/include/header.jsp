@@ -107,7 +107,7 @@ $(document).ready(function() {
 	              	  
               	  </div>
               	  
-		              	  <input type="button" value="내글" class="bt1"/>
+		              	 <a href="/myBoard"><input type="button" value="내글" class="bt1"/></a>
 		              	  <!-- <input type="button" value="맨션" class="b1"/> -->
 		              	   <a href="/tasks"><input type="button" value="요청" class="bt1"/></a>   
 		              	   <a href="/bookmarks"><input type="button" value="북마크" class="bt2"/></a>   
