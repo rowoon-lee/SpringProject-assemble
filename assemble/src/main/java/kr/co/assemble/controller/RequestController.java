@@ -8,6 +8,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -77,8 +78,9 @@ public class RequestController {
    
    
    // 요청 status 변경 0=요청, 1=진행중, 2=완료
-   @RequestMapping(value = "/updateStatus")
+   @RequestMapping(value = "/assemble.io/{mi_assembleName}/g/{groupno}/updateStatus")
    public String updateStatus(
+		 @PathVariable("mi_assembleName")String assemblename,
          @RequestParam(value = "bno") int bno,
          @RequestParam(value = "groupno") int groupno,
          @RequestParam(value = "status") int status, Model model) {
@@ -86,12 +88,14 @@ public class RequestController {
       RequestDTO dto = new RequestDTO();
       
       dto.setBno(bno);
+      dto.setGroupno(groupno);
       dto.setReqstatus(status);
       rdao.updateStatus(dto);
       
+      model.addAttribute("dto", dto);
       model.addAttribute("groupno", groupno);
       
-      return "redirect:/wall";
+      return "redirect:/assemble.io/{mi_assembleName}/g/{groupno}/wall";
    }
    
    

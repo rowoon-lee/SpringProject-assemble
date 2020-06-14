@@ -70,94 +70,192 @@
 													+'<div id="s1b">'+recomment[i].redate+'</div>'+
 												'</div>' //s1 end
 												+'<div id="s2">'+recomment[i].recontents+'</div>'+ //s2 end
-											'<div>';
-										/* '<h5>'+recomment[i].reid+'</h5>'
-										+'<h5>'+recomment[i].redate+'</h5>'
-										+'<h5>'+recomment[i].recontents+'</h5>'
-										+'</div>'; */
-											
+											'<div>';									
 								    	$(retext).appendTo("#"+bno);					    	
 								    }
 					    		 }else{
-					    			
-					    		 $("#" +bno).empty();		
+					    		 $("#" +bno).empty();
+					    		
 					    		} 	
 					    	},		
 					    	error : function(recomment){
 					    		console.log("error view");
 					    		console.log(recomment);
+					    		if(document.getElementById(bno).childElementCount==0){ 
+					    		 var retext = 
+										'<div id="s0">'
+											+'<div id="s1">' + "현재 댓글이 없습니다." +'</div>' //s1 end
+										'<div>';
+					    		 $(retext).appendTo("#"+bno);		
+					    		}else{
+					    		$("#" +bno).empty();
+					    		}
 					    	}
-					  }); 
+					    	
+				 }); 
  			});  	
 		}); 
 		  
 		  
-		//요청 상태 변화
-   		$(function(){
-			var r1 = $('#button3');
-			var r2 = $('#button2c');
-			var r3 = $('#button2e');
-			
-			var i1 = $('#button2a');
-			var i2 = $('#button4');
-			var i3 = $('#button2f');
-			
-			var e1 = $('#button2b');
-			var e2 = $('#button2d');
-			var e3 = $('#button5');
-			
-			 //if(document.getElementById(bno).childE){ 
-			$(".req").click(function(){
-			var bno = this.parentNode.childNodes[1].value + "b";
-				//console.log(bno);
-				if(document.getElementById = bno){
-				
-				$(".req").click(function(){
-					r1.css('background-color','red');	
-					r2.css('background-color','red');	
-					r3.css('background-color','red');	
-					
-					i1.css('background-color','#EAEAEA');	
-					i2.css('background-color','#EAEAEA');		
-					i3.css('background-color','#EAEAEA');	
-					
-					e1.css('background-color','#EAEAEA');	
-					e2.css('background-color','#EAEAEA');	
-					e3.css('background-color','#EAEAEA');		
-				});
-			
-				$(".ing").click(function(){
-					r1.css('background-color', '#EAEAEA');
-					r2.css('background-color', '#EAEAEA');
-					r3.css('background-color', '#EAEAEA');
 
-					i1.css('background-color', 'green');
-					i2.css('background-color', 'green');
-					i3.css('background-color', 'green');
+	//요청 상태 변화
+	$(function() {
+		var r1 = $('#btnra');
+		var r2 = $('#btnrb');
+		var r3 = $('.btnrc');
 
-					e1.css('background-color', '#EAEAEA');
-					e2.css('background-color', '#EAEAEA');
-					e3.css('background-color', '#EAEAEA');
+		var i1 = $('#btnia');
+		var i2 = $('#btnib');
+		var i3 = $('#btnic');
 
-				});
+		var e1 = $('#btnea');
+		var e2 = $('#btneb');
+		var e3 = $('#btnec');
 
-				$(".end").click(function() {
-					r1.css('background-color', '#EAEAEA');
-					r2.css('background-color', '#EAEAEA');
-					r3.css('background-color', '#EAEAEA');
+		//if(document.getElementById(bno).childE){
+		//////////////////////초기상태 요청일 때 ///////////////////////////////////////
+		//요청버튼
+		$(".reqa").click(function() {
+			var bnoa = this.parentNode.childNodes[1].value + "a";
+			var bno = this.parentNode.childNodes[1].value;
+			var groupno = this.parentNode.childNodes[3].value;
+			var status = this.parentNode.childNodes[5].value;
+			console.log("요청");
+			console.log(bnoa);
 
-					i1.css('background-color', '#EAEAEA');
-					i2.css('background-color', '#EAEAEA');
-					i3.css('background-color', '#EAEAEA');
+			if (document.getElementById = bnoa) {
+				r1.css('background-color', 'red');
+				i1.css('background-color', '#EAEAEA');
+				e1.css('background-color', '#EAEAEA');
+			}
+		});//.req click end	
+		//진행버튼
+		$(".inga").click(function() {
+			var bnoa = this.parentNode.childNodes[1].value + "a";
+			var bno = this.parentNode.childNodes[1].value;
+			var groupno = this.parentNode.childNodes[3].value;
+			var status = this.parentNode.childNodes[5].value;
+			console.log("진행");
+			console.log(bnoa);
 
-					e1.css('background-color', 'gray');
-					e2.css('background-color', 'gray');
-					e3.css('background-color', 'gray');
+			if (document.getElementById = bnoa) {
+				r1.css('background-color', '#EAEAEA');
+				i1.css('background-color', 'green');
+				e1.css('background-color', '#EAEAEA');
+			}
+		});//.ing click end	
+		//종료 버튼
+		$(".enda").click(function() {
+			var bnoa = this.parentNode.childNodes[1].value + "a";
+			var bno = this.parentNode.childNodes[1].value;
+			var groupno = this.parentNode.childNodes[3].value;
+			var status = this.parentNode.childNodes[5].value;
+			console.log("종료");
+			console.log(bnoa);
 
-				});
-			}//if end
-		});
-	});
+			if (document.getElementById = bnoa) {
+				r1.css('background-color', '#EAEAEA');
+				i1.css('background-color', '#EAEAEA');
+				e1.css('background-color', 'gray');
+			}
+		});//.end click end
+		
+		//////////////////////초기상태 진행일 때 ///////////////////////////////////////
+		//요청버튼
+		$(".reqb").click(function() {
+			var bnob = this.parentNode.childNodes[1].value + "b";
+			var bno = this.parentNode.childNodes[1].value;
+			var groupno = this.parentNode.childNodes[3].value;
+			var status = this.parentNode.childNodes[5].value;
+			console.log("요청");
+			console.log(bnob);
+
+			if (document.getElementById = bnob) {
+				r2.css('background-color', 'red');
+				i2.css('background-color', '#EAEAEA');
+				e2.css('background-color', '#EAEAEA');
+			}
+		});//.req click end	
+		//진행버튼
+		$(".ingb").click(function() {
+			var bnob = this.parentNode.childNodes[1].value + "b";
+			var bno = this.parentNode.childNodes[1].value;
+			var groupno = this.parentNode.childNodes[3].value;
+			var status = this.parentNode.childNodes[5].value;
+			console.log("진행");
+			console.log(bnob);
+
+			if (document.getElementById = bnob) {
+				r2.css('background-color', '#EAEAEA');
+				i2.css('background-color', 'green');
+				e2.css('background-color', '#EAEAEA');
+			}
+		});//.ing click end	
+		//종료 버튼
+		$(".endb").click(function() {
+			var bnob = this.parentNode.childNodes[1].value + "b";
+			var bno = this.parentNode.childNodes[1].value;
+			var groupno = this.parentNode.childNodes[3].value;
+			var status = this.parentNode.childNodes[5].value;
+			console.log("종료");
+			console.log(bnob);
+
+			if (document.getElementById = bnob) {
+				r2.css('background-color', '#EAEAEA');
+				i2.css('background-color', '#EAEAEA');
+				e2.css('background-color', 'gray');
+			}
+		});//.end click end
+
+//////////////////////초기상태 종료일 때 ///////////////////////////////////////
+		//요청버튼
+		$(".reqc").click(function() {
+			var bnoc = this.parentNode.childNodes[1].value + "c";
+			var bno = this.parentNode.childNodes[1].value;
+			var groupno = this.parentNode.childNodes[3].value;
+			var status = this.parentNode.childNodes[5].value;
+			console.log("요청");
+			console.log(bnoc);
+
+			if (document.getElementById = bnoc) {
+				r3.css('background-color', 'red');
+				i3.css('background-color', '#EAEAEA');
+				e3.css('background-color', '#EAEAEA');
+			}
+		});//.req click end	
+		//진행버튼
+		$(".ingc").click(function() {
+			var bnoc = this.parentNode.childNodes[1].value + "c";
+			var bno = this.parentNode.childNodes[1].value;
+			var groupno = this.parentNode.childNodes[3].value;
+			var status = this.parentNode.childNodes[5].value;
+			console.log("진행");
+			console.log(bnoc);
+
+			if (document.getElementById = bnoc) {
+				r3.css('background-color', '#EAEAEA');
+				i3.css('background-color', 'green');
+				e3.css('background-color', '#EAEAEA');
+			}
+		});//.ing click end	
+		//종료 버튼
+		$(".endc").click(function() {
+			var bnoc = this.parentNode.childNodes[1].value + "c";
+			var bno = this.parentNode.childNodes[1].value;
+			var groupno = this.parentNode.childNodes[3].value;
+			var status = this.parentNode.childNodes[5].value;
+			console.log("종료");
+			console.log(bnoc);
+
+			if (document.getElementById = bnoc) {
+				r3.css('background-color', '#EAEAEA');
+				i3.css('background-color', '#EAEAEA');
+				e3.css('background-color', 'gray');
+			}
+		});//.end click end
+
+		
+	});//function end
 </script>
 <style type="text/css">
 #main {
@@ -277,62 +375,68 @@
 	padding: 1%;
 }
 
+/* .btn-group {margin: 0;}
 .btn-group {margin: 0;}
-#button2a, #button2b, #button2c, #button2d, #button2e, #button2f {
-  background-color: #EAEAEA; /* Green */
-  border: none;
+.btnra, .btnrb, .btnrc,
+.btnia, .btnib, .btnic, 
+.btnea, .btneb, .btnec {
+ border: none;
   color: white;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-
-  width: 70px;
-  height: 25px;
-  float: left;
-}
- #button3 {
-  background-color: #FF0000; 
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-
   width: 70px;
   height: 25px;
   float: left;
 }
 
-#button4 {
-  background-color: green; 
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-
-  width: 70px;
-  height: 25px;
-  float: left;
+.btnia, .btnea, .btnrb, .btneb, .btnrc, .btnic{
+ background-color: #EAEAEA;
 }
 
-#button5 {
+.btnra {
+  background-color: red; 
+}
+
+.btnib {
+  background-color: green; ;
+}
+
+.btnec {
   background-color: gray; 
-  border: none;
+} */
+#btn-group {margin: 0;}
+#btn-group {margin: 0;}
+#btnra, #btnrb, #btnrc,
+#btnia, #btnib, #btnic, 
+#btnea, #btneb, #btnec {
+ border: none;
   color: white;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-
   width: 70px;
   height: 25px;
   float: left;
 }
 
+#btnia, #btnea, #btnrb, #btneb, #btnrc, #btnic{
+ background-color: #EAEAEA;
+}
+
+#btnra {
+  background-color: red; 
+}
+
+#btnib {
+  background-color: green; ;
+}
+
+#btnec {
+  background-color: gray; 
+}
 
 
 
@@ -376,31 +480,40 @@
 							<h5 id="boarddate">${b.boarddate }</h5>
 						</div>
 
-						<div id="${b.bno }b">
+						<!-- <div id="b"> -->
+ 						<div id="${b.bno }z"> 
 							<h4>${b.boardcontents }</h4>
 							
 							<c:if test="${b.requestboolean == 1 }">
 								<c:if test="${b.reqstatus == 0}">
-								 	<div class="btn-group" style="float: right;">
-								 		<%-- <input type="hidden" name="req_bno" value="${b.bno}"/> --%>
-										<input type="button" value="요청" id="button3" class="req"/>
-										<input type="button" value="진행" id="button2a" class="ing"/>
-										<input type="button" value="종료" id="button2b" class="end"/>
+								 	<div class="btn-group" style="float: right;" id="${b.bno }a">
+								 		<input type="hidden" name="req_bno" value="${b.bno}"/> 
+								 		<input type="hidden" name="req_groupno" value="${b.groupno}"/> 
+								 		<input type="hidden" name="req_status" value="${b.reqstatus}"/> 
+										<input type="button" value="요청" id="btnra" class="reqa"/>
+										<input type="button" value="진행" id="btnia" class="inga"/>
+										<input type="button" value="종료" id="btneb" class="enda"/>
 									</div>
 								</c:if>
 								<c:if test="${b.reqstatus ==1 }">
-									<div class="btn-group" style="float: right;">
-										<input type="button" value="요청" id="button2c" class="req"/>
-										<input type="button" value="진행" id="button4" class="ing"/>
-										<input type="button" value="종료" id="button2d" class="end"/>
+									<div class="btn-group" style="float: right;" id="${b.bno }b">
+										<input type="hidden" name="req_bno" value="${b.bno}"/> 
+										<input type="hidden" name="req_groupno" value="${b.groupno}"/> 
+								 		<input type="hidden" name="req_status" value="${b.reqstatus}"/> 
+										<input type="button" value="요청" id="btnrb" class="reqb"/>
+										<input type="button" value="진행" id="btnib" class="ingb"/>
+										<input type="button" value="종료" id="btneb" class="endb"/>
 										
 									</div>
 								</c:if>
 								<c:if test="${b.reqstatus ==2 }">
-									<div class="btn-group" style="float: right;">
-										<input type="button" value="요청" id="button2e" class="req"/>
-										<input type="button" value="진행" id="button2f" class="ing"/>
-										<input type="button" value="종료" id="button5" class="end"/>
+									<div class="btn-group" style="float: right;" id="${b.bno }c">
+										<input type="hidden" name="req_bno" value="${b.bno}"/>
+										<input type="hidden" name="req_groupno" value="${b.groupno}"/> 
+								 		<input type="hidden" name="req_status" value="${b.reqstatus}"/>  
+										<input type="button" value="요청" id="btnrc" class="reqc"/>
+										<input type="button" value="진행" id="btnic" class="ingc"/>
+										<input type="button" value="종료" id="btnec" class="endc"/>
 									</div>
 								</c:if>
 								<%-- <h5>요청진행상태 : ${b.reqstatus }</h5> --%>	

@@ -35,13 +35,11 @@ public class RecommentController {
 		 @PathVariable("mi_assembleName")String assemblename,
          @RequestParam(value = "bno") int bno,
          @RequestParam(value = "groupno") int groupno,
-         @RequestParam(value = "categoryno") int categoryno,
          @RequestParam(value = "contents") String contents, HttpServletRequest request, Model model) {
       
       RecommentDTO dto = new RecommentDTO();
       dto.setBno(bno);
       dto.setGroupno(groupno);
-      dto.setCategoryno(categoryno);
       dto.setRecontents(contents);
       
       //멤버세션으로 id 조회해서 댓글작성자에 현재 세션의 id 집어넣기
@@ -62,20 +60,18 @@ public class RecommentController {
 		 @PathVariable("mi_assembleName")String assemblename,
          @RequestParam(value = "bno") int bno,
          @RequestParam(value = "groupno") int groupno,
-         @RequestParam(value = "categoryno") int categoryno,
          @RequestParam(value = "contents") String contents, HttpServletRequest request, Model model) {
       
       RecommentDTO dto = new RecommentDTO();
       dto.setBno(bno);
       dto.setGroupno(groupno);
-      dto.setCategoryno(categoryno);
       dto.setRecontents(contents);
       
       //멤버세션으로 id 조회해서 댓글작성자에 현재 세션의 id 집어넣기
       HttpSession session = request.getSession();
       String memberId = (String) session.getAttribute("mi_memID");
       int memberNo = (Integer) session.getAttribute("memberno");
-      System.out.println(memberNo);
+      //System.out.println(memberNo);
       dto.setReid(memberId);
       
       dao.insertComment(dto);
@@ -94,14 +90,14 @@ public class RecommentController {
          @RequestParam(value = "bno") int bno,
          @RequestParam(value = "groupno") int groupno, Model model) {
      
-     System.out.println(bno);
-     System.out.println(groupno);
+     //System.out.println(bno);
+     //System.out.println(groupno);
      
      List<RecommentDTO> recomment = dao.recommentlist(bno);  
      
      model.addAttribute("recommentlist", recomment);
      
-     System.out.println(recomment.get(0).getRecontents());
+     //System.out.println(recomment.get(0).getRecontents());
      
      return recomment;     
   }

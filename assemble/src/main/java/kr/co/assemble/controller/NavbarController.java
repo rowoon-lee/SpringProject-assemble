@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.assemble.dao.CategoryDAO;
 import kr.co.assemble.dao.GroupDAO;
-import kr.co.assemble.dto.CategoryDTO;
 import kr.co.assemble.dto.GroupDTO;
 import kr.co.assemble.dto.NavbarDTO;
 
@@ -37,7 +36,7 @@ public class NavbarController {
 		HttpSession session = request.getSession();
 		int memberNo = (Integer)session.getAttribute("memberno");
 	
-		System.out.println(assemblename);
+		//System.out.println(assemblename);
 		NavbarDTO dto = new NavbarDTO();
 		dto.setMemberno(memberNo);
 		dto.setAssemblename(assemblename);
@@ -49,7 +48,7 @@ public class NavbarController {
 //		List<CategoryDTO> list = cdao.selectCategory(dto);
 		
 		//categoryno 같을때만 뽑는 조건을 jsp상에서 주었음
-		List<GroupDTO> list2 = gdao.grouplist();
+		List<GroupDTO> list2 = gdao.grouplist();	
 		model.addAttribute("groupList", list2);
 		
 //		model.addAttribute("memberno", memberNo);

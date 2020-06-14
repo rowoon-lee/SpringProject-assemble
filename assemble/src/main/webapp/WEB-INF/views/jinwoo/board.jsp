@@ -230,7 +230,7 @@ $(function() {
 
 <style type="text/css">
 	.writebtn {
-		width: 32.9%;
+		width: 33%;
 		height: 50px;
 		border : none;
 	}
@@ -247,9 +247,6 @@ $(function() {
 	#writebtn3 {
 		background-color: #D5D5D5;
 	}
-	
-	
-	
 	
 	
 	.writediv {

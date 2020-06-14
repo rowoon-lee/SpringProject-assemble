@@ -36,14 +36,12 @@ public class BoardController {
 	@RequestMapping(value = "/writeOk")
 	public String writeOk(
 			@RequestParam(value = "grNum") int grNum,
-			@RequestParam(value = "cgNum") int cgNum,
 			@RequestParam(value = "memNum") int memNum,
 			@RequestParam(value = "contents") String contents, Model model) {
 		
 		BoardDTO dto = new BoardDTO();
 		
 		dto.setGroupno(grNum);
-		dto.setCategoryno(cgNum);
 		dto.setMemberno(memNum);
 		dto.setBoardcontents(contents);
 		dao.write(dto);
@@ -62,8 +60,8 @@ public class BoardController {
 	//그룹별 정보, 구성원 정보(Groups_Memberinfo_Composed_DTO)
 	@RequestMapping("/assemble.io/{mi_assembleName}/g/{groupno}/wall")
 	public String groupBoard(@PathVariable("groupno")int groupno, 
-							@PathVariable("mi_assembleName") String assemblename, 
-							@RequestParam("categoryno")int categoryno, Model model){
+							@PathVariable("mi_assembleName") String assemblename, Model model){
+		/* @RequestParam("categoryno")int categoryno, Model model){ */
 		
 		//세션정보 받아서  주소에 assemble이름 넣기
 //		assemblename = (String)session.getAttribute("mi_assembleName");
@@ -80,11 +78,6 @@ public class BoardController {
 		//그룹명 출력
 		String groupname = cdao.selectGroupName(groupno);
 		model.addAttribute("groupname", groupname);
-
-		//insert할 때 필요한 categoryno
-		model.addAttribute("categoryno", categoryno);
-		
-		System.out.println(categoryno);
 		
 		//그룹별 게시글 출력
 		List<Groupboard_Memberinfo_FileDTO> list3 = dao.boardlist(groupno);
@@ -100,7 +93,7 @@ public class BoardController {
 		@RequestMapping(value = "/selectBoard")
 		public String selectbno(
 				@RequestParam(value = "bno") int bno, Model model) {
-			System.out.println(bno);
+			//System.out.println(bno);
 			
 			List<BoardDTO> list = dao.selectOne(bno);
 			model.addAttribute("list", list);

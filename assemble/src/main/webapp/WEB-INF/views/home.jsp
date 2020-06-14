@@ -32,12 +32,10 @@
 
 					var bno = this.parentNode.childNodes[1].value;
 					var groupno = this.parentNode.childNodes[3].value;
-					var categoryno = this.parentNode.childNodes[5].value;
-					var recontents = this.parentNode.childNodes[7].value;
+					var recontents = this.parentNode.childNodes[5].value;
 
 					document.location.href = "insertComment?bno=" + bno
-							+ "&groupno=" + groupno + "&categoryno="
-							+ categoryno + "&contents=" + recontents;
+							+ "&groupno=" + groupno + "&contents=" + recontents;
 				});
 
 		//option 펼치기
@@ -188,11 +186,10 @@
 				</div>
 
 				<div id="e">
-					<input type="hidden" name="bno" value="${tl.bno }" /> <input
-						type="hidden" name="groupno" value="${tl.groupno }" /> <input
-						type="hidden" name="categoryno" value="${tl.categoryno }" /> <input
-						type="text" name="" id="retext" placeholder=" 댓글을 입력하세요" /> <input
-						type="button" value="등록" class="submit" />
+					<input type="hidden" name="bno" value="${tl.bno }" /> 
+					<input type="hidden" name="groupno" value="${tl.groupno }" /> 
+					<input type="text" name="" id="retext" placeholder=" 댓글을 입력하세요" /> 
+					<input type="button" value="등록" class="submit" />
 				</div>
 			</div>
 		</c:forEach>
