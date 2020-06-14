@@ -175,7 +175,7 @@
 		m.mi_memname, m.mi_memid, b.memberno, 
 		b.bno, b.groupno, b.boardnotice, 
 		b.boarddate, b.boardcontents, b.boardlike, b.boardhate, 
-		b.requestboolean, f.filename, r.reqstatus
+		b.requestboolean, f.filename, r.reqstatus, r.responseid
 		from memberinfo as m, groupboard as b
 		left outer join file f
 		on f.bno = b.bno
@@ -214,22 +214,19 @@
 
 	<!-- 내가 포함된 그룹의 글들만 조회 (나의 소식피드) -->
 	<select id="myGroupBoard" resultType="G_M_F_Dto">
-<!-- 	select  * from groupboard
-		where groupno in (select groupno
-		from composed
-		where memberno = #{memberno})
-		order by boarddate desc; -->
-		select g.groupno, g.groupname, m.mi_memname, m.mi_memid, m.mi_assemblename, gb.bno, gb.memberno, gb.boardnotice, gb.boarddate, gb.boardcontents, gb.boardlike, gb.boardhate, gb.requestboolean, f.filename
-		from groupboard as gb
-		join groups as g
-		on gb.groupno = g.groupno
-		left join memberinfo as m
-		on gb.memberno = m.mi_memberno
-		left join file as f
-		on f.bno = gb.bno
-		where gb.groupno in (select groupno from composed where memberno = #{memberno}) 
-		order by boarddate desc;
-		</select>
+	select  g.groupname, m.mi_memname, m.mi_memid, gb.memberno, gb.boardnotice, gb.boarddate, gb.boardcontents, gb.boardlike, gb.boardhate, gb.requestboolean, f.filename, r.responseid, r.reqstatus
+	from groupboard as gb
+	join groups as g
+	on gb.groupno = g.groupno
+	left join memberinfo as m
+	on gb.memberno = m.mi_memberno
+	left join file as f
+	on f.bno = gb.bno
+	left join requestboard as r
+	on r.bno = gb.bno
+	where gb.groupno in (select groupno from composed where memberno = #{memberno}) 
+	order by boarddate desc
+	</select>
 	
 	
 	<!-- 내가 쓴 글만 조회 -->
@@ -337,7 +334,70 @@
    </update>
 
 
-
+	<!-- 그룹에서 멤버만 select -->
+  <!--  <select id="selectGroupMember" parameterType="CMI_Dto" resultType="CMI_Dto">
+      select m.mi_memid, m.mi_memname
+      from memberinfo m, composed c
+      where c.memberno = m.mi_memberno
+      and groupno = #{groupno}
+   </select>
+   
+   사진만 select
+   <select id="selectGroupImg" parameterType="CF_Dto" resultType="CF_Dto">
+      select g.bno, f.filename, f.filepath
+      from groupboard g inner join file f
+      on f.bno = g.bno
+      where 
+      (f.filename like '%.jpg' or f.filename like '%.gif' or f.filename like '%.png')
+      and groupno = ${groupno}
+   </select>
+   
+   위에 조건준것 제외한 모든 파일 select
+   <select id="selectGroupFileName" parameterType="CF_Dto" resultType="CF_Dto">
+      select g.bno, f.filename, f.filepath
+      from groupboard g inner join file f
+      on f.bno = g.bno
+      where not f.filename like '%.jpg' and not f.filename like '%.gif' and not f.filename like '%.png'
+      and groupno = #{groupno};
+   </select>
+   
+   그룹보드에 요청여부가 1일때
+   <select id="selectGroupReq" parameterType="G_M_F_Dto" resultType="G_M_F_Dto">
+      select
+      m.mi_memname, m.mi_memid, b.memberno, 
+      b.bno, b.groupno, b.boardnotice, 
+      b.boarddate, b.boardcontents, b.boardlike, b.boardhate, 
+      b.requestboolean, f.filename, f.filepath, r.reqstatus
+      from memberinfo as m, groupboard as b
+      left outer join file f
+      on f.bno = b.bno
+      left outer join requestboard r
+      on r.bno = b.bno
+      where
+      m.mi_memberno = b.memberno and
+      b.requestboolean = 1 and
+      b.groupno = #{groupno};
+   </select>
+   
+   요청 진행상황 별로 조회
+   <select id="selectGroupReqStatus" parameterType="G_M_F_Dto" resultType="G_M_F_Dto">
+      select
+      m.mi_memname, m.mi_memid, b.memberno, 
+      b.bno, b.groupno, b.boardnotice, 
+      b.boarddate, b.boardcontents, b.boardlike, b.boardhate, 
+      b.requestboolean, f.filename, r.reqstatus
+      from memberinfo as m, groupboard as b
+      left outer join file f
+      on f.bno = b.bno
+      left outer join requestboard r
+      on r.bno = b.bno
+      where
+      m.mi_memberno = b.memberno and
+      b.requestboolean = 1 and
+      r.reqstatus = #{reqstatus} and
+      b.groupno = #{groupno}
+   </select> -->
+    
 
 
 

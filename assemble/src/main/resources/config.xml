@@ -24,6 +24,8 @@
 		<typeAlias type="kr.co.assemble.dto.MemReqGroupDTO" alias="MRG_Dto"/>
 		<typeAlias type="kr.co.assemble.dto.FileDTO" alias="FileDto"/>
 		<typeAlias type="kr.co.assemble.dto.MyWriteDTO" alias="MyWriteDto"/>
+		<typeAlias type="kr.co.assemble.dto.ComposedMemberInfoDTO" alias="CMI_Dto"/>
+        <typeAlias type="kr.co.assemble.dto.GroupFileDTO" alias="CF_Dto"/>
 	</typeAliases>
 	
 	

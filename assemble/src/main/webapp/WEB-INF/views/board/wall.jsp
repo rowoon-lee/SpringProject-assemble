@@ -87,7 +87,7 @@
 					    		 $("#" +bno).empty();
 					    		
 					    		} 	
-					    	},		
+					    	}		
 					 /*    	error : function(recomment){
 					    		console.log("error view");
 					    		console.log(recomment);
@@ -125,15 +125,10 @@
 			
 			console.log(this.parentNode.childNodes);
 			
-			
 			this.parentNode.childNodes[3].style.backgroundColor = "red";
 			this.parentNode.childNodes[5].style.backgroundColor = "#EAEAEA";
-			this.parentNode.childNodes[7].style.backgroundColor = "#EAEAEA";
-			
-		
-
-		
-		});//.req click end	
+			this.parentNode.childNodes[7].style.backgroundColor = "#EAEAEA";			   
+		});//.req click end	s
 		//진행버튼
 		$(".ing").click(function() {
 			var bnoa = this.parentNode.childNodes[1].value + "a";
@@ -146,9 +141,6 @@
 			this.parentNode.childNodes[3].style.backgroundColor = "#EAEAEA";
 			this.parentNode.childNodes[5].style.backgroundColor = "green";
 			this.parentNode.childNodes[7].style.backgroundColor = "#EAEAEA";
-			
-			
-
 		});//.ing click end	
 		//종료 버튼
 		$(".end").click(function() {
@@ -158,8 +150,7 @@
 			var status = this.parentNode.childNodes[5].value;
 			console.log("종료");
 			console.log(bnoa);
-			
-			
+
 			this.parentNode.childNodes[3].style.backgroundColor = "#EAEAEA";
 			this.parentNode.childNodes[5].style.backgroundColor = "#EAEAEA";
 			this.parentNode.childNodes[7].style.backgroundColor = "gray";
@@ -170,100 +161,6 @@
 		
 		});//.end click end
 		
-/* 		//////////////////////초기상태 진행일 때 ///////////////////////////////////////
-		//요청버튼
-		$(".reqb").click(function() {
-			var bnob = this.parentNode.childNodes[1].value + "b";
-			var bno = this.parentNode.childNodes[1].value;
-			var groupno = this.parentNode.childNodes[3].value;
-			var status = this.parentNode.childNodes[5].value;
-			console.log("요청");
-			console.log(bnob);
-
-			if (document.getElementById = bnob) {
-				r2.css('background-color', 'red');
-				i2.css('background-color', '#EAEAEA');
-				e2.css('background-color', '#EAEAEA');
-			}
-		});//.req click end	
-		//진행버튼
-		$(".ingb").click(function() {
-			var bnob = this.parentNode.childNodes[1].value + "b";
-			var bno = this.parentNode.childNodes[1].value;
-			var groupno = this.parentNode.childNodes[3].value;
-			var status = this.parentNode.childNodes[5].value;
-			console.log("진행");
-			console.log(bnob);
-
-			if (document.getElementById = bnob) {
-				r2.css('background-color', '#EAEAEA');
-				i2.css('background-color', 'green');
-				e2.css('background-color', '#EAEAEA');
-			}
-		});//.ing click end	
-		//종료 버튼
-		$(".endb").click(function() {
-			var bnob = this.parentNode.childNodes[1].value + "b";
-			var bno = this.parentNode.childNodes[1].value;
-			var groupno = this.parentNode.childNodes[3].value;
-			var status = this.parentNode.childNodes[5].value;
-			console.log("종료");
-			console.log(bnob);
-
-			if (document.getElementById = bnob) {
-				r2.css('background-color', '#EAEAEA');
-				i2.css('background-color', '#EAEAEA');
-				e2.css('background-color', 'gray');
-			}
-		});//.end click end
-
-//////////////////////초기상태 종료일 때 ///////////////////////////////////////
-		//요청버튼
-		$(".reqc").click(function() {
-			var bnoc = this.parentNode.childNodes[1].value + "c";
-			var bno = this.parentNode.childNodes[1].value;
-			var groupno = this.parentNode.childNodes[3].value;
-			var status = this.parentNode.childNodes[5].value;
-			console.log("요청");
-			console.log(bnoc);
-
-			if (document.getElementById = bnoc) {
-				r3.css('background-color', 'red');
-				i3.css('background-color', '#EAEAEA');
-				e3.css('background-color', '#EAEAEA');
-			}
-		});//.req click end	
-		//진행버튼
-		$(".ingc").click(function() {
-			var bnoc = this.parentNode.childNodes[1].value + "c";
-			var bno = this.parentNode.childNodes[1].value;
-			var groupno = this.parentNode.childNodes[3].value;
-			var status = this.parentNode.childNodes[5].value;
-			console.log("진행");
-			console.log(bnoc);
-
-			if (document.getElementById = bnoc) {
-				r3.css('background-color', '#EAEAEA');
-				i3.css('background-color', 'green');
-				e3.css('background-color', '#EAEAEA');
-			}
-		});//.ing click end	
-		//종료 버튼
-		$(".endc").click(function() {
-			var bnoc = this.parentNode.childNodes[1].value + "c";
-			var bno = this.parentNode.childNodes[1].value;
-			var groupno = this.parentNode.childNodes[3].value;
-			var status = this.parentNode.childNodes[5].value;
-			console.log("종료");
-			console.log(bnoc);
-
-			if (document.getElementById = bnoc) {
-				r3.css('background-color', '#EAEAEA');
-				i3.css('background-color', '#EAEAEA');
-				e3.css('background-color', 'gray');
-			}
-		});//.end click end */
-
 		
 	});//function end 
 </script>
@@ -307,6 +204,10 @@
 
 #a {
 	border-bottom: 1px solid #CCCCCC;
+}
+
+#b{
+ 	padding: 1.5%;
 }
 
 #d {
@@ -385,37 +286,7 @@
 	padding: 1%;
 }
 
-/* .btn-group {margin: 0;}
-.btn-group {margin: 0;}
-.btnra, .btnrb, .btnrc,
-.btnia, .btnib, .btnic, 
-.btnea, .btneb, .btnec {
- border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  width: 70px;
-  height: 25px;
-  float: left;
-}
 
-.btnia, .btnea, .btnrb, .btneb, .btnrc, .btnic{
- background-color: #EAEAEA;
-}
-
-.btnra {
-  background-color: red; 
-}
-
-.btnib {
-  background-color: green; ;
-}
-
-.btnec {
-  background-color: gray; 
-} */
 #btn-group {margin: 0;}
 #btn-group {margin: 0;}
 #btnra, #btnrb, #btnrc,
@@ -461,18 +332,22 @@
 					<h2>${groupname }</h2>
 					<h5>${mastername }( ${masterid} ) 외 몇명</h5> 
 			<div id="select">
-				<h3>전체 멤버 사진 파일 일정 노트 요청</h3>
-				<h5>애는 각각 누르면 div id=section에 가져오기!</h5>
+				 <jsp:include page="../jinwoo/select.jsp"></jsp:include> 
 			</div>
 		</div>
-
 
 			<div id="section">	
 
 				<div id="insert">
-					<jsp:include page="../jinwoo/board.jsp"></jsp:include>
+					 <jsp:include page="../jinwoo/board.jsp"></jsp:include>
+					<jsp:include page="../jinwoo/profile.jsp"></jsp:include>
+					<jsp:include page="../jinwoo/gallery.jsp"></jsp:include>
+					<jsp:include page="../jinwoo/fullcalendar.jsp"></jsp:include>
+					<jsp:include page="../jinwoo/file.jsp"></jsp:include>
+					<jsp:include page="../jinwoo/request.jsp"></jsp:include> 
 				</div>
 
+			<div id="boarddis" style="display: block;">
 				<c:forEach var="b" items="${thirdlist }">
 					<div id="board">
 						<div id="z">
@@ -488,9 +363,11 @@
 						</div>
 
 						<!-- <div id="b"> -->
- 						<div id="${b.bno }z"> 
+ 						<div id="b"> 
+ 							<c:if test="${b.reqstatus==1 }">
+								<h4><b>담당자 : ${b.responseid }</b></h4>
+							</c:if>
 							<h4>${b.boardcontents }</h4>
-							
 							<c:if test="${b.requestboolean == 1 }">
 								<c:if test="${b.reqstatus == 0}">
 								 	<div class="btn-group" style="float: right;" id="${b.bno }a">
@@ -523,10 +400,8 @@
 								<%-- <h5>요청진행상태 : ${b.reqstatus }</h5> --%>	
 							</c:if>
 							
-							<h5>좋아요 : ${b.boardlike }</h5>
-							<h5>싫어요 : ${b.boardhate }</h5>
 							<c:if test="${b.filename != null }">
-								<h4>파일명 : ${b.filename }</h4>
+								<a href="#"><h5>파일명 : ${b.filename }</h5></a>
 							</c:if>
 							
 						</div>	
@@ -545,10 +420,13 @@
 									<li><img src="/resources/assets/img/more.png" class="more" />
 										<ul class="sub">
 											<!-- 공지글 일시는 공지취소 -->
-											<button class="menubtn"><li>공지등록</li></button>
+											<input type="hidden" name="bno" value="${b.bno }"/>
+											<li><input type="button" value="공지등록" /></li>
+											<li><input type="button" value="수정하기" /></li>
+											<li><input type="button" value="삭제하기" /></li>
 											<!-- 세션과 작성자 일치시 -->
-											<button class="menubtn"><li>수정하기</li></button>
-											<button class="menubtn"><li>삭제하기</li></button>
+											<!-- <button class="menubtn"><li>수정하기</li></button>
+											<button class="menubtn"><li>삭제하기</li></button> -->
 										</ul>
 									</li>
 								</ul>
@@ -569,6 +447,7 @@
 						
 					</div>
 				</c:forEach>
+			   </div>
 			</div> <!-- section end -->
 		</div>
 <script src="/resources/assets/js/jquery.js"></script>

@@ -88,17 +88,12 @@ public class RecommentController {
   public List<RecommentDTO> SelectRecomment(
         @PathVariable("mi_assembleName")String assemblename,
          @RequestParam(value = "bno") int bno,
-         @RequestParam(value = "groupno") int groupno, Model model) {
+         @RequestParam(value = "groupno") int groupno) {
      
-     //System.out.println(bno);
+    // System.out.println(bno);
      //System.out.println(groupno);
      
-     List<RecommentDTO> recomment = dao.recommentlist(bno);  
-     
-     model.addAttribute("recommentlist", recomment);
-     
-     //System.out.println(recomment.get(0).getRecontents());
-     
+     List<RecommentDTO> recomment = dao.recommentlist(bno);      
      return recomment;     
   }
   
@@ -109,14 +104,14 @@ public class RecommentController {
   public List<RecommentDTO> SelectRecomment1(
         @PathVariable("mi_assembleName")String assemblename,
          @RequestParam(value = "bno") int bno,
-         @RequestParam(value = "groupno") int groupno, Model model) {
+         @RequestParam(value = "groupno") int groupno) {
      
      //System.out.println(bno);
 	  //System.out.println(groupno);
      
      List<RecommentDTO> recomment1 = dao.recommentlist(bno);  
      
-     model.addAttribute("recommentlist1", recomment1);
+     //model.addAttribute("recommentlist1", recomment1);
      
      //System.out.println(recomment.get(0).getRecontents());
      

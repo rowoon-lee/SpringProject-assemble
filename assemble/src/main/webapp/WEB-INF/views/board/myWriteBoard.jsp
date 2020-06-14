@@ -279,7 +279,7 @@
 							<h5>좋아요 : ${b.boardlike }</h5>
 							<h5>싫어요 : ${b.boardhate }</h5>
 							<c:if test="${b.filename != null }">
-								<h5>파일명 : ${b.filename }</h5>
+								<h6>파일명 : ${b.filename }</h6>
 							</c:if>
 				</div>
 
