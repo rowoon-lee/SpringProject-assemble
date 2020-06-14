@@ -51,38 +51,36 @@
 }
 
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".filename").click(function(){
+		    var filename = this.parentNode.childNodes[1].value;
+		    console.log(this.parentNode.childNodes[1].value);
+		    var url = "/download?filename=" + encodeURIComponent(filename); 
+		    
+		    document.location.href = url;
+		    
+		 });
+		
+	});
+</script>
 </head>
 <body>
 	<div id="tab4" style="display:none; width: 100%;  border-top:double; border-bottom: double;">
-		<div style="width: 100%; height: 35px; float: left; border-bottom: solid 1px; background-color: #EAEAEA;" >
-			<div class="filedata" id="dataname1" ><span>파일명</span></div>
-			<div class="filedata" id="dataname2" ><span>작성자</span></div>
-			<div class="filedata" id="dataname3" ><span>종류</span></div>
-			<div class="filedata" id="dataname4" ><span>작성일</span></div>
-	
-		</div>
 		
-		<div style="width: 100%; height: 50px; float: left; border-bottom: solid 1px; background-color: white;">
-			<div class="filedata" id="data1" ><span>파일명</span></div>
-			<div class="filedata" id="data2" ><span>작성자</span></div>
-			<div class="filedata" id="data3" ><span>종류</span></div>
-			<div class="filedata" id="data4" ><span>작성일</span></div>
-			<div class="filedata" id="data5" ><input type="button" value="다운로드" /></div>
-		
-		</div>
-		
-	 <%-- <c:forEach items="${list }" var="i">
+	  <c:forEach items="${filelist }" var="i">
 	
 		<div style="width: 100%; height: 50px; float: left; border-bottom: solid 1px;">
-			<div class="filedata" id="data1" ><span>${i.파일명 }</span></div>
-			<div class="filedata" id="data2" ><span>${i.작성자 }</span></div>
+			<div class="filedata" id="data1" ><span>${i.filename }</span></div>
 			<div class="filedata" id="data3" ><span>기타</span></div>
-			<div class="filedata" id="data4" ><span>${i.작성일 }</span></div>
-			<div class="filedata" id="data5" ><input type="button" value="다운로드" /></div>
-		
+			<div class="filedata" id="data5" >
+				<input type="hidden" value="${i.filename }" />
+				<input type="button" value="다운로드" class="filename"/>
+			</div>
 		</div>
 	
-	  </c:forEach>  --%>
+	  </c:forEach>
 	
 	</div>
 

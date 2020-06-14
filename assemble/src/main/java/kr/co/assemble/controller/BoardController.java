@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.assemble.dao.BoardDAO;
 import kr.co.assemble.dao.ComposedDAO;
+import kr.co.assemble.dao.GroupSelectListDAO;
 import kr.co.assemble.dto.BoardDTO;
+import kr.co.assemble.dto.ComposedMemberInfoDTO;
+import kr.co.assemble.dto.GroupFileDTO;
 import kr.co.assemble.dto.Groupboard_Memberinfo_FileDTO;
 
 @Controller
@@ -62,6 +65,10 @@ public class BoardController {
 	
 	@Autowired
 	ComposedDAO cdao;
+	
+	@Autowired
+	GroupSelectListDAO gslDao;
+	
 	//그룹별 게시글 조회 
 	//그룹별 정보, 구성원 정보(Groups_Memberinfo_Composed_DTO)
 	@RequestMapping("/assemble.io/{mi_assembleName}/g/{groupno}/wall")
@@ -90,6 +97,33 @@ public class BoardController {
 		model.addAttribute("thirdlist", list3);
 		
 		model.addAttribute("groupno", groupno);
+		
+		///////////////////////////////////////////////////
+		//그룹의 멤버만 출력
+		ComposedMemberInfoDTO dto = new ComposedMemberInfoDTO();
+		dto.setGroupno(groupno);
+
+		List<ComposedMemberInfoDTO> profilelist = gslDao.groupMemList(dto);
+
+		System.out.println(groupno);
+
+		model.addAttribute("profilelist", profilelist);
+		///////////////////////////////////////////////////
+		//그룹의 사진만 출력
+		GroupFileDTO gfDto = new GroupFileDTO();
+	    gfDto.setGroupno(groupno);
+	      
+	    List<GroupFileDTO> imagelist = gslDao.groupFileList(gfDto);
+	      
+	    model.addAttribute("imagelist", imagelist);
+	    ///////////////////////////////////////////////////
+		//그룹의 사진을 제외한 파일만 출력
+	    gfDto.setGroupno(groupno);
+	      
+	    List<GroupFileDTO> filelist = gslDao.groupFileName(gfDto);
+	    model.addAttribute("filelist", filelist);
+	    
+	    
 		
 		//System.out.println(groupno);-+
 		return "board/wall";

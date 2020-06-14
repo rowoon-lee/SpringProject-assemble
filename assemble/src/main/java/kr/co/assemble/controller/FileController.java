@@ -165,7 +165,7 @@ public class FileController {
 	@RequestMapping(value = "download")
 	public void download(HttpServletRequest request, HttpServletResponse response) {
 
-		String filename = request.getParameter("fileName");
+		String filename = request.getParameter("filename");
 		String realPath = request.getSession().getServletContext().getRealPath("/") + "resources/uploadFiles/";
 		System.out.println(realPath);
 

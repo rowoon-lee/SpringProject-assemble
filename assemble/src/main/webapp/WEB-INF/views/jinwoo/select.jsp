@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,8 +50,9 @@ $(document).ready(function() {
 		$("#selbtn5").css('border-bottom','none');
 		$("#selbtn6").css('border-bottom','none');
 		
+		var groupno = this.parentNode.childNodes.value[1];
 		
-		//document.location.href = "groupMember?groupno="
+		document.location.href = "wall?groupno="+groupno;
 		
 		});
 	
@@ -209,11 +211,10 @@ $(document).ready(function() {
 <body>
 <!-- <div id="p1">
 	<div id="p2">-->
-
 			<div id="p3">
 			
 				<div style="width: 60%; height: 100%; ">
-					<input type="hidden" name="groupno" id="groupno" value="${groupno }"/>
+					<input type="hidden" name="groupno" id="groupno" value="<c:out value='${groupno }'/>" />
 					<div class="selectbtn" id="selbtn1" ><div><span>전체</span></div></div>
 					<div class="selectbtn" id="selbtn2"><div><span>멤버</span></div></div>
 					<div class="selectbtn" id="selbtn3"><div><span>사진</span></div></div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib  prefix="spring" uri="http://www.springframework.org/tags" %> 
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> 
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -34,58 +34,54 @@
   <body>
 
 
-      <div id="tab3" style="display: none;">
+      <div id="tab3" style="display: none;" >
+      
     <!--   <section id="main-content">
           <section class="wrapper site-min-height"> -->
-          	<h3><i class="fa fa-angle-right"></i> Gallery</h3>
-          	<hr>
-				<div class="row mt">
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-		                            	<a class="fancybox" href="/resources/assets/img/portfolio/port04.jpg"><img class="img-responsive" src="/resources/assets/img/portfolio/port04.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
-					</div><!-- col-lg-4 -->
-					
-					<%--  <c:forEach var="i" items="${list }">
-						<h2>${i.filepath }${i.filename }</h2>
-						<h2><c:out value="/uploadFiles/${i.filename }"/></h2>
-						<h2><spring:url value="/resources/uploadFiles/${i.filename }"/></h2>
-						
-						<img src="<spring:url value='/resources/uploadFiles/${i.filename }'/>" alt="" />
-					</c:forEach>  --%>
-					
-					
-			<%-- 	    <c:forEach var="i" items="${list }">
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-							<div class="project-wrapper">
-			                    <div class="project">
-			                        <div class="photo-wrapper">
-			                            <div class="photo">
-			                            	<a class="fancybox" href="<spring:url value="/resources/uploadFiles/${i.filename }"/>"><img class="img-responsive" src="<spring:url value="/resources/uploadFiles/${i.filename }"/>" alt=""></a>
-			                            </div>
-			                            <div class="overlay"></div>
-			                        </div>
-			                    </div>
-			                </div>
-						</div>
-							
-					
-					</c:forEach>    --%>
-					
-					
+             <h3><i class="fa fa-angle-right"></i> Gallery</h3>
+             <hr>
+            <div class="row mt">
+               <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+                  <div class="project-wrapper">
+                          <div class="project">
+                              <div class="photo-wrapper">
+                                  <div class="photo">
+                                     <a class="fancybox" href="/resources/assets/img/portfolio/port04.jpg"><img class="img-responsive" src="/resources/assets/img/portfolio/port04.jpg" alt=""></a>
+                                  </div>
+                                  <div class="overlay"></div>
+                              </div>
+                          </div>
+                      </div>
+               </div>col-lg-4 -->
+               
+               
+               <c:forEach var="i" items="${imagelist }">
+               
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+        
+                     <div class="project-wrapper">
+                             <div class="project">
+                                 <div class="photo-wrapper">
+                                     <div class="photo">
+                                        <a class="fancybox" href="<spring:url value='/resources/uploadFiles/${i.filename }'/>"><img class="img-responsive" src="<spring:url value='/resources/uploadFiles/${i.filename }'/>" alt=""></a>
+                                     </div>
+                                     <div class="overlay"></div>
+                                 </div>
+                             </div>
+                         </div>
+                  </div>
+                     
+               
+               </c:forEach>   
+               
+               
 
-				</div><!-- /row -->
+            </div><!-- /row -->
 
 
  
   </div>
+
 
     <!-- js placed at the end of the document so the pages load faster -->
 	<script src="/resources/assets/js/fancybox/jquery.fancybox.js"></script>    

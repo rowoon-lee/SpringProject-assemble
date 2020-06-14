@@ -334,15 +334,17 @@
    </update>
 
 
+
+
 	<!-- 그룹에서 멤버만 select -->
-  <!--  <select id="selectGroupMember" parameterType="CMI_Dto" resultType="CMI_Dto">
+   <select id="selectGroupMember" parameterType="CMI_Dto" resultType="CMI_Dto">
       select m.mi_memid, m.mi_memname
       from memberinfo m, composed c
       where c.memberno = m.mi_memberno
       and groupno = #{groupno}
    </select>
    
-   사진만 select
+   <!-- 사진만 select -->
    <select id="selectGroupImg" parameterType="CF_Dto" resultType="CF_Dto">
       select g.bno, f.filename, f.filepath
       from groupboard g inner join file f
@@ -352,7 +354,7 @@
       and groupno = ${groupno}
    </select>
    
-   위에 조건준것 제외한 모든 파일 select
+   <!-- 위에 조건준것 제외한 모든 파일 select -->
    <select id="selectGroupFileName" parameterType="CF_Dto" resultType="CF_Dto">
       select g.bno, f.filename, f.filepath
       from groupboard g inner join file f
@@ -361,7 +363,7 @@
       and groupno = #{groupno};
    </select>
    
-   그룹보드에 요청여부가 1일때
+   <!-- 그룹보드에 요청여부가 1일때 -->
    <select id="selectGroupReq" parameterType="G_M_F_Dto" resultType="G_M_F_Dto">
       select
       m.mi_memname, m.mi_memid, b.memberno, 
@@ -379,7 +381,7 @@
       b.groupno = #{groupno};
    </select>
    
-   요청 진행상황 별로 조회
+  <!--  요청 진행상황 별로 조회 -->
    <select id="selectGroupReqStatus" parameterType="G_M_F_Dto" resultType="G_M_F_Dto">
       select
       m.mi_memname, m.mi_memid, b.memberno, 
@@ -396,7 +398,7 @@
       b.requestboolean = 1 and
       r.reqstatus = #{reqstatus} and
       b.groupno = #{groupno}
-   </select> -->
+   </select>
     
 
 
