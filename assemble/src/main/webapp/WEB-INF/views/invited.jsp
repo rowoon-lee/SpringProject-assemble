@@ -8,8 +8,6 @@
 <meta charset="UTF-8">
 <title>invite</title>
 
-<!-- <link type="text/css" rel="stylesheet" href="/resources/info/css/invited.css" /> -->
-
 <script type="text/javascript" src="/resources/info/js/jquery.slim.min.js"></script>
 <link type="text/css" rel="stylesheet" href="/resources/info/css/bootstrap.min.css" />
 <script type="text/javascript" src="/resources/info/js/bootstrap.bundle.min.js"></script>
@@ -19,22 +17,25 @@
    width: 50%;
    height: 100%;
    position: absolute;
-   margin-top: 10%;
+   margin-top: 5%;
    margin-bottom: 5%;
    margin-left: 25%;
    clear: none;
-   background-color: #F2F2F2;
 }
 .contents{
    background-color: white;
-   border: 1px solid #CCCCCC;
-   border-radius: 1rem;
+/*    border: 1px solid #CCCCCC;
+   border-radius: 1rem; */
    padding: 2rem;
    clear: none;
    
-   min-width: 950px;
+    width: 90%;
+   min-width: 900px;
 }
-
+.form-invitation{
+   border: 1px solid #CCCCCC;
+   padding: 10px;
+}
 .invitation{
    min-height: calc(50vh);
    margin: 0 auto;
@@ -42,7 +43,6 @@
    clear: none;
 }
 .title {
-   /* width: 60%; */
    margin: 10px 0 20px;
     padding-bottom: 10px;
     border-bottom: 2px solid #7a7a7a;
@@ -71,11 +71,12 @@
 }
 .invitation-form button {
    border-radius: 2rem;
-   margin-top: 2rem;
+   margin-top: 1rem;
+   margin-bottom: 1rem;
    vertical-align: middle;
    /* width: 30%; */
    width: 350px;
-   margin-left: 200px;
+   margin-left: 170px;
    clear: none;
    
 }
@@ -84,37 +85,37 @@
 </head>
 <body>
 <div class="main">
-	<div class="contents">
-	   <div class="form-invitation">
-	      <div class="title">
-	         <h2 class="font-weight-bold">초대하기</h2>
-	      </div>
-	      <div class="invitation-form">
-	         
-	         <form>
-	              <div class="form-group row">
-	                <label for="colFormLabel" class="col-sm-2 col-form-label" id="adr">이메일 주소 <br>&nbsp;(필수)</label>
-	                <div class="col-sm-10">
-	                  <input type="email" class="form-control" id="memEmail" placeholder="이메일 주소" required>
-	                </div>
-	              </div>
-	              
-	              <div class="form-group row">
-	                <label for="colFormLabel" class="col-sm-2 col-form-label" id="info">추가 정보</label>
-	                <div class="col-sm-10">
-	                  <input type="text" class="form-control" id="memTeam" placeholder="소속부서">
-	                  <input type="text" class="form-control" id="memGrade" placeholder="직급">
-	                  <input type="text" class="form-control" id="memPhone" placeholder="휴대폰 번호">
-	                </div>
-	              </div>
-	                
-	            <button class="btn btn-lg btn-info btn-block" type="submit">초대하기</button>
-	              
-	         </form>
-	
-	      </div>
-	   </div>
-	</div>
+<div class="contents">
+   <div class="form-invitation">
+      <div class="title">
+         <h2 class="font-weight-bold">초대하기</h2>
+      </div>
+      <div class="invitation-form">
+         
+         <form>
+              <div class="form-group row">
+                <label for="colFormLabel" class="col-sm-2 col-form-label" id="adr">이메일 주소 <br>&nbsp;(필수)</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="memEmail" placeholder="이메일 주소" required />
+                </div>
+              </div>
+              
+              <div class="form-group row">
+                <label for="colFormLabel" class="col-sm-2 col-form-label" id="info">추가 정보</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="memTeam" placeholder="소속부서">
+                  <input type="text" class="form-control" id="memGrade" placeholder="직급">
+                  <input type="text" class="form-control" id="memPhone" placeholder="휴대폰 번호">
+                </div>
+              </div>
+                
+            <button class="btn btn-lg btn-info btn-block" type="submit">초대하기</button>
+              
+         </form>
+
+      </div>
+   </div>
+</div>
 
 </div>
 <script src="/resources/assets/js/jquery.js"></script>
@@ -126,8 +127,5 @@
 
 <!--     common script for all pages -->
 <script src="/resources/assets/js/common-scripts.js"></script>
-
-
-
 </body>
 </html>

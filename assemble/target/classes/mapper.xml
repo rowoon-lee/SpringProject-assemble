@@ -214,7 +214,7 @@
 
 	<!-- 내가 포함된 그룹의 글들만 조회 (나의 소식피드) -->
 	<select id="myGroupBoard" resultType="G_M_F_Dto">
-	select  g.groupname, m.mi_memname, m.mi_memid, gb.memberno, gb.boardnotice, gb.boarddate, gb.boardcontents, gb.boardlike, gb.boardhate, gb.requestboolean, f.filename, r.responseid, r.reqstatus
+	select  g.groupname, m.mi_memname, m.mi_memid, gb.memberno, gb.boardnotice, gb.boarddate, gb.boardcontents, gb.boardlike, gb.boardhate, gb.requestboolean, f.filename, r.responseid, r.reqstatus, gb.groupno, gb.bno
 	from groupboard as gb
 	join groups as g
 	on gb.groupno = g.groupno
@@ -401,7 +401,16 @@
    </select>
     
 
-
+	<!-- ***********공지 등록, 취소*************** -->
+	<update id="updateNotice" parameterType="BoardDto">
+		update groupboard
+		set boardnotice =
+		case
+		when 0 then boardnotice = 1
+		when 1 then boardnotice = 0
+		end
+		where bno = #{bno}
+	</update>
 
 
 

@@ -12,7 +12,7 @@ import kr.co.assemble.dao.GroupDAO;
 import kr.co.assemble.dto.GroupDTO;
 
 @Controller
-public class GroupController {
+public class GroupController {	
 	
 	@Autowired
 	GroupDAO dao;
@@ -20,20 +20,6 @@ public class GroupController {
 	public GroupDAO getDao() {
 		return dao;
 	}
-	
-	/*
-	//header 네비바 조회
-	@RequestMapping(value = "/assemble.io/avengers/header")
-	public String home(Model model) {
-
-		List<GroupDTO> groupList = dao.selectGroup();
-		model.addAttribute("groupList", groupList);	
-		
-		return "include/header";	
-			
-	}
-	*/
-	
 	//그룹 전체 조회
 	@RequestMapping(value = "/groups")
 	public String groups(Model model) {
@@ -49,7 +35,7 @@ public class GroupController {
 	@RequestMapping(value = "/makeGroup")
 	public String makeGroup() {
 		
-		return "group/insertGroup";
+		return "jinwoo/groupMake";
 	}
 	
 	

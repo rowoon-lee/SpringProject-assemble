@@ -117,9 +117,9 @@ $(document).ready(function() {
 		              	  <a href="/members"><input type="button" value="멤버" class="b4"/></a>   
 		              	  <a href="/attendgroups"><input type="button" value="참여가능한 그룹" class="b4"/></a>   
         	  	
-	              	  	  <input type="button" value="+ 카테고리 추가하기" class="b6" id="category"/>
+	              	  	  <a href="/makeCategory"><input type="button" value="+ 카테고리 추가하기" class="b6" id="category"/></a>
 	              	  	  
-	              	  	  <input type="button" value="+ 새로운 그룹 만들기" class="b6"/>
+	              	  	  <a href="/makeGroup"><input type="button" value="+ 새로운 그룹 만들기" class="b6"/></a>
 					
 
        <!---------------------------------------------------------------------------->

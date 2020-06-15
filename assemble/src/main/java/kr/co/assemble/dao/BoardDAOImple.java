@@ -55,8 +55,8 @@ public class BoardDAOImple implements BoardDAO{
 	
 	//글삭제
 	@Override
-	public void deleteBoard(int bno) {
-		ss.delete("deleteBoard", bno);
+	public int deleteBoard(int bno) {
+		return ss.delete("deleteBoard", bno);
 	}
 
 
@@ -91,6 +91,12 @@ public class BoardDAOImple implements BoardDAO{
 		// TODO Auto-generated method stub
 		ss.update("updateHate", dto);
 		
+	}
+
+	//공지사항 업데이트
+	@Override
+	public int updateNotice(BoardDTO dto) {
+		return ss.update("updateNotice", dto);
 	}
 
 

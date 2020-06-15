@@ -85,12 +85,12 @@ public class RequestController {
    
    // 요청 status 변경 0=요청, 1=진행중, 2=완료
    @ResponseBody
-   @RequestMapping(value = "/assemble.io/{mi_assembleName}/g/{groupno}/updateStatus", method = RequestMethod.POST)
-   public String updateStatus(
+   @RequestMapping(value = "/assemble.io/{mi_assembleName}/updateStatus", method = RequestMethod.POST)
+   public int updateStatus(
 		 @PathVariable("mi_assembleName")String assemblename,
          @RequestParam(value = "bno") int bno,
          @RequestParam(value = "groupno") int groupno,
-         @RequestParam(value = "status") int status, Model model) {
+         @RequestParam(value = "status") int status) {
       
       RequestDTO dto = new RequestDTO();
       
@@ -99,12 +99,14 @@ public class RequestController {
       dto.setBno(bno);
       dto.setGroupno(groupno);
       dto.setReqstatus(status);
-       rdao.updateStatus(dto);
+      int req = rdao.updateStatus(dto);
       
-      model.addAttribute("dto", dto);
-      model.addAttribute("groupno", groupno);   
+      System.out.println("req : "+req);
       
-      return null;
+//      model.addAttribute("dto", dto);
+//      model.addAttribute("groupno", groupno);   
+      
+      return req;
    }
    
    

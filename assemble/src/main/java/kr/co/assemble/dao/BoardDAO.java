@@ -23,7 +23,7 @@ public interface BoardDAO {
 	public List<BoardDTO> selectOne(int bno);
 
 	// 글삭제
-	public void deleteBoard(int bno);
+	public int deleteBoard(int bno);
 	
 	//request insert
 	public void insertRequest(BoardDTO dto);
@@ -34,6 +34,10 @@ public interface BoardDAO {
 	
 	//싫어요 update
 	public void updateHate(BoardDTO dto);
+	
+	//공지사항 등록, 취소
+	public int
+	updateNotice(BoardDTO dto);
 	
 	
 }

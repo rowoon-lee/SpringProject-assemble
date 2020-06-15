@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.assemble.dao.BoardDAO;
 import kr.co.assemble.dao.ComposedDAO;
@@ -166,17 +168,43 @@ public class BoardController {
 		
 		
 		//게시글 삭제 - 파일이랑 연결되있으면 파일에도 bno넘겨서 삭제(트리거 걸어놓음)
-		@RequestMapping(value = "/deleteBoard")
-		public String deleteBoard(
+		@ResponseBody
+		@RequestMapping(value = "/assemble.io/{mi_assembleName}/deleteBoard", method = RequestMethod.POST)
+		public int deleteBoard(
 				@RequestParam(value = "bno") int bno,
 				@RequestParam(value = "groupno") int groupno, Model model) {
 			
-			dao.deleteBoard(bno);
+			int del = dao.deleteBoard(bno);
 			model.addAttribute("groupno", groupno);
 			
-			return "redirect:/wall";
+			return del;
 		}
 	   
+		
+		//공지사항 등록1, 취소0
+		@RequestMapping(value = "/assemble.io/{mi_assembleName}/notice" , method = RequestMethod.POST)
+		@ResponseBody
+		public int updateNotice(
+				@RequestParam(value = "groupno") int groupno,
+				@RequestParam(value = "bno") int bno, Model model) {
+			System.out.println(groupno);
+			
+			BoardDTO dto = new BoardDTO();
+			dto.setBno(bno);
+			int notice = dao.updateNotice(dto);
+			System.out.println(notice);
+			
+			model.addAttribute("groupno", groupno);
+			
+			
+			return notice;
+		}
+		
+		
+		
+		
+		
+		
 	   
 	   //북마크 UPDATE
 	   

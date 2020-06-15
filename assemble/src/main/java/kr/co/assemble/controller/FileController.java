@@ -162,7 +162,7 @@ public class FileController {
 	}
 
 	// 파일 다운로드
-	@RequestMapping(value = "download")
+	@RequestMapping(value = "/download")
 	public void download(HttpServletRequest request, HttpServletResponse response) {
 
 		String filename = request.getParameter("filename");
