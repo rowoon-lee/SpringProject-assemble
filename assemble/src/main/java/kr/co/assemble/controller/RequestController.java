@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.assemble.dao.BoardDAO;
-import kr.co.assemble.dao.MemReqGroupDAO;
 import kr.co.assemble.dao.RequestDAO;
 import kr.co.assemble.dto.BoardDTO;
 import kr.co.assemble.dto.MemReqGroupDTO;
@@ -32,9 +31,6 @@ public class RequestController {
 
    @Autowired
    BoardDAO dao;
-
-   @Autowired
-   MemReqGroupDAO mrgDao;
    
    @Autowired
    PlatformTransactionManager transactionManager;
@@ -113,17 +109,24 @@ public class RequestController {
    
    //내가 받은 요청만 출력
    @RequestMapping(value = "/myRequest")
-   public String myreq(
-         @RequestParam(value = "memberno") int memberno, Model model) {
-      //memberno는 세션의 값
+   public String myreq(HttpSession session, Model model) {
+      
+	  String memname = (String) session.getAttribute("mi_memName");
+	  String memid = (String) session.getAttribute("mi_memID");
+	  
+	 
       MemReqGroupDTO dto = new MemReqGroupDTO();
-      dto.setMemberno(memberno);
-      List<MemReqGroupDTO> list = mrgDao.myReq(dto);
+      //id와 name을 현재 나의 세션값으로
+      dto.setValueid(memid);
+      dto.setValuename(memname);
+         
+      List<MemReqGroupDTO> list = rdao.selectMyReq(dto);
       
       model.addAttribute("list", list);
       
-      return "board/myRequest";
+      return "jisoo/tasks";
    }
+   
    
    
    
