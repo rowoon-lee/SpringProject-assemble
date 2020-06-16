@@ -27,6 +27,12 @@
 		<typeAlias type="kr.co.assemble.dto.ComposedMemberInfoDTO" alias="CMI_Dto"/>
         <typeAlias type="kr.co.assemble.dto.GroupFileDTO" alias="CF_Dto"/>
         <typeAlias type="kr.co.assemble.dto.AssembleGroupDTO" alias="A_GDto"/>
+        
+        
+        <typeAlias type="kr.co.assemble.dto.bookmarkDTO" alias="bookmarkDto"/>
+        
+        <typeAlias type="kr.co.assemble.dto.searchDTO" alias="searchDTO"/>
+        
 	</typeAliases>
 	
 	

@@ -18,19 +18,46 @@
 		    	console.log(this.src.split("/")[6]);
 		  /*   	 img1.src = "/resources/assets/img/bookmark_before.png";
 		    	 img1.src = "/resources/assets/img/bookmark_after.png"; */
-		     });
-		     
-		     
-		     
-		     if(this.src.split("/")[6].split(".")[0] == "bookmark_before"){
-		    	 console.log("일치");
+		    	 var bno = this.parentNode.childNodes[1].value;
+		    	 var groupno = this.parentNode.childNodes[3].value;
+		    	 var writerid = this.parentNode.childNodes[5].value;
+		     if(this.src.split("/")[6].split(".")[0].split(".")[0] == "bookmark_before"){
+				  this.src = "/resources/assets/img/bookmark_after.png";
+		  		 $.ajax({
+			    	url: "/bookmarkinsert",
+			    	type: 'POST',
+			    	data: {"bno": bno, "groupno" : groupno ,"memberno" : ${memberno},"mark_memno" : writerid },
+			    	dataType: "json",
+			    	
+			    	success: function(){
+			    		console.log("성공");		
+			    	}		
+			 					    	
+				}); 	 
+		    	 
 		    	 
 		     }else{
-		    	 console.log(this.src.split("/")[6].split(".")[0]);
+		    	 this.src = "/resources/assets/img/bookmark_before.png";
+		    	 
+		    	 $.ajax({
+				    	url: "/bookmarkdelete",
+				    	type: 'POST',
+				    	data: {"bno": bno,"memberno" : ${memberno}},
+				    	dataType: "json",
+				    	
+				    	success: function(){
+				    		console.log("성공");			
+				    	}		
+				 					    	
+				}); 	 
+		    	 
+		    	 
+		    	 
 		     }
+	 
 		     
-		     
-		     
+		 });
+		         
 	     
 	 	});
      
@@ -444,7 +471,7 @@ input:focus {
 		<div id="main">
 			<div id="info">	
 					<h2>${groupname }</h2>
-					<h5>${mastername }( ${masterid} ) 외 몇명</h5> 
+					<h5> 방장 : ${mastername }( ${masterid} )</h5> 
 			<div id="select">
 				 <jsp:include page="../jinwoo/select.jsp"></jsp:include> 
 			</div>
@@ -528,6 +555,7 @@ input:focus {
 							<div id="c1">
 								<input type="hidden" name="bno" value="${b.bno}"/>
 								<input type="hidden" name="groupno" value="${b.groupno}"/>
+								<input type="hidden" name="memberid" value="${b.mi_memid}"/>
 								<input type="button" value="댓글" class="re" />
 						
 								<img src="/resources/assets/img/bookmark_before.png" id="bk" class="lh"/>																			

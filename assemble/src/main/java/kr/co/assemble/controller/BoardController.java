@@ -21,6 +21,8 @@ import kr.co.assemble.dto.BoardDTO;
 import kr.co.assemble.dto.ComposedMemberInfoDTO;
 import kr.co.assemble.dto.GroupFileDTO;
 import kr.co.assemble.dto.Groupboard_Memberinfo_FileDTO;
+import kr.co.assemble.dto.searchDTO;
+import kr.co.assemble.dto.searchParamDTO;
 
 @Controller
 public class BoardController {
@@ -193,40 +195,21 @@ public class BoardController {
 		}
 		
 		
-		
-		
-		
-		
-	   
-	   //북마크 UPDATE
-	   
-	   
-	
-	
-	   //좋아요 update
-	/*
-	 * @RequestMapping("/like.do") public String Like(
-	 * 
-	 * @RequestParam int num1, Model model) throws Exception{
-	 * 
-	 * BoardDTO dto = new BoardDTO();
-	 * 
-	 * dto.setBoardlike(num1);
-	 * 
-	 * dao.updateLike(dto); model.addAttribute("dto", dto);
-	 * 
-	 * return "board/wall";
-	 * 
-	 * }
-	 */
-	   
-	   
-	   //좋아요 count
-	   
-	
-	
-	
-	
+		//전체검색
+		@RequestMapping(value = "/searchBoard")
+		public String searchBoard(@RequestParam(value = "value") String value,
+								  @RequestParam(value = "assemble") String assemble,Model model) {
+			String value2 = "%"+value+"%";
+			
+			searchParamDTO dto = new searchParamDTO(value2, assemble);
+			
+			List<searchDTO> list = dao.searchlist(dto);
+			model.addAttribute("searchlist",list);
+			model.addAttribute("value", value);
+			
+			return "search";
+			
+		}
 	
 	
 	

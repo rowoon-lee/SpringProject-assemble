@@ -486,5 +486,57 @@
 
 
 
+	<!-- ***********북마크*************** -->
+	<insert id="bookMarkinsert" parameterType="bookmarkDto">
+		insert into bookmark
+		values (#{bno},#{groupno},#{memberno},#{mark_memno})
+
+	</insert>
+	
+	<delete id="bookMarkdelete" parameterType="bookmarkDto">
+		
+		delete from bookmark
+		where bno = #{bno} and memberno = #{memberno}
+
+	</delete>
+	
+	<select id="selectBookmark" resultType="G_M_F_Dto">
+	select distinct gb.memberno, g.groupname, m.mi_memname, m.mi_memid, gb.boardnotice, gb.boarddate, gb.boardcontents, gb.boardlike, gb.boardhate, gb.requestboolean, f.filename, r.responseid, r.reqstatus, gb.groupno, gb.bno
+	from groupboard as gb
+	join groups as g
+	on gb.groupno = g.groupno
+	left join memberinfo as m
+	on gb.memberno = m.mi_memberno
+	left join file as f
+	on f.bno = gb.bno
+	left join requestboard as r
+	on r.bno = gb.bno
+	left join bookmark as b
+	on gb.bno = b.bno
+	where gb.memberno = #{memberno} and b.bno = gb.bno;
+	
+	</select>
+	
+	<!--전체검색 -->
+	<select id="search" resultType="searchDTO">
+   		select
+		b.bno, b.groupno, b.memberno, m.mi_memname, m.mi_memid, 
+		b.boardnotice, b.boarddate, b.boardcontents, b.boardlike, b.boardhate, 
+		b.requestboolean, f.filename, r.reqstatus
+		from memberinfo as m inner join groupboard as b
+		on b.memberno = m.mi_memberno
+		left outer join file f
+		on f.bno = b.bno
+		left outer join requestboard r
+		on r.bno = b.bno
+		where
+		(m.mi_memname like #{value} or
+		m.mi_memid like #{value} or
+		b.boardcontents like #{value})
+		and m.ai_assemblename = #{assemble}
+	
+   	</select>
+
+
 
 </mapper>

@@ -33,7 +33,28 @@ $(document).ready(function() {
 	$("#category").click(function(){
 		location.href="/makeCategory";
 	});
+	
+	$(".icon").click(function(){
+	    
+	    
+	    var value = document.getElementById("search").value;
+	    
+	    if(value != ""){
+
+	       document.location.href = "/searchBoard?value="+value+"&assemble=${mi_assembleName }";
+	       
+	    }else{
+	       alert("검색어를 입력해주세요");
+	    }
+	    
+	    
+	    
+	 });
+	
 });
+
+
+
 
 
 
@@ -89,7 +110,7 @@ $(document).ready(function() {
 		              	 <a href="/myBoard"><input type="button" value="내글" class="bt1"/></a>
 		              	  <!-- <input type="button" value="맨션" class="b1"/> -->
 		              	   <a href="/myRequest"><input type="button" value="요청" class="bt1"/></a>   
-		              	   <a href="/bookmarks"><input type="button" value="북마크" class="bt2"/></a>   
+		              	   <a href="/selectBookmark"><input type="button" value="북마크" class="bt2"/></a>   
   
 		              	  <input type="button" value="아지트 멤버 초대하기" id="b3" onclick="location.href='/invited'" />
 		              	  

@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/assemble.io/${mi_assembleName}/header"></c:import>
-<%-- <%@include file="include/header.jsp" %>  --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>home.jsp</title>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <script type="text/javascript">
+
+
 //bookmark click 시 변경
 var cnt = 1;
 
@@ -25,7 +24,7 @@ var cnt = 1;
 	    	 var groupno = this.parentNode.childNodes[3].value;
 	    	 var writerid = this.parentNode.childNodes[5].value;
 	     if(this.src.split("/")[6].split(".")[0].split(".")[0] == "bookmark_before"){
-			  this.src = "/resources/assets/img/bookmark_after.png";
+			  this.src = "/resources/assets/img/bookmark_before.png";
 	  		 $.ajax({
 		    	url: "/bookmarkinsert",
 		    	type: 'POST',
@@ -33,14 +32,14 @@ var cnt = 1;
 		    	dataType: "json",
 		    	
 		    	success: function(){
-		    		console.log("성공");		
+		    		console.log("성공");	
 		    	}		
 		 					    	
 			}); 	 
 	    	 
 	    	 
 	     }else{
-	    	 this.src = "/resources/assets/img/bookmark_before.png";
+	    	 this.src = "/resources/assets/img/bookmark_after.png";
 	    	 
 	    	 $.ajax({
 			    	url: "/bookmarkdelete",
@@ -51,214 +50,189 @@ var cnt = 1;
 			    	success: function(){
 			    		console.log("성공");			
 			    	}		
-			 					    	
+			 
 			}); 	 
-	    	 
-	    	 
-	    	 
+
 	     }
 
-	     
 	 });
-	         
-    
+
 	});
 
-	//댓글달기
-	$(function() {
-	     $(".submit").click(function(){
-		        	
-		        console.log(this.parentNode.childNodes);
-		        
-		         var bno = this.parentNode.childNodes[1].value;
-		        var groupno = this.parentNode.childNodes[3].value;
-		        var recontents = this.parentNode.childNodes[5].value;
-		        /* var categoryno = this.parentNode.childNodes[5].value; */
+
+
+
+//댓글달기
+$(function() {
+     $(".submit").click(function(){
+	        	
+	        console.log(this.parentNode.childNodes);
+	        
+	         var bno = this.parentNode.childNodes[1].value;
+	        var groupno = this.parentNode.childNodes[3].value;
+	        var recontents = this.parentNode.childNodes[5].value;
+	        /* var categoryno = this.parentNode.childNodes[5].value; */
+
+	        document.location.href = "insertCommentatHome?bno="+bno+"&groupno="+groupno+"&contents="+recontents; 
+	     });
 	
-		        document.location.href = "insertCommentatHome?bno="+bno+"&groupno="+groupno+"&contents="+recontents; 
-		     });
+});
+
+//댓글 보이기	
+/* $(document).ready(function(){ */
+$(function(){
+	$(".re").click(function(){
 		
-	});
-	
-	//댓글 보이기	
-	/* $(document).ready(function(){ */
-	$(function(){
-		$(".re").click(function(){
-			
-			
-			var bno = this.parentNode.childNodes[1].value;
-		    var groupno = this.parentNode.childNodes[3].value;
-    
-		    $.ajax({
-				    	url: "/assemble.io/{mi_assembleName}/selectRecomment1",
-				    	type: 'POST',
-				    	data: {"bno": bno, "groupno" : groupno},
-				    	dataType: "json",
-				    	
-				    	success: function(recomment1){
-				    		console.log("success view");
-				    		console.log(recomment1);
-				    			//document.getElementById("#"+bno).childNodes.length;
-				    			
-				    		 if(document.getElementById(bno).childElementCount==0){ 
-					    		for(var i=0; i<recomment1.length; i++){
-									var retext = 
-										'<div id="s0">'
-											+'<div id="s1">'
-												+'<div id="s1a">'+recomment1[i].reid+"님이 쓴 댓글"+'</div>'
-												+'<div id="s1b">'+recomment1[i].redate+'</div>'+
-											'</div>' //s1 end
-											+'<div id="s2">'+recomment1[i].recontents+'</div>'+ //s2 end
-										'<div>';									
-							    	$(retext).appendTo("#"+bno);			
-							    		
-					    		}//for end
-							    		 //댓글0개일때
-								    	if(recomment1.length==0){
-								    		var retext = 
-												'<div id="s0">'
-													+'<div id="s1">' + "현재 댓글이 없습니다." +'</div>' //s1 end
-												'<div>';
-							    				 $(retext).appendTo("#"+bno);		
-								    	}//if end 
-				    		 }else{
-				    		 $("#" +bno).empty();
-				    		
-				    		} 	
-				    	}		
-			 	}); //ajax end
-			});  	
-	}); //function end
-	
-	
-	
-	//요청 상태 변화
-	$(function() {
-		var r1 = $('.req');
-		var r2 = $('.ing');
-		var r3 = $('.end');
+		
+		var bno = this.parentNode.childNodes[1].value;
+	    var groupno = this.parentNode.childNodes[3].value;
 
-		//요청버튼
-		$(".req").click(function() {
-			var bnoa = this.parentNode.childNodes[1].value + "a";
-			var bno = this.parentNode.childNodes[1].value;
-			var groupno = this.parentNode.childNodes[3].value;
-			
-			
-			console.log(bno);
-			console.log(groupno);
-			console.log(status);
-			
-			//console.log(this.parentNode.childNodes);
-			
-			this.parentNode.childNodes[7].style.backgroundColor = "red";
-			this.parentNode.childNodes[9].style.backgroundColor = "#EAEAEA";
-			this.parentNode.childNodes[11].style.backgroundColor = "#EAEAEA";
-			
-			$.ajax({
-				url : "/assemble.io/{mi_assembleName}/updateStatus",
-				type : 'POST',
-				data : {"bno": bno, "groupno": groupno, "status" : 0},
-				dataType: "json",
+	    $.ajax({
+			    	url: "/assemble.io/{mi_assembleName}/selectRecomment1",
+			    	type: 'POST',
+			    	data: {"bno": bno, "groupno" : groupno},
+			    	dataType: "json",
+			    	
+			    	success: function(recomment1){
+			    		console.log("success view");
+			    		console.log(recomment1);
+			    			//document.getElementById("#"+bno).childNodes.length;
+			    			
+			    		 if(document.getElementById(bno).childElementCount==0){ 
+				    		for(var i=0; i<recomment1.length; i++){
+								var retext = 
+									'<div id="s0">'
+										+'<div id="s1">'
+											+'<div id="s1a">'+recomment1[i].reid+"님이 쓴 댓글"+'</div>'
+											+'<div id="s1b">'+recomment1[i].redate+'</div>'+
+										'</div>' //s1 end
+										+'<div id="s2">'+recomment1[i].recontents+'</div>'+ //s2 end
+									'<div>';									
+						    	$(retext).appendTo("#"+bno);			
+						    		
+				    		}//for end
+						    		 //댓글0개일때
+							    	if(recomment1.length==0){
+							    		var retext = 
+											'<div id="s0">'
+												+'<div id="s1">' + "현재 댓글이 없습니다." +'</div>' //s1 end
+											'<div>';
+						    				 $(retext).appendTo("#"+bno);		
+							    	}//if end 
+			    		 }else{
+			    		 $("#" +bno).empty();
+			    		
+			    		} 	
+			    	}		
+		 	}); //ajax end
+		});  	
+}); //function end
 
-				success: function(req){
-						console.log("sucess view");	
-						console.log(req);
-				},
-				error: function(req){
-					console.log("error view");
+
+
+//요청 상태 변화
+$(function() {
+	var r1 = $('.req');
+	var r2 = $('.ing');
+	var r3 = $('.end');
+
+	//요청버튼
+	$(".req").click(function() {
+		var bnoa = this.parentNode.childNodes[1].value + "a";
+		var bno = this.parentNode.childNodes[1].value;
+		var groupno = this.parentNode.childNodes[3].value;
+		
+		
+		console.log(bno);
+		console.log(groupno);
+		console.log(status);
+		
+		//console.log(this.parentNode.childNodes);
+		
+		this.parentNode.childNodes[7].style.backgroundColor = "red";
+		this.parentNode.childNodes[9].style.backgroundColor = "#EAEAEA";
+		this.parentNode.childNodes[11].style.backgroundColor = "#EAEAEA";
+		
+		$.ajax({
+			url : "/assemble.io/{mi_assembleName}/updateStatus",
+			type : 'POST',
+			data : {"bno": bno, "groupno": groupno, "status" : 0},
+			dataType: "json",
+
+			success: function(req){
+					console.log("sucess view");	
 					console.log(req);
-				}
-
-			});//ajax end
-
-		});//.req click end	
-		//진행버튼
-		$(".ing").click(function() {
-			var bnoa = this.parentNode.childNodes[1].value + "a";
-			var bno = this.parentNode.childNodes[1].value;
-			var groupno = this.parentNode.childNodes[3].value;
-			var status = this.parentNode.childNodes[5].value;
-			console.log("진행");
-			console.log(bnoa);
-	
-			this.parentNode.childNodes[7].style.backgroundColor = "#EAEAEA";
-			this.parentNode.childNodes[9].style.backgroundColor = "green";
-			this.parentNode.childNodes[11].style.backgroundColor = "#EAEAEA";
-			
-			$.ajax({
-				url : "/assemble.io/{mi_assembleName}/updateStatus",
-				type : 'POST',
-				data : {"bno": bno, "groupno": groupno, "status" : 1},
-				dataType: "json",
-
-				success: function(req){
-						console.log("sucess view");	
-						console.log(req);
-				},
-				error: function(req){
-					console.log("error view");
-					console.log(req);
-				}
-
-			});//ajax end
-		});//.ing click end	
-		//종료 버튼
-		$(".end").click(function() {
-			var bnoa = this.parentNode.childNodes[1].value + "a";
-			var bno = this.parentNode.childNodes[1].value;
-			var groupno = this.parentNode.childNodes[3].value;
-			var status = this.parentNode.childNodes[5].value;
-			console.log("종료");
-			console.log(bnoa);
-
-			this.parentNode.childNodes[7].style.backgroundColor = "#EAEAEA";
-			this.parentNode.childNodes[9].style.backgroundColor = "#EAEAEA";
-			this.parentNode.childNodes[11].style.backgroundColor = "gray";
-			
-			$.ajax({
-				url : "/assemble.io/{mi_assembleName}/updateStatus",
-				type : 'POST',
-				data : {"bno": bno, "groupno": groupno, "status" : 2},
-				dataType: "json",
-
-				success: function(req){
-						console.log("sucess view");	
-						console.log(req);
-				},
-				error: function(req){
-					console.log("error view");
-					console.log(req);
-				}
-
-			});//ajax end
-		
-		});//.end click end	
-	});//function end 
-	
-	////////////////////////////////////////////////////////////////////
-	
-/* 	$(function(){
-		$(".sub2").hide(); //처음에는 안보이게 
-		
-		$(".option2").click(function(){
-		
-			var bno = this.parentNode.childNodes[1].value + "d";
-			var groupno = this.parentNode.childNodes[3].value;
-			console.log(bno);
-			console.log(groupno);
-
-			if(document.getElementById(bno)){
-				var gg = document.getElementById(bno);
-				$(gg).toggle();	`
+			},
+			error: function(req){
+				console.log("error view");
+				console.log(req);
 			}
-		
-		});
-				
-	});  *///function end
-	
-	
 
+		});//ajax end
+
+	});//.req click end	
+	//진행버튼
+	$(".ing").click(function() {
+		var bnoa = this.parentNode.childNodes[1].value + "a";
+		var bno = this.parentNode.childNodes[1].value;
+		var groupno = this.parentNode.childNodes[3].value;
+		var status = this.parentNode.childNodes[5].value;
+		console.log("진행");
+		console.log(bnoa);
+
+		this.parentNode.childNodes[7].style.backgroundColor = "#EAEAEA";
+		this.parentNode.childNodes[9].style.backgroundColor = "green";
+		this.parentNode.childNodes[11].style.backgroundColor = "#EAEAEA";
+		
+		$.ajax({
+			url : "/assemble.io/{mi_assembleName}/updateStatus",
+			type : 'POST',
+			data : {"bno": bno, "groupno": groupno, "status" : 1},
+			dataType: "json",
+
+			success: function(req){
+					console.log("sucess view");	
+					console.log(req);
+			},
+			error: function(req){
+				console.log("error view");
+				console.log(req);
+			}
+
+		});//ajax end
+	});//.ing click end	
+	//종료 버튼
+	$(".end").click(function() {
+		var bnoa = this.parentNode.childNodes[1].value + "a";
+		var bno = this.parentNode.childNodes[1].value;
+		var groupno = this.parentNode.childNodes[3].value;
+		var status = this.parentNode.childNodes[5].value;
+		console.log("종료");
+		console.log(bnoa);
+
+		this.parentNode.childNodes[7].style.backgroundColor = "#EAEAEA";
+		this.parentNode.childNodes[9].style.backgroundColor = "#EAEAEA";
+		this.parentNode.childNodes[11].style.backgroundColor = "gray";
+		
+		$.ajax({
+			url : "/assemble.io/{mi_assembleName}/updateStatus",
+			type : 'POST',
+			data : {"bno": bno, "groupno": groupno, "status" : 2},
+			dataType: "json",
+
+			success: function(req){
+					console.log("sucess view");	
+					console.log(req);
+			},
+			error: function(req){
+				console.log("error view");
+				console.log(req);
+			}
+
+		});//ajax end
+	
+	});//.end click end	
+});//function end 
 </script>
 
 <style type="text/css">
@@ -400,14 +374,13 @@ input:focus {
 }
       
 </style>
-
 </head>
 <body>
-	<div id="main" style="z-index: -2">
+<div id="main" style="z-index: -2">
 		<br />
-		<h3>나의 소식 피드</h3>
+		<h3>북마크</h3>
 
-		<c:forEach var="b" items="${mainlist }">
+		<c:forEach var="b" items="${selectBookmark }">
 			<div id="board">
 				<div id="a">
 					<a href="/assemble.io/${mi_assembleName}/g/${b.groupno }/wall"><h4>${b.groupname }</h4></a>
@@ -470,12 +443,12 @@ input:focus {
 				<div id="d">
 	
 					<div id="d1">
-								<input type="hidden" name="bno" value="${b.bno}"/>
-								<input type="hidden" name="groupno" value="${b.groupno}"/>
-								<input type="hidden" name="memberid" value="${b.mi_memid}"/>
-								<input type="button" value="댓글" class="re" />
-						
-								<img src="/resources/assets/img/bookmark_before.png" id="bk" class="lh"/>	
+						<input type="hidden" name="bno" value="${b.bno}"/>
+						<input type="hidden" name="groupno" value="${b.groupno}"/>
+						<input type="hidden" name="memberid" value="${b.mi_memid}"/>
+						<input type="button" value="댓글" class="re" />
+
+						<img src="/resources/assets/img/bookmark_after.png" id="bk" class="lh" onclick="imgchange()"/>
 					</div>
 					
 				</div>
@@ -517,7 +490,7 @@ input:focus {
 		</c:forEach>
 	</div>
 	
-<script src="/resources/assets/js/jquery.js"></script>
+	<script src="/resources/assets/js/jquery.js"></script>
 <script src="/resources/assets/js/jquery-1.8.3.min.js"></script>
 <script src="/resources/assets/js/bootstrap.min.js"></script>
 <script class="include" type="text/javascript"
@@ -526,7 +499,5 @@ input:focus {
 
 <!--     common script for all pages -->
 <script src="/resources/assets/js/common-scripts.js"></script>
-
-
 </body>
 </html>
