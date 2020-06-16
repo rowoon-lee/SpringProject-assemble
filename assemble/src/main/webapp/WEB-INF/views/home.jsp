@@ -378,7 +378,7 @@ input:focus {
 					<h5 id="boarddate">${b.boarddate }</h5>
 				</div>
 				<div id="c">
-					<c:if test="${b.reqstatus==1 }">
+					<c:if test="${b.requestboolean==1 }">
 						<h4><b>담당자 : ${b.responseid }</b></h4>
 					</c:if>
 					<h4>${b.boardcontents }</h4>
@@ -392,7 +392,7 @@ input:focus {
 								
 										<input type="button" value="요청" id="btnra" class="req"/>
 										<input type="button" value="진행" id="btnia" class="ing"/>
-										<input type="button" value="종료" id="btnea" class="end"/>
+										<input type="button" value="완료" id="btnea" class="end"/>
 									</div> 
 								</c:if>
 								<c:if test="${b.reqstatus ==1 }">
@@ -403,7 +403,7 @@ input:focus {
 					
 										<input type="button" value="요청" id="btnrb" class="req"/>
 										<input type="button" value="진행" id="btnib" class="ing"/>
-										<input type="button" value="종료" id="btneb" class="end"/>
+										<input type="button" value="완료" id="btneb" class="end"/>
 										
 									</div>
 								</c:if>
@@ -415,7 +415,7 @@ input:focus {
 					
 										<input type="button" value="요청" id="btnrc" class="req"/>
 										<input type="button" value="진행" id="btnic" class="ing"/>
-										<input type="button" value="종료" id="btnec" class="end"/>
+										<input type="button" value="완료" id="btnec" class="end"/>
 									</div>
 								</c:if>
 								<%-- <h5>요청진행상태 : ${b.reqstatus }</h5> --%>	
@@ -477,15 +477,17 @@ input:focus {
 			</div>
 		</c:forEach>
 	</div>
-	<script src="/resources/assets/js/jquery.js"></script>
-	<script src="/resources/assets/js/jquery-1.8.3.min.js"></script>
-	<script src="/resources/assets/js/bootstrap.min.js"></script>
-	<script class="include" type="text/javascript"
-		src="/resources/assets/js/jquery.dcjqaccordion.2.7.js"></script>
-	<script src="/resources/assets/js/jquery.scrollTo.min.js"></script>
+	
+<script src="/resources/assets/js/jquery.js"></script>
+<script src="/resources/assets/js/jquery-1.8.3.min.js"></script>
+<script src="/resources/assets/js/bootstrap.min.js"></script>
+<script class="include" type="text/javascript"
+	src="/resources/assets/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="/resources/assets/js/jquery.scrollTo.min.js"></script>
 
-	<!--     common script for all pages -->
-	<script src="/resources/assets/js/common-scripts.js"></script>
+<!--     common script for all pages -->
+<script src="/resources/assets/js/common-scripts.js"></script>
+
 
 </body>
 </html>

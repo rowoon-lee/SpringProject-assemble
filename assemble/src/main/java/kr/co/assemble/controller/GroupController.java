@@ -2,13 +2,18 @@ package kr.co.assemble.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.assemble.dao.ComposedDAO;
 import kr.co.assemble.dao.GroupDAO;
+import kr.co.assemble.dto.AssembleGroupDTO;
+import kr.co.assemble.dto.ComposedDTO;
 import kr.co.assemble.dto.GroupDTO;
 
 @Controller
@@ -17,18 +22,39 @@ public class GroupController {
 	@Autowired
 	GroupDAO dao;
 	
-	public GroupDAO getDao() {
-		return dao;
+	@Autowired
+	ComposedDAO cdao;
+	
+	
+	public void setDao(GroupDAO dao) {
+		this.dao = dao;
 	}
-	//그룹 전체 조회
-	@RequestMapping(value = "/groups")
-	public String groups(Model model) {
+	
+	public void setCdao(ComposedDAO cdao) {
+		this.cdao = cdao;
+	}
+	
+	
+	//그룹 전체 조회													===> 첫 홈에서 누르면 load 해놓음
+	@RequestMapping(value = "/attendgroups")
+	public String attendgroups(Model model, HttpSession session) {
 		
-		List<GroupDTO> list = dao.selectGroup();
+		String assemblename = (String)session.getAttribute("mi_assembleName");
+		int memberno = (int)session.getAttribute("memberno");
+		
+		AssembleGroupDTO dto = new AssembleGroupDTO();
+		dto.setAssemblename(assemblename);
+		
+		model.addAttribute("memberno", memberno);
+		
+		List<AssembleGroupDTO> list = dao.selectGroup(dto);
 		model.addAttribute("list", list);
+
 		
-		return "group/groups";
+		
+		return "jisoo/attendgroups";
 	}
+	
 	
 	
 	//그룹 만들기 폼

@@ -94,51 +94,7 @@ $(document).ready(function() {
 		$("#selbtn6").css('border-bottom','none');
 	
 		
-		});
-	
-	$('#selbtn5').click(function(){
-		$("#tab1").css('display','none');
-		$("#tab2").css('display','none');
-		$("#tab3").css('display','none');
-		$("#tab4").css('display','none');
-		$("#tab5").css('display','block');
-		$("#tab6").css('display','none');
-		
-		 $("#boarddis").css('display','none'); 
-	
-		$("#selbtn1").css('border-bottom','none');
-		$("#selbtn2").css('border-bottom','none');
-		$("#selbtn3").css('border-bottom','none');
-		$("#selbtn4").css('border-bottom','none');
-		$("#selbtn5").css('border-bottom','3px solid #B2EBF4');
-		$("#selbtn6").css('border-bottom','none');
-		
-		
-		});
-	
-	$('#selbtn6').click(function(){
-		$("#tab1").css('display','none');
-		$("#tab2").css('display','none');
-		$("#tab3").css('display','none');
-		$("#tab4").css('display','none');
-		$("#tab5").css('display','none');
-		$("#tab6").css('display','block');
-		
-	 	$("#boarddis").css('display','none'); 
-		
-		$("#selbtn1").css('border-bottom','none');
-		$("#selbtn2").css('border-bottom','none');
-		$("#selbtn3").css('border-bottom','none');
-		$("#selbtn4").css('border-bottom','none');
-		$("#selbtn5").css('border-bottom','none');
-		$("#selbtn6").css('border-bottom','3px solid #B2EBF4');
-		
-	
-		
-		});
-	
-
-    
+		}); 
 
 });
 
@@ -219,8 +175,6 @@ $(document).ready(function() {
 					<div class="selectbtn" id="selbtn2"><div><span>멤버</span></div></div>
 					<div class="selectbtn" id="selbtn3"><div><span>사진</span></div></div>
 					<div class="selectbtn" id="selbtn4"><div><span>파일</span></div></div>
-					<div class="selectbtn" id="selbtn5"><div><span>일정</span></div></div>
-					<div class="selectbtn" id="selbtn6"><div><span>요청</span></div></div>
 				
 				</div>
 			</div>

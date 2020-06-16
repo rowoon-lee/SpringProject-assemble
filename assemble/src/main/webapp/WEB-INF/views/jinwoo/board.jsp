@@ -56,43 +56,7 @@ $(document).ready(function() {
 		
 		});
 	
-	$(document).ready(function(){
-		 /* $("#fileInput1").on('change', function(){  // 값이 변경되면
-			if(window.FileReader){  // modern browser
-				var filename = $(this)[0].files[0].name;
-			} else {  // old IE
-	 			var filename = $(this).val().split('/').pop().split('\\').pop();  // 파일명만 추출
-			}
-
-	 		// 추출한 파일명 삽입
-			$("#userfile1").val(filename);
-
-		});
-		
-		$("#fileInput2").on('change', function(){  // 값이 변경되면
-			if(window.FileReader){  // modern browser
-				var filename = $(this)[0].files[0].name;
-			} else {  // old IE
-	 			var filename = $(this).val().split('/').pop().split('\\').pop();  // 파일명만 추출
-			}
-
-	 		// 추출한 파일명 삽입
-			$("#userfile2").val(filename);
-
-		});
-		
-		$("#fileInput3").on('change', function(){  // 값이 변경되면
-			if(window.FileReader){  // modern browser
-				var filename = $(this)[0].files[0].name;
-			} else {  // old IE
-	 			var filename = $(this).val().split('/').pop().split('\\').pop();  // 파일명만 추출
-			}
-
-	 		// 추출한 파일명 삽입
-			$("#userfile3").val(filename);
-
-		}); */
-		
+	$(document).ready(function(){	
 		$("#btn1").click(function(){
 	 		var data = $("#fileInput1").val(); 
 	 		console.log(data);
@@ -235,7 +199,7 @@ $(function() {
 
 <style type="text/css">
 	.writebtn {
-		width: 32.9%;
+		width: 49.8%;
 		height: 50px;
 		border : none;
 	}
@@ -267,12 +231,7 @@ $(function() {
 
 		display: block;
 	}
-	
-	#writediv2{
 
-		display: none;
-	}
-	
 	#writediv3{
 		display: none;
 	}
@@ -369,7 +328,6 @@ $(function() {
 
 	<div style="width: 100%; height: 15%; background-color: white;">
 		<input class="writebtn" id="writebtn1" type="button" value="글쓰기" />
-		<input class="writebtn" id="writebtn2" type="button" value="일정" />
 		<input class="writebtn" id="writebtn3" type="button" value="요청" />
 	</div>
 	
@@ -415,68 +373,8 @@ $(function() {
                           </div>
                </form>
                
-		</div>
-		
-		<div class="writediv" id="writediv2" >
-			<form name="frm2" enctype="multipart/form-data">
-                          
-                          <div style="padding-left: 20px;">
-                          <div style="margin-left: 8px; float: left; font-size: 13px"><%@ include file="calendar.jsp" %> 
-                          </div> 
-                          <div style="float: left; margin-left: 10px; ">
-                          <select style="font-size: 16px;"> 
-                          <option selected>시간 설정</option> 	
-                          
-                          <option>12:00 AM</option>
-                          <option>1:00 AM</option>
-                          <option>2:00 AM</option>
-                          <option>3:00 AM</option>
-                          <option>4:00 AM</option>
-                          <option>5:00 AM</option>
-                          <option>6:00 AM</option>
-                          <option>7:00 AM</option>
-                          <option>8:00 AM</option>
-                          <option>9:00 AM</option>
-                          <option>10:00 AM</option>
-                          <option>11:00 AM</option>
-                          <option>12:00 PM</option>
-                          <option>13:00 PM</option>
-                          <option>14:00 PM</option>
-                          <option>15:00 PM</option>
-                          <option>16:00 PM</option>
-                          <option>17:00 PM</option>
-                          <option>18:00 PM</option>
-                          <option>19:00 PM</option>
-                          <option>20:00 PM</option>
-                          <option>21:00 PM</option>
-                          <option>22:00 PM</option>
-                          <option>23:00 PM</option>
-                    
-                           </select>
-                          </div>
-                          
-                          <div style="padding-top: 40px;"><input type="text" name="" id="" style="width: 80%;" placeholder="일정 제목을 입력하세요."/></div>
-                          
-                          </div>
-                          
-                          <div style="padding: 20px 20px 0 20px;"><textarea style="resize: vertical; width: 100%;" rows="8"  name="contents" 
-                          	placeholder="그룹 멤버들과 공유할 내용을 적어주세요."></textarea></div>        
-                          	
-                          		<div class="input-file2" style="padding: 0 20px 0 20px;">
-								<!--   <input type="text" readonly="readonly" class="file-name2" />
-								  <label style="margin-top: 3px;" for="fileInput1" class="file-label2">파일첨부</label> -->
-								  <input type="file" name="uploadFile" id="fileInput2" class="file-upload" />
-								  <input type="hidden" id="fileStatus" name="fileStatus" value="0" />
-								</div>
-                          	          	
-                      		<div style="padding-right: 20px;">
-                            <div style="float: right;"><input class="buttonbo" type="button" value="등록" /></div>
-                            <div style="float: right;"><input class="buttonbo" type="reset" value="취소" /></div>
-                            </div>
-                            </form>	
-		
-					</div>
-				<div class="writediv" id="writediv3" >
+			</div>
+		<div class="writediv" id="writediv3" >
 				
 					<form name="frm3" enctype="multipart/form-data">
 		                            	<div style="padding:10px 20px 0 20px; height: 25px">
@@ -486,7 +384,7 @@ $(function() {
 			                                <div class="btn-group" style="float: right;">
 											  <button class="button3"  disabled="disabled">요청</button>
 											  <button class="button2"  disabled="disabled">진행</button>
-											  <button class="button2"  disabled="disabled">종료</button>
+											  <button class="button2"  disabled="disabled">완료</button>
 											</div>
 										</div>
 		                                <div style="padding: 20px 20px 0 20px;"><textarea style="resize: vertical; width: 100%;" rows="8" name="contents" 

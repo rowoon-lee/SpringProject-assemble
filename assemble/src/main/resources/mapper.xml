@@ -77,25 +77,24 @@
 		select distinct ca.categoryno, ca.categoryname, ca.assemblename
 		from category ca inner join composed co
 		on co.memberno = ca.memberno
-		where co.memberno = #{memberno};
+		where co.memberno = #{memberno}
 	</select>
 	
 
 	
 	<!-- **********************그룹******************** -->
 	<!-- 그룹 전체 조회 -->
-	<select id="selectAllGroup" resultType="GroupDto">
-		select * from groups
-	</select>
-	
-	<!-- 카테고리별 그룹 조회 -->
-<!-- 	<select id="selectCategoryGroup" resultType="GroupDto">
-		select * from groups
-		where categoryno = #{categoryno}	
-	</select> -->
-	
+	<select id="selectAllGroup" resultType="A_GDto" parameterType="A_GDto">
+		select a.ai_assemblename, g.groupname, g.groupno, g.categoryno, c.memberno
+		from assembleinfo as a join groups as g
+		on a.ai_memberno = g.memberno
+		left join composed as c 
+		on c.groupno = g.groupno
+		where a.ai_assemblename = "with";
+   </select>
+
 	<select id="selectCategoryGroup1" resultType="GroupDto">
-		select * from groups;
+		select * from groups
 	</select>
 	
 	<!-- 그룹생성시 미분류 카테고리를 1번이라고 했을때, 처음 생성그룹은 항상 카테고리 1번으로 들어감. -->
@@ -166,6 +165,33 @@
 		where g.groupno = #{groupno}
 	</select>
 	
+	<!-- **********************composed(멤버의 그룹정보)******************** -->
+   <!-- 그룹에 내가 속해있는지 여부 -->
+   <select id="existsGroup" resultType="int" parameterType="ComposedDto">
+      select exists (select * from composed where categoryno = #{categoryno} and groupno = #{groupno}
+      and memberno = #{memberno}) as success
+   </select>
+   
+   <!-- 그룹에 참여하기-->
+   <insert id="attend" parameterType="ComposedDto">
+      insert into composed
+      values (#{groupno}, #{categoryno}, #{memberno})
+   </insert>
+   
+   <!-- 그룹에 참여가 되어있다면 삭제되게 -->
+   <delete id="deleteComposed" parameterType="ComposedDto">
+      delete from composed
+      where categoryno = #{categoryno} and groupno = #{groupno}
+      and memberno = #{memberno}
+   </delete>
+   
+   <select id="exists" resultType="int">
+   	select exists (select * from composed where
+   	groupno = #{groupno} and memberno = #{memberno}) as success
+   </select>
+   
+	
+	
 	<!-- **********************Board(게시판)******************** -->
 	<!-- 전체검색(이름, 아이디, 내용) 별 -->
 
@@ -184,7 +210,7 @@
 		where
 		m.mi_memberno = b.memberno and
 		b.groupno = #{groupno}
-		order by b.boardnotice desc, b.boarddate desc;
+		order by b.boardnotice desc, b.boarddate desc
 	</select>
 	
 	<!-- bno로 전체 조회 -->
@@ -244,7 +270,7 @@
       where
       g.groupno= b.groupno and
       m.mi_memberno = b.memberno and
-      b.memberno = #{memberno};
+      b.memberno = #{memberno}
    </select>
 	
 
@@ -290,16 +316,37 @@
 
 	<!-- 내가 받은 요청 리스트 (내 이름, 내 아이디로 요청이들어온것) -->
    <select id="myReq" parameterType="String" resultType="MRG_Dto">
-      select m.mi_memname, m.mi_memid, g.groupname, gb.bno, gb.boarddate, gb.boardcontents, gb.boardnotice, gb.boardlike,
-      gb.boardhate, gb.requestboolean, gb.filestatus, r.reqstatus, r.responseid, f.filename, g.groupno
-      from groups g, groupboard as gb join requestboard as r
-      on gb.bno = r.bno
-      left join file f
-      on f.bno = gb.bno
-      left join memberinfo m
-      on r.memberno = m.mi_memberno
-      where r.responseid = #{valueid} or
-      r.responseid = #{valuename}
+	select m.mi_memname, m.mi_memid, g.groupname, gb.bno, gb.boarddate, gb.boardcontents, gb.requestboolean, gb.filestatus, r.reqstatus, r.responseid, f.filename
+	from groups as g 
+	left join groupboard as gb 
+	on g.groupno = gb.groupno
+	left join requestboard as r
+	on gb.bno = r.bno
+	left join file as f
+	on f.bno = gb.bno
+	left join memberinfo as m
+	on r.memberno = m.mi_memberno
+	where mi_assemblename = "with"
+	and (r.responseid like #{valueid} or
+	r.responseid like #{valuename})
+   </select>
+   
+   <!-- 내가 받은 요청 리스트의 요청상황 -->
+   <select id="myReqStatus" parameterType="String" resultType="MRG_Dto">
+	select m.mi_memname, m.mi_memid, g.groupname, gb.bno, gb.boarddate, gb.boardcontents, gb.requestboolean, gb.filestatus, r.reqstatus, r.responseid, f.filename
+	from groups as g 
+	left join groupboard as gb 
+	on g.groupno = gb.groupno
+	left join requestboard as r
+	on gb.bno = r.bno
+	left join file as f
+	on f.bno = gb.bno
+	left join memberinfo as m
+	on r.memberno = m.mi_memberno
+	where mi_assemblename = #{assemblename}
+	and r.reqstatus = #{reqstatus}
+	and (r.responseid like #{valueid} or
+	r.responseid like #{valuename})
    </select>
 
 
@@ -363,7 +410,7 @@
       from groupboard g inner join file f
       on f.bno = g.bno
       where not f.filename like '%.jpg' and not f.filename like '%.gif' and not f.filename like '%.png'
-      and groupno = #{groupno};
+      and groupno = #{groupno}
    </select>
    
    <!-- 그룹보드에 요청여부가 1일때 -->
@@ -381,7 +428,7 @@
       where
       m.mi_memberno = b.memberno and
       b.requestboolean = 1 and
-      b.groupno = #{groupno};
+      b.groupno = #{groupno}
    </select>
    
   <!--  요청 진행상황 별로 조회 -->

@@ -26,6 +26,7 @@
 		<typeAlias type="kr.co.assemble.dto.MyWriteDTO" alias="MyWriteDto"/>
 		<typeAlias type="kr.co.assemble.dto.ComposedMemberInfoDTO" alias="CMI_Dto"/>
         <typeAlias type="kr.co.assemble.dto.GroupFileDTO" alias="CF_Dto"/>
+        <typeAlias type="kr.co.assemble.dto.AssembleGroupDTO" alias="A_GDto"/>
 	</typeAliases>
 	
 	

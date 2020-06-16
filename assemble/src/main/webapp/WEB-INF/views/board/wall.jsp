@@ -98,7 +98,6 @@
 				var groupno = this.parentNode.childNodes[3].value;
 				console.log(bno);
 				console.log(groupno);
-
 				if(document.getElementById(bno)){
 					var gg = document.getElementById(bno);
 					$(gg).toggle();
@@ -117,7 +116,6 @@
 					type : 'POST',
 					data : {"bno": bno, "groupno": groupno},
 					dataType: "json",
-
 					success: function(notice){
 							console.log("sucess view");	
 							console.log(notice);
@@ -126,7 +124,6 @@
 						console.log("error view");
 						console.log(notice);
 					}
-
 				});//ajax end
 			
 			});//.noti click end
@@ -142,7 +139,6 @@
 					type : 'POST',
 					data : {"bno": bno, "groupno": groupno},
 					dataType: "json",
-
 					success: function(del){
 							console.log("sucess view");	
 							console.log(del);
@@ -151,7 +147,6 @@
 						console.log("error view");
 						console.log(del);
 					}
-
 				});//ajax end
 			
 			});//.modi click end
@@ -162,13 +157,11 @@
 		
 		  
 		  
-
 	 //요청 상태 변화
 	$(function() {
 		var r1 = $('.req');
 		var r2 = $('.ing');
 		var r3 = $('.end');
-
 		//요청버튼
 		$(".req").click(function() {
 			var bnoa = this.parentNode.childNodes[1].value + "a";
@@ -191,7 +184,6 @@
 				type : 'POST',
 				data : {"bno": bno, "groupno": groupno, "status" : 0},
 				dataType: "json",
-
 				success: function(req){
 						console.log("sucess view");	
 						console.log(req);
@@ -200,9 +192,7 @@
 					console.log("error view");
 					console.log(req);
 				}
-
 			});//ajax end
-
 		});//.req click end	
 		//진행버튼
 		$(".ing").click(function() {
@@ -222,7 +212,6 @@
 				type : 'POST',
 				data : {"bno": bno, "groupno": groupno, "status" : 1},
 				dataType: "json",
-
 				success: function(req){
 						console.log("sucess view");	
 						console.log(req);
@@ -231,7 +220,6 @@
 					console.log("error view");
 					console.log(req);
 				}
-
 			});//ajax end
 		});//.ing click end	
 		//종료 버튼
@@ -242,7 +230,6 @@
 			var status = this.parentNode.childNodes[5].value;
 			console.log("종료");
 			console.log(bnoa);
-
 			this.parentNode.childNodes[7].style.backgroundColor = "#EAEAEA";
 			this.parentNode.childNodes[9].style.backgroundColor = "#EAEAEA";
 			this.parentNode.childNodes[11].style.backgroundColor = "gray";
@@ -252,7 +239,6 @@
 				type : 'POST',
 				data : {"bno": bno, "groupno": groupno, "status" : 2},
 				dataType: "json",
-
 				success: function(req){
 						console.log("sucess view");	
 						console.log(req);
@@ -261,7 +247,6 @@
 					console.log("error view");
 					console.log(req);
 				}
-
 			});//ajax end
 		
 		});//.end click end	
@@ -281,7 +266,6 @@
 	
 </script>
 <style type="text/css">
-
 input:focus {
   outline: none;
 }
@@ -295,24 +279,20 @@ input:focus {
 	margin-left: 25%;
 	marg
 }
-
 #info {
 	border: 2px solid #F2F2F2;
 	background-color: pink;
 	margin-bottom: 15px;
 	padding-bottom: 0px;
 }
-
 #select {
 	background-color: white;
 }
-
 #insert {
 	height: 100%;
 	border: 1px solid #CCCCCC;
 	margin-bottom: 30px;
 }
-
 #board {
 	padding: 20px;
 	border: 2px solid #F2F2F2;
@@ -321,59 +301,47 @@ input:focus {
 	border: 1px solid #CCCCCC;
 	/* #F2F2F2; */
 }
-
 #a {
 	border-bottom: 1px solid #CCCCCC;
 }
-
 #b{
  	padding: 1.5%;
 }
-
 #d {
 	margin-top: 10px;
 }
-
 #retext {
 	width: 91%;
 	border: 1px solid #CCCCCC;
 }
-
 .re {
 	background-color: white;
 	border: none;
 	border: 1px solid #CCCCCC;
 	margin-right: 1%;
 }
-
 #notice {
 	width: 22px;
 }
-
 .lh {
 	width: 22px;
 	margin-left: 1.5%;
 }
-
 .more {
 	width: 22px;
 }
-
 .submit {
 	margin-left: 2%;
 }
-
 #boarddate {
 	margin-left: 80%;
 }
-
 #c1 {
 	width: 70%;
 	display: inline;
 	float: left;
  	margin-right: 20%; 
 }
-
 #c2 {
  	display: inline;
 	float: left; 
@@ -382,38 +350,29 @@ input:focus {
 .sub2{
 	margin-left: 85%;
 }
-
-
 .menubtn {
 	border: none;
 	background-color: white;
 	border: 1px solid #CCCCCC;
 }
-
 /* 댓글 */
 #s0{
 	border: 1px solid #CCCCCC;
 	font-size: 14px;
 }
-
 #s1 {
 	border-bottom: 1px solid #CCCCCC;
 	background-color: #F2F2F2;
 	padding: 0.6%;
-
 }
-
 #s1a {
 	display: inline;
 	float: left;
 	margin-right: 66%;
-
 }
 #s2{
 	padding: 1%;
 }
-
-
 #btn-group {margin: 0;}
 #btn-group {margin: 0;}
 #btnra, #btnrb, #btnrc,
@@ -429,23 +388,18 @@ input:focus {
   height: 25px;
   float: left;
 }
-
 #btnia, #btnea, #btnrb, #btneb, #btnrc, #btnic{
  background-color: #EAEAEA;
 }
-
 #btnra {
   background-color: red; 
 }
-
 #btnib {
   background-color: green; ;
 }
-
 #btnec {
   background-color: gray; 
 }
-
 .option2 {
    background: url( "/resources/assets/img/more2.png" ) no-repeat;
    border: none;
@@ -453,20 +407,16 @@ input:focus {
    height: 32px;
    cursor: pointer;
 }
-
 .noti, .modi, .del{
 	background-color: white;
 	border: none;
 	border: 1px solid #CCCCCC;
 }
-
 .file{
 	background-color: white;
 	border: none;
 	color: #0100FF;
 }
-
-
 /* .option a{cusor:pointer;}
 .option .hide{display:none;} */
 </style>
@@ -484,12 +434,10 @@ input:focus {
 			<div id="section">	
 
 				<div id="insert">
-					 <jsp:include page="../jinwoo/board.jsp"></jsp:include>
+					<jsp:include page="../jinwoo/board.jsp"></jsp:include>
 					<jsp:include page="../jinwoo/profile.jsp"></jsp:include>
 					<jsp:include page="../jinwoo/gallery.jsp"></jsp:include>
-					<jsp:include page="../jinwoo/fullcalendar.jsp"></jsp:include>
 					<jsp:include page="../jinwoo/file.jsp"></jsp:include>
-					<jsp:include page="../jinwoo/request.jsp"></jsp:include> 
 				</div>
 
 			<div id="boarddis" style="display: block;">
@@ -509,7 +457,7 @@ input:focus {
 
 						<!-- <div id="b"> -->
  						<div id="b"> 
- 							<c:if test="${b.reqstatus==1 }">
+ 							<c:if test="${b.requestboolean==1 }">
 								<h4><b>담당자 : ${b.responseid }</b></h4>
 							</c:if>
 							<h4>${b.boardcontents }</h4>

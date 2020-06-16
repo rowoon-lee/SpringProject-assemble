@@ -113,12 +113,15 @@ public class RequestController {
       
 	  String memname = (String) session.getAttribute("mi_memName");
 	  String memid = (String) session.getAttribute("mi_memID");
-	  
+	  String assemblename = (String)session.getAttribute("mi_assembleName");
 	 
+	  
       MemReqGroupDTO dto = new MemReqGroupDTO();
       //id와 name을 현재 나의 세션값으로
       dto.setValueid(memid);
       dto.setValuename(memname);
+      dto.setAssemblename(assemblename);
+   
          
       List<MemReqGroupDTO> list = rdao.selectMyReq(dto);
       
@@ -126,6 +129,42 @@ public class RequestController {
       
       return "jisoo/tasks";
    }
+   
+   
+   //내가 받은 요청 status별로 출력
+   @RequestMapping(value = "/myReqStatus")
+   public String myReqStatus(
+		   @RequestParam(value = "status") int status, HttpSession session, Model model) {
+	   System.out.println(status);
+	   
+	   String memname = (String) session.getAttribute("mi_memName");
+	   String memid = (String) session.getAttribute("mi_memID");
+	   String assemblename = (String) session.getAttribute("mi_assembleName");
+	   
+	   
+	   MemReqGroupDTO dto = new MemReqGroupDTO();
+	   dto.setValueid(memid);
+	   dto.setValuename(memname);
+	   dto.setReqstatus(status);
+	   dto.setAssemblename(assemblename);
+	   
+	   List<MemReqGroupDTO> list = rdao.selectMyReq(dto);
+	   model.addAttribute("statuslist", list);
+	   
+	   String url = "";
+	   
+	   if(status==0) {
+		    url = "jisoo/request/status0";
+	   }else if(status==1) {
+		    url = "jisoo/request/status1";
+	   }else if(status==2) {
+		    url = "jisoo/request/status2";		   
+	   }
+	   
+	   return url;
+	   
+   }
+   
    
    
    

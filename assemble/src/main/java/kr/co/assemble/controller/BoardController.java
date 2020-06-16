@@ -72,64 +72,56 @@ public class BoardController {
 	GroupSelectListDAO gslDao;
 	
 	//그룹별 게시글 조회 
-	//그룹별 정보, 구성원 정보(Groups_Memberinfo_Composed_DTO)
-	@RequestMapping("/assemble.io/{mi_assembleName}/g/{groupno}/wall")
-	public String groupBoard(@PathVariable("groupno")int groupno, 
-							@PathVariable("mi_assembleName") String assemblename, Model model){
-		/* @RequestParam("categoryno")int categoryno, Model model){ */
+		//그룹별 정보, 구성원 정보(Groups_Memberinfo_Composed_DTO)
+		@RequestMapping("/assemble.io/{mi_assembleName}/g/{groupno}/wall")
+		public String groupBoard(@PathVariable("groupno")int groupno, 
+								@PathVariable("mi_assembleName") String assemblename, Model model){	
+			//그룹장 이름 출력
+			String list = cdao.selectGroupMastername(groupno);
+			model.addAttribute("mastername", list);
 		
-		//세션정보 받아서  주소에 assemble이름 넣기
-//		assemblename = (String)session.getAttribute("mi_assembleName");
-		
-		
-		//그룹장 이름 출력
-		String list = cdao.selectGroupMastername(groupno);
-		model.addAttribute("mastername", list);
-	
-		//그룹장 아이디 출력
-		String list1 = cdao.selectGroupMasterId(groupno);
-		model.addAttribute("masterid", list1);
-		
-		//그룹명 출력
-		String groupname = cdao.selectGroupName(groupno);
-		model.addAttribute("groupname", groupname);
-		
-		//그룹별 게시글 출력
-		List<Groupboard_Memberinfo_FileDTO> list3 = dao.boardlist(groupno);
-		model.addAttribute("thirdlist", list3);
-		
-		model.addAttribute("groupno", groupno);
-		
-		///////////////////////////////////////////////////
-		//그룹의 멤버만 출력
-		ComposedMemberInfoDTO dto = new ComposedMemberInfoDTO();
-		dto.setGroupno(groupno);
+			//그룹장 아이디 출력
+			String list1 = cdao.selectGroupMasterId(groupno);
+			model.addAttribute("masterid", list1);
+			
+			//그룹명 출력
+			String groupname = cdao.selectGroupName(groupno);
+			model.addAttribute("groupname", groupname);
+			
+			//그룹별 게시글 출력
+			List<Groupboard_Memberinfo_FileDTO> list3 = dao.boardlist(groupno);
+			model.addAttribute("thirdlist", list3);
+			
+			model.addAttribute("groupno", groupno);
+			
+			///////////////////////////////////////////////////
+			//그룹의 멤버만 출력
+			ComposedMemberInfoDTO dto = new ComposedMemberInfoDTO();
+			dto.setGroupno(groupno);
 
-		List<ComposedMemberInfoDTO> profilelist = gslDao.groupMemList(dto);
+			List<ComposedMemberInfoDTO> profilelist = gslDao.groupMemList(dto);
 
-		System.out.println(groupno);
+			System.out.println(groupno);
 
-		model.addAttribute("profilelist", profilelist);
-		///////////////////////////////////////////////////
-		//그룹의 사진만 출력
-		GroupFileDTO gfDto = new GroupFileDTO();
-	    gfDto.setGroupno(groupno);
-	      
-	    List<GroupFileDTO> imagelist = gslDao.groupFileList(gfDto);
-	      
-	    model.addAttribute("imagelist", imagelist);
-	    ///////////////////////////////////////////////////
-		//그룹의 사진을 제외한 파일만 출력
-	    gfDto.setGroupno(groupno);
-	      
-	    List<GroupFileDTO> filelist = gslDao.groupFileName(gfDto);
-	    model.addAttribute("filelist", filelist);
-	    
-	    
-		
-		//System.out.println(groupno);-+
-		return "board/wall";
-	}
+			model.addAttribute("profilelist", profilelist);
+			///////////////////////////////////////////////////
+			//그룹의 사진만 출력
+			GroupFileDTO gfDto = new GroupFileDTO();
+		    gfDto.setGroupno(groupno);
+		      
+		    List<GroupFileDTO> imagelist = gslDao.groupFileList(gfDto);
+		      
+		    model.addAttribute("imagelist", imagelist);
+		    ///////////////////////////////////////////////////
+			//그룹의 사진을 제외한 파일만 출력
+		    gfDto.setGroupno(groupno);
+		      
+		    List<GroupFileDTO> filelist = gslDao.groupFileName(gfDto);
+		    model.addAttribute("filelist", filelist);
+
+			//System.out.println(groupno);-+
+			return "board/wall";
+		}
 	
 		
 	

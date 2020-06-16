@@ -46,12 +46,13 @@ public class RequestDAOImple implements RequestDAO {
       return list;
    }
 
-   //내가 받은 요청 진행상황별
-//   @Override
-//   public List<MemReqGroupDTO> selectMyReqStatus(MemReqGroupDTO dto) {
-//      List<MemReqGroupDTO> list = ss.selectList("myReqStatus", dto);
-//      return list;
-//   }
+   
+ //내가 받은 요청 진행상황별
+   @Override
+   public List<RequestDTO> selectMyReqStatus(RequestDTO dto) {
+      List<RequestDTO> list = ss.selectList("myReqStatus", dto);
+      return list;
+   }
    
 
 }

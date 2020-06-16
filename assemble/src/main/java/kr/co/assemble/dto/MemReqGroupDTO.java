@@ -19,14 +19,22 @@ public class MemReqGroupDTO {
    private String valueid;
    private String valuename;
    private int groupno;
-      
+   private String assemblename;
+  
+   
    public MemReqGroupDTO() {}
 
    
 
-   public MemReqGroupDTO(String mi_memname, String mi_memid, String groupname, int bno, Date boarddate,
+
+
+
+
+
+
+public MemReqGroupDTO(String mi_memname, String mi_memid, String groupname, int bno, Date boarddate,
 		String boardcontents, int boardnotice, int boardlike, int boardhate, int requestboolean, int reqstatus,
-		String responseid, String filename, String valueid, String valuename, int groupno) {
+		String responseid, String filename, String valueid, String valuename, int groupno, String assemblename) {
 	super();
 	this.mi_memname = mi_memname;
 	this.mi_memid = mi_memid;
@@ -44,7 +52,14 @@ public class MemReqGroupDTO {
 	this.valueid = valueid;
 	this.valuename = valuename;
 	this.groupno = groupno;
+	this.assemblename = assemblename;
 }
+
+
+
+
+
+
 
 
 
@@ -179,6 +194,16 @@ public String getMi_memname() {
 	public void setGroupno(int groupno) {
 		this.groupno = groupno;
 	}
+
+	public String getAssemblename() {
+		return assemblename;
+	}
+
+
+	public void setAssemblename(String assemblename) {
+		this.assemblename = assemblename;
+	}
+
 
    
    

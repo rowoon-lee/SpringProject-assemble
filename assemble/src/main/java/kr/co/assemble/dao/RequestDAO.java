@@ -21,6 +21,7 @@ public interface RequestDAO {
    //내가 받은 요청 목록 상태별
 //   public List<MemReqGroupDTO> selectMyReqStatus(MemReqGroupDTO dto);
    
-   
+ //내가 받은 요청 목록 상태별
+   public List<RequestDTO> selectMyReqStatus(RequestDTO dto);
    
 }
