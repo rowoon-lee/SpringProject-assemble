@@ -140,7 +140,7 @@ $(document).ready(function() {
 											<input type="hidden" class="groupno" value="${g.groupno }" />
 											<input type="button" value="${g.groupname }" class="groupWall"/> --%>
 											</li>
-									</c:if>
+									</c:if> 
 								</c:forEach>
 							</ul>
 						</li>

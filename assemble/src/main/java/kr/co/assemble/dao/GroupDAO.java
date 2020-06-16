@@ -19,8 +19,8 @@ public interface GroupDAO {
 	public List<AssembleGroupDTO> selectGroup(AssembleGroupDTO dto);
 	
 	//카테고리별 그룹조회
-//	public List<GroupDTO> grouplist(int categoryno);
+	public List<GroupDTO> grouplist(GroupDTO dto);
 	
-	public List<GroupDTO> grouplist();
+//	public List<GroupDTO> grouplist();
 	
 }

@@ -74,5 +74,11 @@ public class ComposedDAO {
 	   public void deleteGroup(ComposedDTO dto) {
 	      ss.delete("deleteComposed", dto);
 	   }
-	
+	   
+	   
+	   //참여가능한 그룹에서 현 세션이 composed에 속해있는지 판별
+	/*
+	 * public int selectMemberNo(int groupno) { int memberno =
+	 * ss.selectOne("confirmComposedMember", memberno); }
+	 */
 }

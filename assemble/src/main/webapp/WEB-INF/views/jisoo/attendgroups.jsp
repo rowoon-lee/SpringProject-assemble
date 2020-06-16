@@ -171,7 +171,7 @@
 	 		   
 	 		   document.location.href = "/attendOk?groupno="+groupno+"&categoryno="+categoryno ;
 	    		
-	    		if($(this).hasClass("active") && n == 0) {
+	    		if($(this).hasClass("active") && n==0) {
 	    			
 	    			$(this).removeClass("active");						//클래스 제거
 					$(this).siblings().addClass("active");				//siblings:형제요소들,    removeClass:선택된 클래스의 특성을 없앰
@@ -182,7 +182,7 @@
 
 	    			$(this).text('나가기');	
 	    		
-	    		}
+	    		} 
 	    			
 	    			
 	    			/* else {

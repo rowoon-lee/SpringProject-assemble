@@ -43,11 +43,10 @@ public class GroupDAOImple implements GroupDAO{
 	}
 
 
-	//이걸로 카테고리 안 gruop list 뽑음 =>조건은 jsp 상에서!
 	@Override
-	public List<GroupDTO> grouplist() {
+	public List<GroupDTO> grouplist(GroupDTO dto) {
 		// TODO Auto-generated method stub
-		return ss.selectList("selectCategoryGroup1");
+		return ss.selectList("selectCategoryGroup", dto);
 	}
 	
 	

@@ -5,17 +5,24 @@ public class NavbarDTO {
 	private String categoryname;
 	private int memberno;
 	private String assemblename;
+	private int checkcategoryno;
+	private int publicsecret;
 	
 	public NavbarDTO() {}
 
-
-	public NavbarDTO(int categoryno, String categoryname, int memberno, String assemblename) {
+	public NavbarDTO(int categoryno, String categoryname, int memberno, String assemblename, int checkcategoryno,
+			int publicsecret) {
 		super();
 		this.categoryno = categoryno;
 		this.categoryname = categoryname;
 		this.memberno = memberno;
 		this.assemblename = assemblename;
+		this.checkcategoryno = checkcategoryno;
+		this.publicsecret = publicsecret;
 	}
+
+
+
 
 
 	public int getCategoryno() {
@@ -52,9 +59,24 @@ public class NavbarDTO {
 		return assemblename;
 	}
 
-
 	public void setAssemblename(String assemblename) {
 		this.assemblename = assemblename;
+	}
+
+	public int getCheckcategoryno() {
+		return checkcategoryno;
+	}
+
+	public void setCheckcategoryno(int checkcategoryno) {
+		this.checkcategoryno = checkcategoryno;
+	}
+
+	public int getPublicsecret() {
+		return publicsecret;
+	}
+
+	public void setPublicsecret(int publicsecret) {
+		this.publicsecret = publicsecret;
 	}
 	
 	

@@ -126,8 +126,8 @@ $(function(){
 	                  <td><b> Make your category~! Make your category~!</b></td>
 	               </tr>
 	              	
-	               <c:forEach var="i" items="dto">
-	                	<tr><td>${dto.categoryname }</td></tr>
+	               <c:forEach var="i" items="${categoryList2 }">
+	                	<tr><td>${i.categoryname }</td></tr>
 	               </c:forEach> 
 	               
 	            

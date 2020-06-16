@@ -14,4 +14,10 @@ public interface CategoryDAO {
 	
 	//selectCategory
 	public List<NavbarDTO> selectCategory(NavbarDTO dto);
+	
+	//in category
+	
+	public List<NavbarDTO> ingroupCategory(NavbarDTO dto);
+	
+
 }

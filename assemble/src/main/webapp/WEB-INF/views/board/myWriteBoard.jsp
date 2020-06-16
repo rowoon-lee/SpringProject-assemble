@@ -225,7 +225,7 @@
 <body>
 	<div id="main">
 		<br />
-		<h3>내글(몇개)</h3>
+		<h3>내글</h3>
 
 		<c:forEach var="b" items="${mywirtelist }">
 			<div id="board">

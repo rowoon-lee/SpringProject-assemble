@@ -25,7 +25,6 @@ public class NavbarController {
 	@Autowired
 	CategoryDAO cdao;
 	
-	
 	//카테고리 전체 조회
 	@RequestMapping(value = "/assemble.io/{mi_assembleName}/header")	
 	public String categoryList(@PathVariable("mi_assembleName")String assemblename,
@@ -40,15 +39,14 @@ public class NavbarController {
 		NavbarDTO dto = new NavbarDTO();
 		dto.setMemberno(memberNo);
 		dto.setAssemblename(assemblename);
+		
 		List<NavbarDTO> list = cdao.selectCategory(dto);
 		model.addAttribute("categoryList", list);
 		
-//		System.out.println(assemblename);
-		
-//		List<CategoryDTO> list = cdao.selectCategory(dto);
-		
+		GroupDTO dto2 = new GroupDTO();
+		dto2.setMemberno(memberNo);
 		//categoryno 같을때만 뽑는 조건을 jsp상에서 주었음
-		List<GroupDTO> list2 = gdao.grouplist();	
+		List<GroupDTO> list2 = gdao.grouplist(dto2);	
 		model.addAttribute("groupList", list2);
 		
 //		model.addAttribute("memberno", memberNo);

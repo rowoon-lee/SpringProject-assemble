@@ -31,16 +31,15 @@ public class CategoryController {
 		
 		HttpSession session = request.getSession();
 		int memberNo = (Integer)session.getAttribute("memberno");
-	
 		//System.out.println(assemblename);
 		NavbarDTO dto = new NavbarDTO();
 		dto.setMemberno(memberNo);
 		dto.setAssemblename(assemblename);
+		
 		List<NavbarDTO> list = cdao.selectCategory(dto);
 		model.addAttribute("categoryList2", list);
 
 		return "category/setCategories";
-		//return "category/setCategories";
 	}
 	
 	
@@ -52,15 +51,17 @@ public class CategoryController {
 		CategoryDTO dto = new CategoryDTO();
 		
 		int memberno = (int) session.getAttribute("memberno");
+		String assemblename = (String) session.getAttribute("mi_assembleName");
 		//멤버 넘버 세션에서 받아오기
 		dto.setMemberno(memberno);
 		dto.setCategoryname(name);
+		dto.setAssemblename(assemblename);
 		
 		
 		cdao.insertCategory(dto);
 		model.addAttribute("dto", dto);
 		
-		return "category/setCategories";
+		return "redirect:/makeCategory";
 		
 	}
 	

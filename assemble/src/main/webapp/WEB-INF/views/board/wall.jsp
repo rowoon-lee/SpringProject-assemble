@@ -10,14 +10,30 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
      //bookmark click 시 변경
-     function imgchange(){
-    	 var img = document.getElementById('bk');
-    	 if(img.src.match("before")){
-    		 img.src = "/resources/assets/img/bookmark_after.png";
-    		 
-    		 /* location.href="/addBookmark"; */
-    	 }
-     }    
+     var cnt = 1;
+ 
+	     
+	     $(function(){
+		     $(".lh").click(function(){
+		    	console.log(this.src.split("/")[6]);
+		  /*   	 img1.src = "/resources/assets/img/bookmark_before.png";
+		    	 img1.src = "/resources/assets/img/bookmark_after.png"; */
+		     });
+		     
+		     
+		     
+		     if(this.src.split("/")[6].split(".")[0] == "bookmark_before"){
+		    	 console.log("일치");
+		    	 
+		     }else{
+		    	 console.log(this.src.split("/")[6].split(".")[0]);
+		     }
+		     
+		     
+		     
+	     
+	 	});
+     
      
     	 //댓글달기
 	     $(function(){
@@ -261,6 +277,9 @@
 			document.location.href = "/download?filename="+filename;
 		});
 	});
+	
+	
+
 	
 		
 	
@@ -510,10 +529,8 @@ input:focus {
 								<input type="hidden" name="bno" value="${b.bno}"/>
 								<input type="hidden" name="groupno" value="${b.groupno}"/>
 								<input type="button" value="댓글" class="re" />
-							
-								<img src="/resources/assets/img/like.png" class="lh">								
-								<img src="/resources/assets/img/hate.png" class="lh">
-								<img src="/resources/assets/img/bookmark_before.png" id="bk" class="lh" onclick="imgchange()"/>																			
+						
+								<img src="/resources/assets/img/bookmark_before.png" id="bk" class="lh"/>																			
 							</div>
 							<div class="c2" >
 								<input type="hidden" name="bno" value="${b.bno }"/>

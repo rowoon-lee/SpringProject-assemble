@@ -67,33 +67,54 @@
 	<!-- ********************카테고리******************* -->
 	<!-- 카테고리만 생성 / 세션에 있는 memberno 가져오기 -->
 	<insert id="insertCategory" parameterType="CategoryDto">
-		insert into category(memberno, categoryname, admin)
-		values (#{memberno}, #{categoryname}, 1)
+		insert into category(memberno, categoryname, admin, assemblename)
+		values (#{memberno}, #{categoryname}, 1, #{assemblename})
 	</insert>
+	
+	<!-- 전체카테고리조회 -->
+	<select id="categoryGroup" resultType="NavbarDto">
+	  select distinct ca.categoryno, ca.categoryname, ca.assemblename
+       from category ca inner join composed co
+       on co.memberno = ca.memberno
+       where co.memberno = #{memberno} or 
+       ca.assemblename=#{assemblename} and 
+       ca.publicsecret = 1;
+	</select>
+	
+	<!-- 그룹에서 카테고리 조회 -->
+	<select id="ingroupcategory" resultType="NavbarDto">
+		select categoryname, categoryno from category where assemblename = #{assemblename}	
+	</select>
+	
 	
 	
 	<!-- 카테고리조회(네비바) -->
-	<select id="categoryGroup" resultType="NavbarDto" >
+	<!-- <select id="categoryGroup" resultType="NavbarDto" >
 		select distinct ca.categoryno, ca.categoryname, ca.assemblename
 		from category ca inner join composed co
 		on co.memberno = ca.memberno
 		where co.memberno = #{memberno}
 	</select>
-	
+	 -->
 
 	
 	<!-- **********************그룹******************** -->
-	<!-- 그룹 전체 조회 -->
+	<!-- 참여가능한 그룹 -->
 	<select id="selectAllGroup" resultType="A_GDto" parameterType="A_GDto">
-		select a.ai_assemblename, g.groupname, g.groupno, g.categoryno, c.memberno
-		from assembleinfo as a join groups as g
+		select distinct g.groupname, a.ai_assemblename, g.groupno, g.categoryno, c.memberno
+		from assembleinfo as a join groups as g 
 		on a.ai_memberno = g.memberno
-		left join composed as c 
-		on c.groupno = g.groupno
-		where a.ai_assemblename = "with";
+		left join composed as c
+		on c.groupno = g.groupno and c.memberno = #{memberno}
+		where a.ai_assemblename = #{assemblename}
    </select>
+   
+   	<!-- 현 세션이 compose에 속해있는지-->
+<!--    	<select id="confirmComposedMember" resultType="int">
+   		select memberno from composed 
+   	</select> -->
 
-	<select id="selectCategoryGroup1" resultType="GroupDto">
+	<select id="selectCategoryGroup" resultType="GroupDto">
 		select * from groups
 	</select>
 	
@@ -326,7 +347,7 @@
 	on f.bno = gb.bno
 	left join memberinfo as m
 	on r.memberno = m.mi_memberno
-	where mi_assemblename = "with"
+	where mi_assemblename = #{assemblename}
 	and (r.responseid like #{valueid} or
 	r.responseid like #{valuename})
    </select>

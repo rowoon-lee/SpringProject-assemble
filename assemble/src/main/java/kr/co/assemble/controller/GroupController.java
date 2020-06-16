@@ -2,6 +2,7 @@ package kr.co.assemble.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.assemble.dao.CategoryDAO;
 import kr.co.assemble.dao.ComposedDAO;
 import kr.co.assemble.dao.GroupDAO;
 import kr.co.assemble.dto.AssembleGroupDTO;
-import kr.co.assemble.dto.ComposedDTO;
 import kr.co.assemble.dto.GroupDTO;
+import kr.co.assemble.dto.NavbarDTO;
 
 @Controller
 public class GroupController {	
@@ -25,6 +27,8 @@ public class GroupController {
 	@Autowired
 	ComposedDAO cdao;
 	
+	@Autowired 
+	CategoryDAO catdao;
 	
 	public void setDao(GroupDAO dao) {
 		this.dao = dao;
@@ -34,8 +38,12 @@ public class GroupController {
 		this.cdao = cdao;
 	}
 	
+	public void setCatdao(CategoryDAO catdao) {
+		this.catdao = catdao;
+	}
 	
-	//그룹 전체 조회													===> 첫 홈에서 누르면 load 해놓음
+	
+	//그룹 전체 조회		(참여가능한 그룹)											===> 첫 홈에서 누르면 load 해놓음
 	@RequestMapping(value = "/attendgroups")
 	public String attendgroups(Model model, HttpSession session) {
 		
@@ -44,22 +52,31 @@ public class GroupController {
 		
 		AssembleGroupDTO dto = new AssembleGroupDTO();
 		dto.setAssemblename(assemblename);
-		
+		dto.setMemberno(memberno);
+
 		model.addAttribute("memberno", memberno);
 		
 		List<AssembleGroupDTO> list = dao.selectGroup(dto);
 		model.addAttribute("list", list);
-
-		
-		
+	
 		return "jisoo/attendgroups";
 	}
 	
 	
-	
+
 	//그룹 만들기 폼
 	@RequestMapping(value = "/makeGroup")
-	public String makeGroup() {
+	public String makeGroup(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();		
+		
+		NavbarDTO dto = new NavbarDTO();
+		String assemblename = (String) session.getAttribute("mi_assembleName");
+		dto.setAssemblename(assemblename);
+		
+		List<NavbarDTO> list = catdao.ingroupCategory(dto);
+		model.addAttribute("categoryList2", list);
+		
+		System.out.println(list.get(0).getCategoryname());
 		
 		return "jinwoo/groupMake";
 	}
@@ -68,18 +85,23 @@ public class GroupController {
 	//그룹만들어지고나서 이동하는 페이지
 	@RequestMapping(value = "/insertGroupOk")
 	public String makeGroup(
-			@RequestParam (value = "grName") String name, Model model) {
+			@RequestParam (value = "categorList") int categoryList,
+			@RequestParam(value= "groupname") String groupname,
+			 Model model, HttpSession session) {
 		
 		GroupDTO dto = new GroupDTO();
+		int memberno = (Integer)session.getAttribute("memberno");
 		
 		//멤버넘버 세션에서 받아오기
-		dto.setMemberno(2);
-		dto.setGroupname(name);
+		dto.setMemberno(memberno);
+		dto.setCategoryno(categoryList);
+		dto.setGroupname(groupname);
+		
 		dao.insertGroup(dto);
 		
-		model.addAttribute("dto", dto);
+		//model.addAttribute("dto", dto);
 		
-		return "group/insertGroupOk";
+		return "redirect:/makeGroup";
 	}
 	
 	
