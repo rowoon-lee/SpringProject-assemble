@@ -50,7 +50,7 @@ public interface BoardDAO {
 	//북마크 조회
 	public List<bookmarkDTO> selectBookmark(int memberno);
 	
-	public List<searchDTO> searchlist(searchParamDTO searchparamdto);
+	public List<Groupboard_Memberinfo_FileDTO> searchlist(searchParamDTO searchparamdto);
 	
 	
 	

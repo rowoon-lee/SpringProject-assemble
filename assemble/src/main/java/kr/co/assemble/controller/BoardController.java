@@ -203,7 +203,7 @@ public class BoardController {
 			
 			searchParamDTO dto = new searchParamDTO(value2, assemble);
 			
-			List<searchDTO> list = dao.searchlist(dto);
+			List<Groupboard_Memberinfo_FileDTO> list = dao.searchlist(dto);
 			model.addAttribute("searchlist",list);
 			model.addAttribute("value", value);
 			

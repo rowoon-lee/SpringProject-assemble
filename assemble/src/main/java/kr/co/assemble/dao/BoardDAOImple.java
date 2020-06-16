@@ -128,9 +128,9 @@ public class BoardDAOImple implements BoardDAO{
 	}
 
 	@Override
-	public List<searchDTO> searchlist(searchParamDTO searchparamdto) {
+	public List<Groupboard_Memberinfo_FileDTO> searchlist(searchParamDTO searchparamdto) {
 		
-		List<searchDTO> list = ss.selectList("search", searchparamdto);
+		List<Groupboard_Memberinfo_FileDTO> list = ss.selectList("search", searchparamdto);
 		
 		return list;
 	}

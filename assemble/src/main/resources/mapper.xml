@@ -518,7 +518,7 @@
 	</select>
 	
 	<!--전체검색 -->
-	<select id="search" resultType="searchDTO">
+	<select id="search" parameterType="searchParamDto" resultType="G_M_F_Dto">
    		select
 		b.bno, b.groupno, b.memberno, m.mi_memname, m.mi_memid, 
 		b.boardnotice, b.boarddate, b.boardcontents, b.boardlike, b.boardhate, 
@@ -533,7 +533,7 @@
 		(m.mi_memname like #{value} or
 		m.mi_memid like #{value} or
 		b.boardcontents like #{value})
-		and m.ai_assemblename = #{assemble}
+		and m.mi_assemblename = #{assemble}
 	
    	</select>
 
