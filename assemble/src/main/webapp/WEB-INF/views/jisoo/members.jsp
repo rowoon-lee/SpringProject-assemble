@@ -68,7 +68,9 @@
 			<div class="bookmarks-page__list-wrap">
 				
 				<div>
-					<h2>[진우가 만든거 넣기~]멤버 리스트 여기에 뽑기~!!~</h2>				
+						<c:forEach var="m" items="${memberlist}">
+							<h2>${m.mi_memName }</h2>
+						</c:forEach>
 				</div>
 				
 				<!-- div로 멤버 리스트 가져오기~  -->
